@@ -3,8 +3,6 @@ package goair.model.flight;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlType;
@@ -23,7 +21,7 @@ public class Flight {
 	@XmlElement(name="numberOfSeats")
 	int numberOfSeats;
 	@XmlList
-	List<Employee> crewDetails;
+	Employee[] crewDetails;
 
 	// Extra attributes that will be used
 	String flightId; // This is to uniquely identify the a flight across the table. 
@@ -33,7 +31,7 @@ public class Flight {
 	Long departureTime;
 	String status;
 	int numberOfSeatsReserved;
-	List<Customer> customers;
+	Customer[] customers;
 	
 	public String getFlightNumber() {
 		return flightNumber;
@@ -75,11 +73,11 @@ public class Flight {
 		this.numberOfSeats = numberOfSeats;
 	}
 
-	public List<Employee> getCrewDetails() {
+	public Employee[] getCrewDetails() {
 		return crewDetails;
 	}
 
-	public void setCrewDetails(List<Employee> crewDetails) {
+	public void setCrewDetails(Employee[] crewDetails) {
 		this.crewDetails = crewDetails;
 	}
 
@@ -123,11 +121,11 @@ public class Flight {
 		this.numberOfSeatsReserved = numberOfSeatsReserved;
 	}
 
-	public List<Customer> getCustomers() {
+	public Customer[] getCustomers() {
 		return customers;
 	}
 
-	public void setCustomers(List<Customer> customers) {
+	public void setCustomers(Customer[] customers) {
 		this.customers = customers;
 	}
 

@@ -1,8 +1,5 @@
 package goair.wsdl;
 
-import java.awt.print.Book;
-import java.util.List;
-
 import goair.Exception.AirlineException;
 import goair.model.booking.Booking;
 import goair.model.customer.Customer;
@@ -16,10 +13,10 @@ public class CustomerServices extends AirlineServices{
         
         /**
          * Search flights - This method searches all the flights with a given criteria
-         * @return String[] - Return array of strings. Each string contains pipe separated flight details.
+         * @return Flight[] - Return array of flights.
          *  
          */
-        public List<Flight> searchFlights(SearchParametersForFlights searchFlight) throws AirlineException
+        public Flight[] searchFlights(SearchParametersForFlights searchFlight) throws AirlineException
         {
                 return null;
         }
@@ -40,11 +37,11 @@ public class CustomerServices extends AirlineServices{
                 return 1;
         }
         
-        public List<Booking> viewBookingHistory(long customerId) throws AirlineException{
+        public Booking[] viewBookingHistory(long customerId) throws AirlineException{
                 return null;
         }
         
-        public Book viewBooking(long reservationid) throws AirlineException{
+        public Booking viewBooking(long reservationid) throws AirlineException{
         	return null;
         }
         

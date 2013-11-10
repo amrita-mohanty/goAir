@@ -8,8 +8,6 @@ import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
 
-import java.util.List;
-
 public class AdminServices {
 	
 	//When you login as admin you see following hyper links
@@ -36,19 +34,19 @@ public class AdminServices {
 
 	/**
 	 * Search flights - This method searches all the flights with a given criteria
-	 * @return List<Flight> -  Return list of flights
+	 * @return Flight[] -  Return list of flights
 	 *  
 	 */
-	public List<Flight> searchFlights(SearchParametersForFlights searchParameters)
+	public Flight[] searchFlights(SearchParametersForFlights searchParameters)
 	{
 		return null;
 	}
 	
 	/**
 	 * Get all the flights in the system
-	 * @return List<Flight> - Return list of all the flights
+	 * @return Flight[] - Return list of all the flights
 	 */
-	public List<Flight> getFlights()
+	public Flight[] getFlights()
 	{
 		return null;
 	}
@@ -89,19 +87,19 @@ public class AdminServices {
 	
 	/**
 	 * Search Customers - This method searches all the Customer with a given criteria
-	 * @return List<Customer> - Return list of Customers.
+	 * @return Customer[] - Return list of Customers.
 	 *  
 	 */
-	public List<Customer> searchCustomers(SearchParametersForCustomers searchParameters)
+	public Customer[] searchCustomers(SearchParametersForCustomers searchParameters)
 	{
 		return null;
 	}
 	
 	/**
 	 * Get all the Customers in the system
-	 * @return List<Customer> - Return list of all the Customers
+	 * @return Customer[] - Return list of all the Customers
 	 */
-	public List<Customer> getCustomers()
+	public Customer[] getCustomers()
 	{
 		return null;
 	}
@@ -141,19 +139,19 @@ public class AdminServices {
 	
 	/**
 	 * Search Employee - This method searches all the Employee with a given criteria
-	 * @return List<Employee> - Return list of Employee.
+	 * @return Employee[] - Return list of Employee.
 	 *  
 	 */
-	public List<Employee> searchEmployees(SearchParametersForEmployees searchParameters)
+	public Employee[] searchEmployees(SearchParametersForEmployees searchParameters)
 	{
 		return null;
 	}
 	
 	/**
 	 * Get all the Employees in the system
-	 * @return List<Customer> - Return list of all the Employees
+	 * @return Customer[] - Return list of all the Employees
 	 */
-	public List<Employee> getEmployees()
+	public Employee[] getEmployees()
 	{
 		return null;
 	}
@@ -193,19 +191,19 @@ public class AdminServices {
 	
 	/**
 	 * Search Booking - This method searches all the Booking with a given criteria
-	 * @return List<Booking> - Return list of Booking.
+	 * @return Booking[] - Return list of Booking.
 	 *  
 	 */
-	public List<Booking> searchBookings(SearchParametersForEmployees searchParameters)
+	public Booking[] searchBookings(SearchParametersForEmployees searchParameters)
 	{
 		return null;
 	}
 	
 	/**
 	 * Get all the Booking in the system
-	 * @return List<Booking> - Return list of all the Bookings
+	 * @return Booking[] - Return list of all the Bookings
 	 */
-	public List<Booking> getBookings()
+	public Booking[] getBookings()
 	{
 		return null;
 	}
