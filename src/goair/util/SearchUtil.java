@@ -10,10 +10,9 @@ public class SearchUtil {
 	 * This method will get the flight based on search parameters passed to it
 	 * @return List<Flight> 
 	 */
-	public List<Flight> serachFlightsForAdmin(SearchParametersForFlights searchParameters)
+	public List<Flight> searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
 		return null;
 	}
 	
-
 }

@@ -16,7 +16,7 @@ public class AdminServices {
 	// 3. Add a flight
 	
 	// 4. Search customer - when you get a searched customer you get option to edit / delete it.
-	// 5. View all customers - when you view a customer you get option to edit / delete it.
+	// 5. View all passengers - when you view a customer you get option to edit / delete it.
 	// 6. Add a customer 
 	
 	// 7. Search employee - when you get a searched employee you get option to edit / delete it.

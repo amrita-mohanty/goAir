@@ -1,5 +1,7 @@
 package goair.model.flight;
 
+import java.util.Arrays;
+
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 
@@ -31,7 +33,7 @@ public class Flight {
 	Long departureTime;
 	String status;
 	int numberOfSeatsReserved;
-	Customer[] customers;
+	Customer[] passengers;
 	
 	public String getFlightNumber() {
 		return flightNumber;
@@ -121,23 +123,25 @@ public class Flight {
 		this.numberOfSeatsReserved = numberOfSeatsReserved;
 	}
 
-	public Customer[] getCustomers() {
-		return customers;
+	public Customer[] getPassengers() {
+		return passengers;
 	}
 
-	public void setCustomers(Customer[] customers) {
-		this.customers = customers;
+	public void setPassengers(Customer[] passengers) {
+		this.passengers = passengers;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Flight [flightNumber=" + flightNumber + ", airlineName="
 				+ airlineName + ", source=" + source + ", destination="
 				+ destination + ", numberOfSeats=" + numberOfSeats
-				+ ", crewDetails=" + crewDetails + ", flightId=" + flightId
-				+ ", arrivalTime=" + arrivalTime + ", departureTime="
-				+ departureTime + ", status=" + status
-				+ ", numberOfSeatsReserved=" + numberOfSeatsReserved + "]";
+				+ ", crewDetails=" + Arrays.toString(crewDetails)
+				+ ", flightId=" + flightId + ", arrivalTime=" + arrivalTime
+				+ ", departureTime=" + departureTime + ", status=" + status
+				+ ", numberOfSeatsReserved=" + numberOfSeatsReserved
+				+ ", passengers=" + Arrays.toString(passengers) + "]";
 	}
 
 	/*
