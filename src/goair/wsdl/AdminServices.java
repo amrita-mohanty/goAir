@@ -203,7 +203,7 @@ public class AdminServices {
 	 * Get all the Booking in the system
 	 * @return Booking[] - Return list of all the Bookings
 	 */
-	public Booking[] getBookings()
+	public Booking[] getAllBookings()
 	{
 		return null;
 	}
@@ -219,14 +219,4 @@ public class AdminServices {
 		return -1;
 	}
 	
-	/**
-	 * Delete Booking to the system
-	 * @param Booking
-	 * @return int status of the operation this maps to the list of error codes defined 
-	 * for the system.
-	 */
-	public int deleteBooking(Booking booking)
-	{
-		return -1;
-	}
 }

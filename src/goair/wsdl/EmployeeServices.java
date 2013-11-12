@@ -1,6 +1,7 @@
 package goair.wsdl;
 
 import goair.Exception.AirlineException;
+import goair.model.employee.Crew;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
 import goair.util.SearchParametersForFlights;
@@ -30,7 +31,7 @@ public class EmployeeServices {
 	 * @param Employee
 	 * @return Array of Flight
 	 */
-	public Flight[] viewEmployeeFlight(Employee employee) throws AirlineException{
+	public Flight[] viewEmployeeFlight(Crew crew) throws AirlineException{
               return null;
 	}
 	
