@@ -5,6 +5,7 @@ import goair.util.DbConnection;
 import goair.util.SearchParametersForFlights;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -38,8 +39,6 @@ public class CustomerServiceQuery {
 				+ "flight.flightId=flightflyinginformation.flightId and "
 				+ "flight.source=? and flight.destination=? and  flightflyinginformation.dateOfFlying=?";
 		
-		
-		
 		System.out.println("searchFlightsForCustomer query : " + query);
 		
 		 ResultSet resultSet = null;  
@@ -52,7 +51,7 @@ public class CustomerServiceQuery {
 	    	 preparedStatement = connection.prepareStatement(query);  
 	    	 preparedStatement.setString(1,searchParameters.getSource());
 	    	 preparedStatement.setString(2,searchParameters.getDestination());
-	    	 preparedStatement.setLong(3,searchParameters.getDateOfFlying());
+	    	 preparedStatement.setDate(3,new Date(searchParameters.getDateOfFlying().getTime())); // util.Date to sql.Date
 	    	 
 	    	 resultSet = preparedStatement.executeQuery(query);
 

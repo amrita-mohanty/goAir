@@ -1,14 +1,16 @@
 package goair.util;
 
+import java.util.Date;
+
 public class SearchParametersForFlights {
 	
 	String flightNumber;
 	String airlineName;
 	String source;
 	String destination;
-	Long dateOfFlying;
-	Long departureTime;
-	Long arrivalTime;
+	Date dateOfFlying;
+	Date departureTime;
+	Date arrivalTime;
 	
 	int numberOfSeatsAvialable; // This is number of seats - number of seats reserved
 
@@ -44,19 +46,19 @@ public class SearchParametersForFlights {
 		this.destination = destination;
 	}
 
-	public Long getDepartureTime() {
+	public Date getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Long departureTime) {
+	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public Long getArrivalTime() {
+	public Date getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Long arrivalTime) {
+	public void setArrivalTime(Date arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
@@ -68,11 +70,11 @@ public class SearchParametersForFlights {
 		this.numberOfSeatsAvialable = numberOfSeatsAvialable;
 	}
 	
-	public Long getDateOfFlying() {
+	public Date getDateOfFlying() {
 		return dateOfFlying;
 	}
 
-	public void setDateOfFlying(Long dateOfFlying) {
+	public void setDateOfFlying(Date dateOfFlying) {
 		this.dateOfFlying = dateOfFlying;
 	}
 
