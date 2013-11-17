@@ -1,35 +1,36 @@
 package goair.model.flight;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 
 public class Flight {
 	
-	String flightId;
+	Integer flightId;
     String flightName;
     String airlineName;
     String source;
     String destination;
-    Long departureTime;
-    Long arrivalTime;
+    Date departureTime;
+    Date arrivalTime;
     String status;
     int totalSeats;
     int seatsReserved;
     int seatsAvailable;
 	String daysOfWeek;
-    Long flyingStartDate;
-    Long flyingEndDate;
+    Date flyingStartDate;
+    Date flyingEndDate;
     
 	Employee[] crewDetails;
 	Customer[] passengers;
 	
-	public String getFlightId() {
+	public Integer getFlightId() {
 		return flightId;
 	}
 	
-	public void setFlightId(String flightId) {
+	public void setFlightId(Integer flightId) {
 		this.flightId = flightId;
 	}
 	
@@ -65,19 +66,19 @@ public class Flight {
 		this.destination = destination;
 	}
 	
-	public Long getDepartureTime() {
+	public Date getDepartureTime() {
 		return departureTime;
 	}
 	
-	public void setDepartureTime(Long departureTime) {
+	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
 	
-	public Long getArrivalTime() {
+	public Date getArrivalTime() {
 		return arrivalTime;
 	}
 	
-	public void setArrivalTime(Long arrivalTime) {
+	public void setArrivalTime(Date arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 	
@@ -113,19 +114,19 @@ public class Flight {
 		this.daysOfWeek = daysOfWeek;
 	}
 	
-	public Long getFlyingStartDate() {
+	public Date getFlyingStartDate() {
 		return flyingStartDate;
 	}
 	
-	public void setFlyingStartDate(Long flyingStartDate) {
+	public void setFlyingStartDate(Date flyingStartDate) {
 		this.flyingStartDate = flyingStartDate;
 	}
 	
-	public Long getFlyingEndDate() {
+	public Date getFlyingEndDate() {
 		return flyingEndDate;
 	}
 	
-	public void setFlyingEndDate(Long flyingEndDate) {
+	public void setFlyingEndDate(Date flyingEndDate) {
 		this.flyingEndDate = flyingEndDate;
 	}
 	
@@ -153,7 +154,6 @@ public class Flight {
 		this.seatsAvailable = seatsAvailable;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Flight [flightId=" + flightId + ", flightName=" + flightName
@@ -167,7 +167,4 @@ public class Flight {
 				+ ", crewDetails=" + Arrays.toString(crewDetails)
 				+ ", passengers=" + Arrays.toString(passengers) + "]";
 	}
-	
-	
-	
 }

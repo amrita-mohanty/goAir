@@ -63,7 +63,7 @@ CREATE TABLE  `flight` (
 CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` TIMESTAMP NOT NULL,
-  `employeeId` INT(11) NULL, 
+  `employeeId` INT(11) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

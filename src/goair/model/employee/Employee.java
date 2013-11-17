@@ -1,56 +1,57 @@
 package goair.model.employee;
 
-import goair.model.flight.Flight;
+import java.util.Date;
+
 import goair.model.general.Person;
 
 public class Employee extends Person {
 	public Employee() {}
 
-	String empId;
-	String empDes;
-	String empPosition;
-	String empHiredate;
-	Flight[] empFlights;
+	String employeeId;
+	String airlineName;
+	String jobDesc;
+	String position;
+	Date hireDate;
 	
-	public String getEmpId() {
-		return empId;
+	public String getEmployeeId() {
+		return employeeId;
 	}
-	public void setEmpId(String empId) {
-		this.empId = empId;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
-	public String getEmpDes() {
-		return empDes;
+	public String getAirlineName() {
+		return airlineName;
 	}
-	public void setEmpDes(String empDes) {
-		this.empDes = empDes;
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
 	}
-	public String getEmpPosition() {
-		return empPosition;
+	public String getJobDesc() {
+		return jobDesc;
 	}
-	public void setEmpPosition(String empPosition) {
-		this.empPosition = empPosition;
+	public void setJobDesc(String jobDesc) {
+		this.jobDesc = jobDesc;
 	}
-	public String getEmpHiredate() {
-		return empHiredate;
+	public String getPosition() {
+		return position;
 	}
-	public void setEmpHiredate(String empHiredate) {
-		this.empHiredate = empHiredate;
+	public void setPosition(String position) {
+		this.position = position;
 	}
-	public Flight[] getEmpFlights() {
-		return empFlights;
+	public Date getHireDate() {
+		return hireDate;
 	}
-	public void setEmpFlights(Flight[] empFlights) {
-		this.empFlights = empFlights;
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
 	}
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empDes=" + empDes
-				+ ", empPosition=" + empPosition + ", empHiredate="
-				+ empHiredate + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zipcode=" + zipcode + ", dob=" + dob
-				+ "]";
+		return "Employee [employeeId=" + employeeId + ", airlineName="
+				+ airlineName + ", jobDesc=" + jobDesc + ", position="
+				+ position + ", hireDate=" + hireDate + ", emailId=" + emailId
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", gender=" + gender + ", address=" + address + ", city="
+				+ city + ", state=" + state + ", zipcode=" + zipcode + ", dob="
+				+ dob + "]";
 	}
-
 }
 
