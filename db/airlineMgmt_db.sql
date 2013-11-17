@@ -32,7 +32,7 @@ CREATE TABLE `employee` (
   `airlineName` VARCHAR(50),
   `jobDesc` VARCHAR(20) NOT NULL,
   `position` VARCHAR(20) NOT NULL,
-  `hireDate` VARCHAR(20) NOT NULL,
+  `hireDate` TIMESTAMP NOT NULL,
   `address` VARCHAR(50) NOT NULL,
   `city` VARCHAR(20) NOT NULL,
   `state` VARCHAR(20) NOT NULL,
