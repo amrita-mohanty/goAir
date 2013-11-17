@@ -61,8 +61,8 @@ public class AdminServiceQuery
 				flight.setAirlineName(resultSet.getString("airlineName"));
 				flight.setSource(resultSet.getString("source"));
 				flight.setDestination(resultSet.getString("destination"));
-				flight.setDepartureTime(resultSet.getDate("departureTime"));
-				flight.setArrivalTime(resultSet.getDate("arrivalTime"));
+				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
+				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
 				flight.setStatus(resultSet.getString("status"));
 				flight.setTotalSeats(resultSet.getInt("totalSeats"));
 				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
