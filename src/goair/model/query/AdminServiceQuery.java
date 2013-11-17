@@ -3,7 +3,6 @@ package goair.model.query;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,20 +46,6 @@ public class AdminServiceQuery
 	     
 	     Flight flight = null;
 	     
-	     String flightId;
-	     String flightName;
-	     String airlineName;
-	     String source;
-	     String destination;
-	     Timestamp departureTime;
-	     Timestamp arrivalTime;
-	     String status;
-	     int totalSeats;
-	     int seatsReserved;
-	     String daysOfWeek;
-	     Timestamp flyingStartDate;
-	     Timestamp flyingEndDate;
-	     
 	     try{
 	    	 
 	    	 statement = connection.createStatement();  
@@ -72,11 +57,17 @@ public class AdminServiceQuery
 	    		 
 	    		 flight.setFlightId(resultSet.getString("flightId"));
 	    		 flight.setFlightName(resultSet.getString("flightName"));
-	    		 airlineName = resultSet.getString("airlineName");
-	    		 source = resultSet.getString("source");
-	    		 destination = resultSet.getString("destination");
-	    		 departureTime = resultSet.getTimestamp("departureTime");
-	    		 arrivalTime = resultSet.getTimestamp("arrivalTime");
+	    		 flight.setAirlineName(resultSet.getString("airlineName"));
+	    		 flight.setSource(resultSet.getString("source"));
+	    		 flight.setDestination(resultSet.getString("destination"));
+	    		 flight.setDepartureTime(resultSet.getTimestamp("departureTime").getTime());
+	    		 flight.setArrivalTime(resultSet.getTimestamp("arrivalTime").getTime());
+	    		 flight.setStatus(resultSet.getString("status"));
+	    		 flight.setTotalSeats(resultSet.getInt("totalSeats"));
+	    		 flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
+	    		 flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
+	    		 flight.setFlyingStartDate(resultSet.getTimestamp("flyingStartDate").getTime());
+	    		 flight.setFlyingEndDate(resultSet.getTimestamp("flyingEndDate").getTime());
 	    	 }  
 	     } 
 	     catch (Exception e) 
