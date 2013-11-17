@@ -1,14 +1,16 @@
 package goair.util;
 
+import java.util.Date;
+
 public class SearchParametersForFlights {
 	
 	String flightNumber;
 	String airlineName;
 	String source;
 	String destination;
-	
-	Long departureTime;
-	Long arrivalTime;
+	Date dateOfFlying;
+	Date departureTime;
+	Date arrivalTime;
 	
 	int numberOfSeatsAvialable; // This is number of seats - number of seats reserved
 
@@ -44,19 +46,19 @@ public class SearchParametersForFlights {
 		this.destination = destination;
 	}
 
-	public Long getDepartureTime() {
+	public Date getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Long departureTime) {
+	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public Long getArrivalTime() {
+	public Date getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Long arrivalTime) {
+	public void setArrivalTime(Date arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
@@ -67,13 +69,23 @@ public class SearchParametersForFlights {
 	public void setNumberOfSeatsAvialable(int numberOfSeatsAvialable) {
 		this.numberOfSeatsAvialable = numberOfSeatsAvialable;
 	}
+	
+	public Date getDateOfFlying() {
+		return dateOfFlying;
+	}
+
+	public void setDateOfFlying(Date dateOfFlying) {
+		this.dateOfFlying = dateOfFlying;
+	}
 
 	@Override
 	public String toString() {
-		return "SearchParametersForFlights [flightId=" + flightNumber
+		return "SearchParametersForFlights [flightNumber=" + flightNumber
 				+ ", airlineName=" + airlineName + ", source=" + source
-				+ ", destination=" + destination + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime
-				+ ", numberOfSeatsAvialable=" + numberOfSeatsAvialable + "]";
+				+ ", destination=" + destination + ", dateOfFlying="
+				+ dateOfFlying + ", departureTime=" + departureTime
+				+ ", arrivalTime=" + arrivalTime + ", numberOfSeatsAvialable="
+				+ numberOfSeatsAvialable + "]";
 	}
+
 }

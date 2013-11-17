@@ -13,7 +13,7 @@ public class CustomerServices extends AirlineServices{
         
         /**
          * Search flights - This method searches all the flights with a given criteria
-         * and returns only those columns whicha customer can view
+         * and returns only those columns which a customer can view
          * @return Flight[] - Return array of flights.
          *  
          */
