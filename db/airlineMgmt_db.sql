@@ -19,7 +19,7 @@ CREATE TABLE `customer` (
   `city` VARCHAR(20) NOT NULL,
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
-  `dob` VARCHAR(20) NOT NULL,
+  `dob` TIMESTAMP NOT NULL,
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,7 +37,7 @@ CREATE TABLE `employee` (
   `city` VARCHAR(20) NOT NULL,
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
-  `dob` VARCHAR(20) NOT NULL,
+  `dob` TIMESTAMP NOT NULL,
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

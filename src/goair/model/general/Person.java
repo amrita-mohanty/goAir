@@ -1,16 +1,19 @@
 package goair.model.general;
 
+import java.sql.Timestamp;
+
 public class Person {
 	
 	public Person() {}
 	
 	public String firstName;
 	public String lastName;
+	public String gender;
 	public String address;
 	public String city;
 	public String state;
 	public String zipcode;
-	public String dob;
+	public Timestamp dob;
 	
 	public String getFirstName() {
 		return firstName;
@@ -48,11 +51,17 @@ public class Person {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	public String getDob() {
+	public Timestamp getDob() {
 		return dob;
 	}
-	public void setDob(String dob) {
+	public void setDob(Timestamp dob) {
 		this.dob = dob;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }
