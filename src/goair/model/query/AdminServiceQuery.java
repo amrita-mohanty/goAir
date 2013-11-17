@@ -3,8 +3,8 @@ package goair.model.query;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import goair.model.employee.Employee;
@@ -34,10 +34,10 @@ public class AdminServiceQuery
 		// Using SearchParametersForFlights create the query 
 		//	that will search the flights.
 		
-		String query = "select flightid, flightname, airlinename, source, "
-				+ "destination, departuretime, arrivaltime, totalseats, "
-				+ "seatsreserved, daysofweek, flyingstartdate,"
-				+ "flyingenddate "
+		String query = "select flightid, flightName, airlineName, source, "
+				+ "destination, departureTime, arrivalTime, totalSeats, "
+				+ "seatsReserved, daysOfWeek, flyingStartDate,"
+				+ "flyingEndDate "
 				+ "from flight ";
 		
 		System.out.println("Get all the flights : " + query);
@@ -52,17 +52,14 @@ public class AdminServiceQuery
 	     String airlineName;
 	     String source;
 	     String destination;
-	     Long departureTime;
-	     Long arrivalTime;
+	     Timestamp departureTime;
+	     Timestamp arrivalTime;
 	     String status;
 	     int totalSeats;
 	     int seatsReserved;
 	     String daysOfWeek;
-	     Date flyingStartDate;
-	     Date flyingEndDate;
-	     
-	     
-	     
+	     Timestamp flyingStartDate;
+	     Timestamp flyingEndDate;
 	     
 	     try{
 	    	 
@@ -71,7 +68,15 @@ public class AdminServiceQuery
 
 	    	 while (resultSet.next()) 
 	    	 {
+	    		 flight = new Flight();
 	    		 
+	    		 flight.setFlightId(resultSet.getString("flightId"));
+	    		 flight.setFlightName(resultSet.getString("flightName"));
+	    		 airlineName = resultSet.getString("airlineName");
+	    		 source = resultSet.getString("source");
+	    		 destination = resultSet.getString("destination");
+	    		 departureTime = resultSet.getTimestamp("departureTime");
+	    		 arrivalTime = resultSet.getTimestamp("arrivalTime");
 	    	 }  
 	     } 
 	     catch (Exception e) 
