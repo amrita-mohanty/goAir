@@ -17,7 +17,16 @@ public class Flight {
     String status;
     int totalSeats;
     int seatsReserved;
-    String daysOfWeek;
+    int seatsAvailable;
+    public int getSeatsAvailable() {
+		return seatsAvailable;
+	}
+
+	public void setSeatsAvailable(int seatsAvailable) {
+		this.seatsAvailable = seatsAvailable;
+	}
+
+	String daysOfWeek;
     Long flyingStartDate;
     Long flyingEndDate;
     
@@ -143,7 +152,7 @@ public class Flight {
 	public void setPassengers(Customer[] passengers) {
 		this.passengers = passengers;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Flight [flightId=" + flightId + ", flightName=" + flightName
@@ -151,12 +160,13 @@ public class Flight {
 				+ ", destination=" + destination + ", departureTime="
 				+ departureTime + ", arrivalTime=" + arrivalTime + ", status="
 				+ status + ", totalSeats=" + totalSeats + ", seatsReserved="
-				+ seatsReserved + ", daysOfWeek=" + daysOfWeek
-				+ ", flyingStartDate=" + flyingStartDate + ", flyingEndDate="
-				+ flyingEndDate + ", crewDetails="
-				+ Arrays.toString(crewDetails) + ", passengers="
-				+ Arrays.toString(passengers) + "]";
+				+ seatsReserved + ", seatsAvailable=" + seatsAvailable
+				+ ", daysOfWeek=" + daysOfWeek + ", flyingStartDate="
+				+ flyingStartDate + ", flyingEndDate=" + flyingEndDate
+				+ ", crewDetails=" + Arrays.toString(crewDetails)
+				+ ", passengers=" + Arrays.toString(passengers) + "]";
 	}
+	
 	
 	
 }
