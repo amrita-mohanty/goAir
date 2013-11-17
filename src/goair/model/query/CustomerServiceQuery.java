@@ -59,13 +59,13 @@ public class CustomerServiceQuery {
 	    	 {
 	    		 flight = new Flight();
 	    		 
-	    		 flight.setFlightId(resultSet.getString("flightId")); // Hidden field in the UI.Required during reservation
+	    		 flight.setFlightId(resultSet.getInt("flightId")); // Hidden field in the UI.Required during reservation
 	    		 flight.setFlightName(resultSet.getString("flightName"));
 	    		 flight.setAirlineName(resultSet.getString("airlineName"));
 	    		 flight.setSource(resultSet.getString("source"));
 	    		 flight.setDestination(resultSet.getString("destination"));
-	    		 flight.setDepartureTime(resultSet.getTimestamp("departureTime").getTime());
-	    		 flight.setArrivalTime(resultSet.getTimestamp("arrivalTime").getTime());
+	    		 flight.setDepartureTime(resultSet.getDate("departureTime"));
+	    		 flight.setArrivalTime(resultSet.getDate("arrivalTime"));
 	    		 flight.setSeatsAvailable(resultSet.getInt("totalSeats")-resultSet.getInt("seatsReserved"));
 	    		 flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
 	    		 
