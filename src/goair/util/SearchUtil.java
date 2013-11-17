@@ -1,15 +1,15 @@
 package goair.util;
 
 import goair.model.flight.Flight;
-import goair.model.query.AdminServiceQuery;
+import goair.model.query.adminservices.AdminServiceQueries;
 
 public class SearchUtil {
 	
-	public AdminServiceQuery adminServiceQuery = null;
+	public AdminServiceQueries adminServiceQuery = null;
 	
 	public SearchUtil()
 	{
-		adminServiceQuery = new AdminServiceQuery();
+		adminServiceQuery = new AdminServiceQueries();
 	}
 	
 	/**

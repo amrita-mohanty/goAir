@@ -1,4 +1,9 @@
-package goair.model.query;
+package goair.model.query.adminservices;
+
+import goair.model.customer.Customer;
+import goair.model.employee.Employee;
+import goair.model.flight.Flight;
+import goair.util.SearchParametersForFlights;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,28 +11,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import goair.model.customer.Customer;
-import goair.model.employee.Employee;
-import goair.model.flight.Flight;
-import goair.util.DbConnection;
-import goair.util.SearchParametersForFlights;
-
-public class AdminServiceQuery 
-{
-	DbConnection dbConnection = null;
-	Connection connection = null;
-	
-	public AdminServiceQuery()
-	{
-		dbConnection = new DbConnection();
-		connection = dbConnection.createDbConnection();
-	}
+public class SearchFlightsForAdminQuery {
 	
 	/**
 	 * This method will get the flight based on search parameters passed to it
 	 * @return Flight[] 
 	 */
-	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
+	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters, 
+			Connection connection)
 	{
 		List<Flight> flights = new ArrayList<Flight>();
 
@@ -174,7 +165,7 @@ public class AdminServiceQuery
 			e.printStackTrace();  
 		}
 
-		return null;
+		return flights.toArray(new Flight[flights.size()]);
 	}
 
 }
