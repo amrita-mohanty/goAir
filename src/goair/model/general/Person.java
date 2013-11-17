@@ -6,6 +6,7 @@ public class Person {
 	
 	public Person() {}
 	
+	public String emailId;
 	public String firstName;
 	public String lastName;
 	public String gender;
@@ -15,6 +16,12 @@ public class Person {
 	public String zipcode;
 	public Timestamp dob;
 	
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -1,5 +1,4 @@
 package goair.model.customer;
-import java.sql.Timestamp;
 
 import goair.model.general.Person;
 
@@ -49,11 +48,11 @@ public class Customer extends Person{
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", emailIdString="
 				+ emailIdString + ", passportNum=" + passportNum
-				+ ", nationality=" + nationality + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", gender=" + gender
-				+ ", address=" + address + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + ", dob=" + dob + "]";
+				+ ", nationality=" + nationality + ", emailId=" + emailId
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", gender=" + gender + ", address=" + address + ", city="
+				+ city + ", state=" + state + ", zipcode=" + zipcode + ", dob="
+				+ dob + "]";
 	}
-
 }
 
