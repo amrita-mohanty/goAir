@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://Exception.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://wsdl.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <element name="searchEmployeeFlights">
+    <complexType>
+     <sequence>
+      <element name="searchFlight" type="tns1:SearchParametersForFlights"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchEmployeeFlightsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchEmployeeFlightsReturn" type="tns2:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns2_Flight">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Flight"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns3_Employee">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns3:Employee"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns5_Customer">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="tns6:AirlineException"/>
+   <element name="editEmployeeProfile">
+    <complexType>
+     <sequence>
+      <element name="employeeBean" type="tns3:Employee"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editEmployeeProfileResponse">
+    <complexType>
+     <sequence>
+      <element name="editEmployeeProfileReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="employeeLogin">
+    <complexType>
+     <sequence>
+      <element name="userName" type="xsd:string"/>
+      <element name="Password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="employeeLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="employeeLoginReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewEmployeeFlight">
+    <complexType>
+     <sequence>
+      <element name="employee" type="tns3:Employee"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewEmployeeFlightResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns2:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="SearchParametersForFlights">
+    <sequence/>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <complexType name="Person">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="dob" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="zipcode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Employee">
+    <complexContent>
+     <extension base="tns4:Person">
+      <sequence>
+       <element name="empDes" nillable="true" type="xsd:string"/>
+       <element name="empFlights" nillable="true" type="impl:ArrayOf_tns2_Flight"/>
+       <element name="empHiredate" nillable="true" type="xsd:string"/>
+       <element name="empId" nillable="true" type="xsd:string"/>
+       <element name="empPosition" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Customer">
+    <complexContent>
+     <extension base="tns4:Person">
+      <sequence>
+       <element name="customerId" nillable="true" type="xsd:string"/>
+       <element name="nationality" nillable="true" type="xsd:string"/>
+       <element name="passportNo" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://flight.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://Exception.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Flight">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="arrivalTime" nillable="true" type="xsd:long"/>
+     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns3_Employee"/>
+     <element name="departureTime" nillable="true" type="xsd:long"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="flightId" nillable="true" type="xsd:string"/>
+     <element name="flightNumber" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeats" type="xsd:int"/>
+     <element name="numberOfSeatsReserved" type="xsd:int"/>
+     <element name="passengers" nillable="true" type="impl:ArrayOf_tns5_Customer"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element name="wsdlString" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://Exception.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="AirlineException">
+    <sequence/>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="searchEmployeeFlightsResponse">
+
+      <wsdl:part element="impl:searchEmployeeFlightsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viewEmployeeFlightResponse">
+
+      <wsdl:part element="impl:viewEmployeeFlightResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viewEmployeeFlightRequest">
+
+      <wsdl:part element="impl:viewEmployeeFlight" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchEmployeeFlightsRequest">
+
+      <wsdl:part element="impl:searchEmployeeFlights" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="employeeLoginRequest">
+
+      <wsdl:part element="impl:employeeLogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="employeeLoginResponse">
+
+      <wsdl:part element="impl:employeeLoginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editEmployeeProfileRequest">
+
+      <wsdl:part element="impl:editEmployeeProfile" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AirlineException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editEmployeeProfileResponse">
+
+      <wsdl:part element="impl:editEmployeeProfileResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EmployeeServices">
+
+      <wsdl:operation name="searchEmployeeFlights">
+
+         <wsdl:input message="impl:searchEmployeeFlightsRequest" name="searchEmployeeFlightsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchEmployeeFlightsResponse" name="searchEmployeeFlightsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editEmployeeProfile">
+
+         <wsdl:input message="impl:editEmployeeProfileRequest" name="editEmployeeProfileRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:editEmployeeProfileResponse" name="editEmployeeProfileResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="employeeLogin">
+
+         <wsdl:input message="impl:employeeLoginRequest" name="employeeLoginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:employeeLoginResponse" name="employeeLoginResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewEmployeeFlight">
+
+         <wsdl:input message="impl:viewEmployeeFlightRequest" name="viewEmployeeFlightRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewEmployeeFlightResponse" name="viewEmployeeFlightResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EmployeeServicesSoapBinding" type="impl:EmployeeServices">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="searchEmployeeFlights">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchEmployeeFlightsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchEmployeeFlightsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AirlineException">
+
+            <wsdlsoap:fault name="AirlineException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editEmployeeProfile">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editEmployeeProfileRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editEmployeeProfileResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AirlineException">
+
+            <wsdlsoap:fault name="AirlineException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="employeeLogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="employeeLoginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="employeeLoginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AirlineException">
+
+            <wsdlsoap:fault name="AirlineException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewEmployeeFlight">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewEmployeeFlightRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewEmployeeFlightResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AirlineException">
+
+            <wsdlsoap:fault name="AirlineException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EmployeeServicesService">
+
+      <wsdl:port binding="impl:EmployeeServicesSoapBinding" name="EmployeeServices">
+
+         <wsdlsoap:address location="http://tempuri.org/goAir/services/EmployeeServices"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

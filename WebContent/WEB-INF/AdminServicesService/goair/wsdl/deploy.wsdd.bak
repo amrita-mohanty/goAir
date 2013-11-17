@@ -20,60 +20,60 @@
       <parameter name="className" value="goair.wsdl.AdminServicesSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="AdminServices"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="addFlight" qname="operNS:addFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="deleteBooking" qname="operNS:deleteBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Booking" xmlns:tns="http://booking.model.goair"/>
+      </operation>
+      <operation name="editBooking" qname="operNS:editBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Booking" xmlns:tns="http://booking.model.goair"/>
+      </operation>
+      <operation name="getCustomers" qname="operNS:getCustomers" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getCustomersReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
+      </operation>
+      <operation name="editFlight" qname="operNS:editFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
+      </operation>
+      <operation name="deleteFlight" qname="operNS:deleteFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
       </operation>
       <operation name="searchCustomers" qname="operNS:searchCustomers" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchCustomersReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
         <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForCustomers" xmlns:tns="http://util.goair"/>
       </operation>
-      <operation name="searchFlights" qname="operNS:searchFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
-        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
-      </operation>
-      <operation name="getCustomers" qname="operNS:getCustomers" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getCustomersReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
-      </operation>
-      <operation name="searchBookings" qname="operNS:searchBookings" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchBookingsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Booking" xmlns:rtns="http://booking.model.goair" soapAction="" >
-        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForEmployees" xmlns:tns="http://util.goair"/>
-      </operation>
-      <operation name="getEmployees" qname="operNS:getEmployees" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getEmployeesReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
-      </operation>
-      <operation name="editEmployee" qname="operNS:editEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
-      </operation>
-      <operation name="editCustomer" qname="operNS:editCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
-      </operation>
-      <operation name="addEmployee" qname="operNS:addEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
-      </operation>
       <operation name="getBookings" qname="operNS:getBookings" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getBookingsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Booking" xmlns:rtns="http://booking.model.goair" soapAction="" >
-      </operation>
-      <operation name="deleteBooking" qname="operNS:deleteBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Booking" xmlns:tns="http://booking.model.goair"/>
-      </operation>
-      <operation name="searchEmployees" qname="operNS:searchEmployees" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchEmployeesReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
-        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForEmployees" xmlns:tns="http://util.goair"/>
-      </operation>
-      <operation name="getFlights" qname="operNS:getFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
-      </operation>
-      <operation name="deleteFlight" qname="operNS:deleteFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
-      </operation>
-      <operation name="editBooking" qname="operNS:editBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Booking" xmlns:tns="http://booking.model.goair"/>
-      </operation>
-      <operation name="editFlight" qname="operNS:editFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
-      </operation>
-      <operation name="deleteCustomer" qname="operNS:deleteCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
-      </operation>
-      <operation name="addCustomer" qname="operNS:addCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
       </operation>
       <operation name="deleteEmployee" qname="operNS:deleteEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
-      <parameter name="allowedMethods" value="getEmployees deleteBooking editBooking getBookings searchEmployees addEmployee deleteEmployee editCustomer editEmployee editFlight getCustomers getFlights addCustomer addFlight searchBookings searchFlights deleteCustomer searchCustomers deleteFlight"/>
+      <operation name="searchBookings" qname="operNS:searchBookings" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchBookingsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Booking" xmlns:rtns="http://booking.model.goair" soapAction="" >
+        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForEmployees" xmlns:tns="http://util.goair"/>
+      </operation>
+      <operation name="editEmployee" qname="operNS:editEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
+      </operation>
+      <operation name="addEmployee" qname="operNS:addEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
+      </operation>
+      <operation name="getEmployees" qname="operNS:getEmployees" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getEmployeesReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
+      </operation>
+      <operation name="searchEmployees" qname="operNS:searchEmployees" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchEmployeesReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
+        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForEmployees" xmlns:tns="http://util.goair"/>
+      </operation>
+      <operation name="searchFlights" qname="operNS:searchFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
+        <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
+      </operation>
+      <operation name="deleteCustomer" qname="operNS:deleteCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:deleteCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
+      </operation>
+      <operation name="editCustomer" qname="operNS:editCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
+      </operation>
+      <operation name="addFlight" qname="operNS:addFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
+      </operation>
+      <operation name="addCustomer" qname="operNS:addCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
+      </operation>
+      <operation name="getFlights" qname="operNS:getFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="deleteBooking getEmployees editBooking getBookings searchEmployees addEmployee editCustomer deleteEmployee editEmployee editFlight getCustomers getFlights addCustomer addFlight searchBookings searchFlights deleteCustomer searchCustomers deleteFlight"/>
 
       <typeMapping
         xmlns:ns="http://util.goair"
@@ -91,26 +91,12 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns4_Customer"
-        type="java:goair.model.customer.Customer[]"
-        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
-        encodingStyle=""
-      />
       <typeMapping
         xmlns:ns="http://util.goair"
         qname="ns:SearchParametersForCustomers"
         type="java:goair.util.SearchParametersForCustomers"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle=""
-      />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns1_Flight"
-        type="java:goair.model.flight.Flight[]"
-        innerType="cmp-ns:Flight" xmlns:cmp-ns="http://flight.model.goair"
         encodingStyle=""
       />
       <typeMapping
@@ -129,6 +115,20 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns5_Employee"
+        type="java:goair.model.employee.Employee[]"
+        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns2_Customer"
+        type="java:goair.model.customer.Customer[]"
+        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
+        encodingStyle=""
+      />
       <typeMapping
         xmlns:ns="http://employee.model.goair"
         qname="ns:Employee"
@@ -137,19 +137,19 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns2_Employee"
-        type="java:goair.model.employee.Employee[]"
-        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
-        encodingStyle=""
-      />
       <typeMapping
         xmlns:ns="http://general.model.goair"
         qname="ns:Person"
         type="java:goair.model.general.Person"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns4_Flight"
+        type="java:goair.model.flight.Flight[]"
+        innerType="cmp-ns:Flight" xmlns:cmp-ns="http://flight.model.goair"
         encodingStyle=""
       />
       <typeMapping
