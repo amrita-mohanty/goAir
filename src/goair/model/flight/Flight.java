@@ -18,14 +18,6 @@ public class Flight {
     int totalSeats;
     int seatsReserved;
     int seatsAvailable;
-    public int getSeatsAvailable() {
-		return seatsAvailable;
-	}
-
-	public void setSeatsAvailable(int seatsAvailable) {
-		this.seatsAvailable = seatsAvailable;
-	}
-
 	String daysOfWeek;
     Long flyingStartDate;
     Long flyingEndDate;
@@ -152,6 +144,15 @@ public class Flight {
 	public void setPassengers(Customer[] passengers) {
 		this.passengers = passengers;
 	}
+	
+	 public int getSeatsAvailable() {
+		return seatsAvailable;
+	}
+
+	public void setSeatsAvailable(int seatsAvailable) {
+		this.seatsAvailable = seatsAvailable;
+	}
+
 
 	@Override
 	public String toString() {
