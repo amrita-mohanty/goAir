@@ -46,14 +46,13 @@ CREATE TABLE  `flight` (
   `flightId` INT(5) NOT NULL AUTO_INCREMENT,
   `flightName` VARCHAR(10) NOT NULL,
   `airlineName` VARCHAR(50),
-  `source` INT(10)NOT NULL,
+  `source` VARCHAR(40) NOT NULL,
   `destination` VARCHAR(40) NOT NULL,
-  `departureTime` TIMESTAMP NOT NULL,
-  `arrivalTime` TIMESTAMP NOT NULL,
-  `status` VARCHAR(10) NOT NULL,
+  `departureTime` DATETIME NOT NULL,
+  `arrivalTime` DATETIME NOT NULL,
   `totalSeats` INT(20) NOT NULL,
   `seatsReserved` INT(10) NOT NULL,
-  `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight
+  `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
   `flyingStartDate` DATE NOT NULL,
   `flyingEndDate` DATE NOT NULL,
   PRIMARY KEY  (`flightId`)
@@ -63,6 +62,7 @@ CREATE TABLE  `flight` (
 CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` DATE NOT NULL,
+  `status` VARCHAR(20),
   `employeeId` INT(11) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
@@ -81,3 +81,15 @@ CREATE TABLE `reservation`(
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `flight`(flightName,airlineName,source,destination,departureTime,arrivalTime,
+totalSeats,seatsReserved,daysOfWeek,flyingStartDate,flyingEndDate) values 
+(
+'GA-110','GoAir','San Francisco','Las Vegas',
+STR_TO_DATE('2011-12-21 02:20pm', '%Y-%m-%d %h:%i%p'),
+STR_TO_DATE('2011-12-21 02:20pm', '%Y-%m-%d %h:%i%p'),
+126,56,'M,F',
+STR_TO_DATE('2010-12-25', '%Y-%m-%d'),
+STR_TO_DATE('2015-12-24', '%Y-%m-%d')
+);
