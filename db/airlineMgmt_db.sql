@@ -25,7 +25,7 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `employee` (
   `employeeId` INT(11) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(40) NOT NULL,
+  `emailId` VARCHAR(40) NOT NULL,
   `firstName` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
   `gender` VARCHAR(1) NOT NULL,
