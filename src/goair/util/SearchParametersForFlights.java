@@ -6,7 +6,7 @@ public class SearchParametersForFlights {
 	String airlineName;
 	String source;
 	String destination;
-	
+	Long dateOfFlying;
 	Long departureTime;
 	Long arrivalTime;
 	
@@ -67,13 +67,23 @@ public class SearchParametersForFlights {
 	public void setNumberOfSeatsAvialable(int numberOfSeatsAvialable) {
 		this.numberOfSeatsAvialable = numberOfSeatsAvialable;
 	}
+	
+	public Long getDateOfFlying() {
+		return dateOfFlying;
+	}
+
+	public void setDateOfFlying(Long dateOfFlying) {
+		this.dateOfFlying = dateOfFlying;
+	}
 
 	@Override
 	public String toString() {
-		return "SearchParametersForFlights [flightId=" + flightNumber
+		return "SearchParametersForFlights [flightNumber=" + flightNumber
 				+ ", airlineName=" + airlineName + ", source=" + source
-				+ ", destination=" + destination + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime
-				+ ", numberOfSeatsAvialable=" + numberOfSeatsAvialable + "]";
+				+ ", destination=" + destination + ", dateOfFlying="
+				+ dateOfFlying + ", departureTime=" + departureTime
+				+ ", arrivalTime=" + arrivalTime + ", numberOfSeatsAvialable="
+				+ numberOfSeatsAvialable + "]";
 	}
+
 }
