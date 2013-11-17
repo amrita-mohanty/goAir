@@ -19,7 +19,7 @@ CREATE TABLE `customer` (
   `city` VARCHAR(20) NOT NULL,
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
-  `dob` TIMESTAMP NOT NULL,
+  `dob` DATE NOT NULL,
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32,12 +32,12 @@ CREATE TABLE `employee` (
   `airlineName` VARCHAR(50),
   `jobDesc` VARCHAR(20) NOT NULL,
   `position` VARCHAR(20) NOT NULL,
-  `hireDate` TIMESTAMP NOT NULL,
+  `hireDate` DATE NOT NULL,
   `address` VARCHAR(50) NOT NULL,
   `city` VARCHAR(20) NOT NULL,
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
-  `dob` TIMESTAMP NOT NULL,
+  `dob` DATE NOT NULL,
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,15 +54,15 @@ CREATE TABLE  `flight` (
   `totalSeats` INT(20) NOT NULL,
   `seatsReserved` INT(10) NOT NULL,
   `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight
-  `flyingStartDate` TIMESTAMP NOT NULL,
-  `flyingEndDate` TIMESTAMP NOT NULL,
+  `flyingStartDate` DATE NOT NULL,
+  `flyingEndDate` DATE NOT NULL,
   PRIMARY KEY  (`flightId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- This table holds what all date a flight will fly with its crew id
 CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
-  `dateOfFlying` TIMESTAMP NOT NULL,
+  `dateOfFlying` DATE NOT NULL,
   `employeeId` INT(11) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
@@ -75,8 +75,8 @@ CREATE TABLE `reservation`(
 	`flightId` INT(5) NOT NULL,
 	`numberOfSeatsBooked` INT(5) NOT NULL,
 	`creditCardNumber` INT(16) NOT NULL,
-	`dateOfBooking` TIMESTAMP NOT NULL,
-	`dateOfFlying` TIMESTAMP NOT NULL,
+	`dateOfBooking` DATE NOT NULL,
+	`dateOfFlying` DATE NOT NULL,
 	FOREIGN KEY (flightId) REFERENCES flight(flightId),
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)
