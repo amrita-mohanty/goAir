@@ -18,9 +18,7 @@ public class SearchUtil {
 	 */
 	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
-		
-		
-		return null;
+		return adminServiceQuery.searchFlightsForAdmin(searchParameters);
 	}
 	
 }
