@@ -73,6 +73,7 @@ CREATE TABLE `reservation`(
 	`pnr` int(5) NOT NULL AUTO_INCREMENT,
 	`customerid` int(11) NOT NULL,
 	`flightid` int(5) NOT NULL,
+	`numberofseatsbooked` int(5) NOT NULL,
 	`creditcardnumber` int(16) NOT NULL,
 	`dateofbooking` TIMESTAMP NOT NULL,
 	`dateofflying` TIMESTAMP NOT NULL,
