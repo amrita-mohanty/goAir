@@ -5,24 +5,13 @@ import java.util.Arrays;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlList;
-import javax.xml.bind.annotation.XmlType;
-
-@XmlType(name="Flight")
 public class Flight {
 	
-	@XmlElement(name="flightNumber")
-	String flightNumber;
-	@XmlElement(name="airlineName")
+	String flightName;
 	String airlineName;
-	@XmlElement(name="source")
 	String source;
-	@XmlElement(name="destination")
 	String destination;
-	@XmlElement(name="numberOfSeats")
 	int numberOfSeats;
-	@XmlList
 	Employee[] crewDetails;
 
 	// Extra attributes that will be used
@@ -35,12 +24,12 @@ public class Flight {
 	int numberOfSeatsReserved;
 	Customer[] passengers;
 	
-	public String getFlightNumber() {
-		return flightNumber;
+	public String getFlightName() {
+		return flightName;
 	}
 
-	public void setFlightNumber(String flightNumber) {
-		this.flightNumber = flightNumber;
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
 	}
 
 	public String getAirlineName() {
@@ -134,7 +123,7 @@ public class Flight {
 	
 	@Override
 	public String toString() {
-		return "Flight [flightNumber=" + flightNumber + ", airlineName="
+		return "Flight [flightName=" + flightName + ", airlineName="
 				+ airlineName + ", source=" + source + ", destination="
 				+ destination + ", numberOfSeats=" + numberOfSeats
 				+ ", crewDetails=" + Arrays.toString(crewDetails)

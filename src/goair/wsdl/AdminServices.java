@@ -7,6 +7,7 @@ import goair.model.flight.Flight;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
+import goair.util.SearchUtil;
 
 public class AdminServices {
 	
@@ -32,6 +33,8 @@ public class AdminServices {
 			// he/she is serving with histories.
 	
 
+	public SearchUtil searchUtil = new SearchUtil();
+	
 	/**
 	 * Search flights - This method searches all the flights with a given criteria
 	 * @return Flight[] -  Return list of flights
@@ -39,7 +42,7 @@ public class AdminServices {
 	 */
 	public Flight[] searchFlights(SearchParametersForFlights searchParameters)
 	{
-		return null;
+		return searchUtil.searchFlightsForAdmin(searchParameters);
 	}
 	
 	/**

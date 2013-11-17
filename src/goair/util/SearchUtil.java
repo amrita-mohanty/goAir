@@ -1,17 +1,25 @@
 package goair.util;
 
 import goair.model.flight.Flight;
-
-import java.util.List;
+import goair.model.query.AdminServiceQuery;
 
 public class SearchUtil {
 	
+	public AdminServiceQuery adminServiceQuery = null;
+	
+	public SearchUtil()
+	{
+		adminServiceQuery = new AdminServiceQuery();
+	}
+	
 	/**
 	 * This method will get the flight based on search parameters passed to it
-	 * @return List<Flight> 
+	 * @return Flight[] 
 	 */
-	public List<Flight> searchFlightsForAdmin(SearchParametersForFlights searchParameters)
+	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
+		
+		
 		return null;
 	}
 	

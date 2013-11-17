@@ -53,7 +53,7 @@ CREATE TABLE  `flight` (
   `status` varchar(10) NOT NULL,
   `totalseats` int(20) NOT NULL,
   `seatsreserved` int(10) NOT NULL,
-  `daysofweek` varchar(50) NOT NULL,
+  `daysofweek` varchar(50) NOT NULL, -- Comma separated days for this flight
   `flyingstartdate` TIMESTAMP NOT NULL,
   `flyingenddate` TIMESTAMP NOT NULL,
   PRIMARY KEY  (`flightid`)
