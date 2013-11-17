@@ -5,6 +5,7 @@ import goair.model.booking.Booking;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
 import goair.model.payment.PaymentBean;
+import goair.model.query.CustomerServiceQuery;
 import goair.util.SearchParametersForFlights;
 
 public class CustomerServices extends AirlineServices{
@@ -17,9 +18,13 @@ public class CustomerServices extends AirlineServices{
          * @return Flight[] - Return array of flights.
          *  
          */
-        public Flight[] searchFlights(SearchParametersForFlights searchFlight) throws AirlineException
+        public Flight[] searchFlights(SearchParametersForFlights searchFlightParam) throws AirlineException
         {
-                return null;
+        	Flight[] searchResult = null;
+        	CustomerServiceQuery customerServiceQuery = new CustomerServiceQuery();
+        	searchResult = customerServiceQuery.searchFlightsForCustomer(searchFlightParam);
+            
+        	return searchResult;
         }
         
         public Flight[] viewAllFlights(SearchParametersForFlights searchFlight) throws AirlineException

@@ -63,7 +63,8 @@ CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` DATE NOT NULL,
   `status` VARCHAR(20),
-  `employeeId` INT(11) NOT NULL, 
+  `employeeId` INT(11) NOT NULL,
+  `ticketPrice` DECIMAL(10,2) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -93,3 +94,21 @@ STR_TO_DATE('2011-12-21 02:20pm', '%Y-%m-%d %h:%i%p'),
 STR_TO_DATE('2010-12-25', '%Y-%m-%d'),
 STR_TO_DATE('2015-12-24', '%Y-%m-%d')
 );
+
+insert into employee(emailId, firstName,lastName, gender,jobDesc, position,
+hireDate, address, city, state, zipcode, dob) values (
+'a@gmail.com', 
+'Peter', 
+'Pan', 'F',
+'Pilot','Senior Pilot',STR_TO_DATE('2010-12-25', '%Y-%m-%d'),
+'3500 Granada Ave', 'Santa Clara', 'CA', '95051',
+STR_TO_DATE('2010-12-25', '%Y-%m-%d')
+);
+
+  
+insert into flightflyinginformation(flightId,dateOfFlying,employeeid,ticketPrice )
+values(1,STR_TO_DATE('2013-09-15', '%Y-%m-%d'), 1,450.00);
+
+select * from flight;
+select * from flight;
+select flight.flightid, flight.flightName, flight.airlineName, flight.source, flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, flight.seatsReserved from flight,flightflyinginformation where flight.flightId=flightflyinginformation.flightId and flight.source='San Francisco' and flight.destination='Las Vegas' and  flightflyinginformation.dateOfFlying=2013-09-15;

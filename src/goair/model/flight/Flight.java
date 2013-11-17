@@ -22,6 +22,7 @@ public class Flight {
 	String daysOfWeek;
     Date flyingStartDate;
     Date flyingEndDate;
+    Double ticketPrice;
     
 	Employee[] crewDetails;
 	Customer[] passengers;
@@ -153,6 +154,16 @@ public class Flight {
 	public void setSeatsAvailable(int seatsAvailable) {
 		this.seatsAvailable = seatsAvailable;
 	}
+	
+	
+
+	public Double getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(Double ticketPrice) {
+		this.ticketPrice = ticketPrice;
+	}
 
 	@Override
 	public String toString() {
@@ -164,7 +175,10 @@ public class Flight {
 				+ seatsReserved + ", seatsAvailable=" + seatsAvailable
 				+ ", daysOfWeek=" + daysOfWeek + ", flyingStartDate="
 				+ flyingStartDate + ", flyingEndDate=" + flyingEndDate
-				+ ", crewDetails=" + Arrays.toString(crewDetails)
-				+ ", passengers=" + Arrays.toString(passengers) + "]";
+				+ ", ticketPrice=" + ticketPrice + ", crewDetails="
+				+ Arrays.toString(crewDetails) + ", passengers="
+				+ Arrays.toString(passengers) + "]";
 	}
+
+	
 }

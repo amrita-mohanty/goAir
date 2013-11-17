@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,27 +34,44 @@ public class CustomerServiceQuery {
 		// Using SearchParametersForFlights create the query 
 		//	that will search the flights.
 		
-		String query = "select flight.flightid, flight.flightName, flight.airlineName, flight.source, "
+		String travelDate = "STR_TO_DATE('" + new Date(searchParameters.getDateOfFlying().getTime())+"', '%Y-%m-%d')";
+		
+		/*String stmt_query = "select flight.flightid, flight.flightName, flight.airlineName, flight.source, "
 				+ "flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, "
-				+ "flight.seatsReserved from flight,flightflyinginformation where "
+				+ "flight.seatsReserved, flightflyinginformation.ticketPrice from flight,flightflyinginformation where "
 				+ "flight.flightId=flightflyinginformation.flightId and "
-				+ "flight.source=? and flight.destination=? and  flightflyinginformation.dateOfFlying=?";
+				+ "flight.source='" + searchParameters.getSource() + "' and flight.destination='" + searchParameters.getDestination() 
+				+ "' and  flightflyinginformation.dateOfFlying="+travelDate;
+				
+			System.out.println("searchFlightsForCustomer query : " + stmt_query);*/
 		
-		System.out.println("searchFlightsForCustomer query : " + query);
+		String preparedStmt_query = "select flight.flightid, flight.flightName, flight.airlineName, flight.source, "
+				+ "flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, "
+				+ "flight.seatsReserved, flightflyinginformation.ticketPrice from flight,flightflyinginformation where "
+				+ "flight.flightId=flightflyinginformation.flightId and "
+				+ "flight.source=? and flight.destination=? and flightflyinginformation.dateOfFlying=?";
 		
-		 ResultSet resultSet = null;  
-	     PreparedStatement preparedStatement = null;
+		System.out.println("searchFlightsForCustomer query : " + preparedStmt_query);
+		
+		 ResultSet resultSet = null; 
+		 //Statement stmt = null;
+		 PreparedStatement preparedStatement = null;
 	     
 	     Flight flight = null;
 	     
 	     try{
 	    	 
-	    	 preparedStatement = connection.prepareStatement(query);  
+	    	 preparedStatement = connection.prepareStatement(preparedStmt_query);  
 	    	 preparedStatement.setString(1,searchParameters.getSource());
 	    	 preparedStatement.setString(2,searchParameters.getDestination());
 	    	 preparedStatement.setDate(3,new Date(searchParameters.getDateOfFlying().getTime())); // util.Date to sql.Date
 	    	 
-	    	 resultSet = preparedStatement.executeQuery(query);
+	    	 resultSet = preparedStatement.executeQuery();
+	    	 
+	    	 /*stmt = connection.createStatement();
+	    	 resultSet  = stmt.executeQuery(stmt_query);*/
+	    	 
+	    	 
 
 	    	 while (resultSet.next()) 
 	    	 {
@@ -67,7 +85,7 @@ public class CustomerServiceQuery {
 	    		 flight.setDepartureTime(resultSet.getDate("departureTime"));
 	    		 flight.setArrivalTime(resultSet.getDate("arrivalTime"));
 	    		 flight.setSeatsAvailable(resultSet.getInt("totalSeats")-resultSet.getInt("seatsReserved"));
-	    		 flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
+	    		 flight.setTicketPrice(resultSet.getDouble("ticketPrice"));
 	    		 
 	    		 flightsList.add(flight);
 	    	 }  

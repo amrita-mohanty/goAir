@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 
 public class DbConnection 
 {
-	public String connectionDriver = "org.sqlite.JDBC";
-	public String connectionParam = "jdbc:sqlite:"+"/Users/amrita/airline.db";
+	public String connectionDriver = "com.mysql.jdbc.Driver";
+	public String connectionParam = "jdbc:mysql://localhost/airline";
 
 	public Connection createDbConnection()
 	{
@@ -14,11 +14,11 @@ public class DbConnection
 		try 
 		{  
 			Class.forName(connectionDriver);  
-			connection = DriverManager.getConnection(connectionParam);  
+			connection = DriverManager.getConnection(connectionParam, "root","");  
 		} 
 		catch (Exception e) 
 		{  
-			System.out.println("Unable to close the DB Connection ...");
+			System.out.println("Unable to create the DB Connection ...");
 			e.printStackTrace();  
 		}
 
