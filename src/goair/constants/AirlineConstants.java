@@ -2,10 +2,8 @@ package goair.constants;
 
 public class AirlineConstants {
 	
-	public static final String DELTA = "DEL";
-	public static final String USAIRWAYS = "US";
-	public static final String LUFTHANSA = "LUFT";
-	public static final String CATHAY = "CX";
-	public static final String AMERICAN = "AA";
+	public static final String ERROR_PREFIX = "AMS"; // means Airline Management Systems, error will be like AMS-100 etc
+	public static final String AIRLINE_RESBUN = 
+            "goair.constants.AirlineResourceBundle";
 
 }
