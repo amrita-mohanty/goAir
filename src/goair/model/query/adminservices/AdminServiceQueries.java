@@ -19,6 +19,7 @@ public class AdminServiceQueries
 	SearchFlightsForAdminQuery searchFlightsForAdmin 		= null;
 	SearchAllFlightsForAdminQuery searchAllFlightsForAdmin 	= null;
 	AddFlightQuery addFlightQuery 							= null;
+	EditFlightQuery editFlightQuery 					    = null;
 	
 	public AdminServiceQueries()
 	{
@@ -27,6 +28,7 @@ public class AdminServiceQueries
 		searchFlightsForAdmin 		= new SearchFlightsForAdminQuery();
 		searchAllFlightsForAdmin 	= new SearchAllFlightsForAdminQuery();
 		addFlightQuery 				= new AddFlightQuery();
+		editFlightQuery				= new EditFlightQuery();
 	}
 	
 	/**
@@ -58,7 +60,8 @@ public class AdminServiceQueries
 	 */
 	public int addFlight(Flight flight)
 	{
-		return -1;
+		logger.info("Add a flight : "+flight.toString());
+		return addFlightQuery.addNewFlight(flight, connection);
 	}
 	
 	/**
@@ -70,6 +73,7 @@ public class AdminServiceQueries
 	 */
 	public int editFlight(Flight flight)
 	{
-		return -1;
+		logger.info("Edit a flight : "+flight.toString());
+		return editFlightQuery.editFlight(flight, connection);
 	}
 }

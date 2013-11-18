@@ -12,18 +12,18 @@ import java.util.Calendar;
 
 import org.apache.log4j.Logger;
 
-public class AddFlightQuery {
+public class EditFlightQuery {
 	
-	public static Logger logger = Logger.getLogger(AddFlightQuery.class);
+	public static Logger logger = Logger.getLogger(EditFlightQuery.class);
 	
 	/**
-	 * Add a new flight to the system
+	 * Edit the flight
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 * success : 0, failure : -1
 	 */
-	public int addNewFlight(Flight flight, Connection connection)
+	public int editFlight(Flight flight, Connection connection)
 	{
 		String flightTableQuery = "insert into flight(flightName, source, "
 				+ "destination, departureTime, arrivalTime, totalSeats, "
