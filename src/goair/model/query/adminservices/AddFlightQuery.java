@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
-
 import org.apache.log4j.Logger;
 
 public class AddFlightQuery {
