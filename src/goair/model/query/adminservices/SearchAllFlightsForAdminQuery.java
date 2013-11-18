@@ -3,7 +3,6 @@ package goair.model.query.adminservices;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
-import goair.util.SearchParametersForFlights;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,16 +12,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-public class SearchFlightsForAdminQuery {
+public class SearchAllFlightsForAdminQuery {
 	
-	public static Logger logger = Logger.getLogger(SearchFlightsForAdminQuery.class);
+	public static Logger logger = Logger.getLogger(SearchAllFlightsForAdminQuery.class);
 	
 	/**
-	 * This method will get the flight based on search parameters passed to it
+	 * This method will get all the flights in system for a Admin
 	 * @return Flight[] 
 	 */
-	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters, 
-			Connection connection)
+	public Flight[] searchFlightsForAdmin(Connection connection)
 	{
 		List<Flight> flights = new ArrayList<Flight>();
 

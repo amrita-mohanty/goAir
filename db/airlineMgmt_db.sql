@@ -63,7 +63,7 @@ CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` DATE NOT NULL,
   `status` VARCHAR(20),
-  `employeeId` INT(11) NOT NULL,
+  `employeeId` INT(11), -- This can be null as we can add employees as we go.
   `ticketPrice` DECIMAL(10,2) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
@@ -78,6 +78,7 @@ CREATE TABLE `reservation`(
 	`creditCardNumber` INT(16) NOT NULL,
 	`dateOfBooking` DATE NOT NULL,
 	`dateOfFlying` DATE NOT NULL,
+	`totalPrice` DECIMAL(10,2) NOT NULL, 
 	FOREIGN KEY (flightId) REFERENCES flight(flightId),
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)
