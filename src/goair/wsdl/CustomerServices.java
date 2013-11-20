@@ -1,7 +1,7 @@
 package goair.wsdl;
 
 import goair.Exception.AirlineException;
-import goair.model.booking.Booking;
+import goair.model.booking.Reservation;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
 import goair.model.payment.PaymentBean;
@@ -48,11 +48,11 @@ public class CustomerServices extends AirlineServices{
                 return 1;
         }
         
-        public Booking[] viewBookingHistory(long customerId) throws AirlineException{
+        public Reservation[] viewBookingHistory(long customerId) throws AirlineException{
                 return null;
         }
         
-        public Booking viewBooking(long reservationid) throws AirlineException{
+        public Reservation viewBooking(long reservationid) throws AirlineException{
         	return null;
         }
         

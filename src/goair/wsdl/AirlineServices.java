@@ -1,7 +1,7 @@
 package goair.wsdl;
 
 import goair.Exception.AirlineException;
-import goair.model.booking.Booking;
+import goair.model.booking.Reservation;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
 
@@ -25,7 +25,7 @@ public class AirlineServices {
 	 * @return int - Returns 1 for success, 0 for failure
 	 *  
 	 */
-	public int cancelReservation(Booking booking) throws AirlineException
+	public int cancelReservation(Reservation booking) throws AirlineException
 	{
 		return 1;
 	}

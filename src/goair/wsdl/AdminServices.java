@@ -1,6 +1,6 @@
 package goair.wsdl;
 
-import goair.model.booking.Booking;
+import goair.model.booking.Reservation;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
@@ -193,31 +193,31 @@ public class AdminServices {
 	}
 	
 	/**
-	 * Search Booking - This method searches all the Booking with a given criteria
-	 * @return Booking[] - Return list of Booking.
+	 * Search Reservation - This method searches all the Reservation with a given criteria
+	 * @return Reservation[] - Return list of Reservation.
 	 *  
 	 */
-	public Booking[] searchBookings(SearchParametersForEmployees searchParameters)
+	public Reservation[] searchReservations(SearchParametersForEmployees searchParameters)
 	{
 		return null;
 	}
 	
 	/**
-	 * Get all the Booking in the system
-	 * @return Booking[] - Return list of all the Bookings
+	 * Get all the Reservation in the system
+	 * @return Reservation[] - Return list of all the Reservations
 	 */
-	public Booking[] getAllBookings()
+	public Reservation[] getAllReservations()
 	{
 		return null;
 	}
 	
 	/**
-	 * Edit Booking to the system
-	 * @param Booking
+	 * Edit Reservation to the system
+	 * @param Reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 */
-	public int editBooking(Booking booking)
+	public int editReservation(Reservation booking)
 	{
 		return -1;
 	}
