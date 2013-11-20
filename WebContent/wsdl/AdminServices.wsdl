@@ -1,124 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://booking.model.goair" xmlns:tns2="http://customer.model.goair" xmlns:tns3="http://general.model.goair" xmlns:tns4="http://flight.model.goair" xmlns:tns5="http://employee.model.goair" xmlns:tns6="http://util.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://reservation.model.goair" xmlns:tns2="http://util.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://flight.model.goair" xmlns:tns6="http://customer.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://wsdl.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
    <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
    <import namespace="http://general.model.goair"/>
-   <element name="deleteBooking">
+   <element name="deleteReservation">
     <complexType>
      <sequence>
-      <element name="booking" type="tns1:Booking"/>
+      <element name="reservation" type="tns1:Reservation"/>
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns4_Flight">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns4:Flight"/>
-    </sequence>
-   </complexType>
-   <complexType name="ArrayOf_tns5_Employee">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Employee"/>
-    </sequence>
-   </complexType>
-   <complexType name="ArrayOf_tns2_Customer">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Customer"/>
-    </sequence>
-   </complexType>
-   <element name="deleteBookingResponse">
+   <element name="deleteReservationResponse">
     <complexType>
      <sequence>
-      <element name="deleteBookingReturn" type="xsd:int"/>
+      <element name="deleteReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <element name="editBooking">
+   <element name="editReservation">
     <complexType>
      <sequence>
-      <element name="booking" type="tns1:Booking"/>
+      <element name="reservation" type="tns1:Reservation"/>
      </sequence>
     </complexType>
    </element>
-   <element name="editBookingResponse">
+   <element name="editReservationResponse">
     <complexType>
      <sequence>
-      <element name="editBookingReturn" type="xsd:int"/>
+      <element name="editReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getCustomers">
+   <element name="addReservation">
+    <complexType>
+     <sequence>
+      <element name="reservation" type="tns1:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReservationResponse">
+    <complexType>
+     <sequence>
+      <element name="addReservationReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllReservations">
     <complexType/>
    </element>
-   <element name="getCustomersResponse">
+   <element name="getAllReservationsResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="getCustomersReturn" type="tns2:Customer"/>
+      <element maxOccurs="unbounded" name="getAllReservationsReturn" type="tns1:Reservation"/>
      </sequence>
     </complexType>
    </element>
-   <element name="editFlight">
+   <element name="searchReservations">
     <complexType>
      <sequence>
-      <element name="flight" type="tns4:Flight"/>
+      <element name="searchParameters" type="tns2:SearchParametersForReservation"/>
      </sequence>
     </complexType>
    </element>
-   <element name="editFlightResponse">
+   <element name="searchReservationsResponse">
     <complexType>
      <sequence>
-      <element name="editFlightReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="deleteFlight">
-    <complexType>
-     <sequence>
-      <element name="flight" type="tns4:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="deleteFlightResponse">
-    <complexType>
-     <sequence>
-      <element name="deleteFlightReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchCustomers">
-    <complexType>
-     <sequence>
-      <element name="searchParameters" type="tns6:SearchParametersForCustomers"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchCustomersResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchCustomersReturn" type="tns2:Customer"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getBookings">
-    <complexType/>
-   </element>
-   <element name="getBookingsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getBookingsReturn" type="tns1:Booking"/>
+      <element maxOccurs="unbounded" name="searchReservationsReturn" type="tns1:Reservation"/>
      </sequence>
     </complexType>
    </element>
    <element name="deleteEmployee">
     <complexType>
      <sequence>
-      <element name="employee" type="tns5:Employee"/>
+      <element name="employee" type="tns3:Employee"/>
      </sequence>
     </complexType>
    </element>
@@ -129,24 +90,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="searchBookings">
-    <complexType>
-     <sequence>
-      <element name="searchParameters" type="tns6:SearchParametersForEmployees"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchBookingsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchBookingsReturn" type="tns1:Booking"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="editEmployee">
     <complexType>
      <sequence>
-      <element name="employee" type="tns5:Employee"/>
+      <element name="employee" type="tns3:Employee"/>
      </sequence>
     </complexType>
    </element>
@@ -157,10 +104,44 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="addFlight">
+    <complexType>
+     <sequence>
+      <element name="flight" type="tns5:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns3_Employee">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns3:Employee"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns6_Customer">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns6:Customer"/>
+    </sequence>
+   </complexType>
+   <element name="addFlightResponse">
+    <complexType>
+     <sequence>
+      <element name="addFlightReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEmployees">
+    <complexType/>
+   </element>
+   <element name="getEmployeesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getEmployeesReturn" type="tns3:Employee"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="addEmployee">
     <complexType>
      <sequence>
-      <element name="employee" type="tns5:Employee"/>
+      <element name="employee" type="tns3:Employee"/>
      </sequence>
     </complexType>
    </element>
@@ -171,48 +152,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getEmployees">
-    <complexType/>
-   </element>
-   <element name="getEmployeesResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getEmployeesReturn" type="tns5:Employee"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchEmployees">
-    <complexType>
-     <sequence>
-      <element name="searchParameters" type="tns6:SearchParametersForEmployees"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchEmployeesResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchEmployeesReturn" type="tns5:Employee"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchFlights">
-    <complexType>
-     <sequence>
-      <element name="searchParameters" type="tns6:SearchParametersForFlights"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchFlightsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchFlightsReturn" type="tns4:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="deleteCustomer">
     <complexType>
      <sequence>
-      <element name="customer" type="tns2:Customer"/>
+      <element name="customer" type="tns6:Customer"/>
      </sequence>
     </complexType>
    </element>
@@ -223,10 +166,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="searchEmployees">
+    <complexType>
+     <sequence>
+      <element name="searchParameters" type="tns2:SearchParametersForEmployees"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchEmployeesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchEmployeesReturn" type="tns3:Employee"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="editCustomer">
     <complexType>
      <sequence>
-      <element name="customer" type="tns2:Customer"/>
+      <element name="customer" type="tns6:Customer"/>
      </sequence>
     </complexType>
    </element>
@@ -237,24 +194,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="addFlight">
-    <complexType>
-     <sequence>
-      <element name="flight" type="tns4:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addFlightResponse">
-    <complexType>
-     <sequence>
-      <element name="addFlightReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="addCustomer">
     <complexType>
      <sequence>
-      <element name="customer" type="tns2:Customer"/>
+      <element name="customer" type="tns6:Customer"/>
      </sequence>
     </complexType>
    </element>
@@ -265,131 +208,224 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="getCustomers">
+    <complexType/>
+   </element>
+   <element name="getCustomersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCustomersReturn" type="tns6:Customer"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCustomers">
+    <complexType>
+     <sequence>
+      <element name="searchParameters" type="tns2:SearchParametersForCustomers"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCustomersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchCustomersReturn" type="tns6:Customer"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFlight">
+    <complexType>
+     <sequence>
+      <element name="flight" type="tns5:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFlightResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteFlightReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getFlights">
     <complexType/>
    </element>
    <element name="getFlightsResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="getFlightsReturn" type="tns4:Flight"/>
+      <element maxOccurs="unbounded" name="getFlightsReturn" type="tns5:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editFlight">
+    <complexType>
+     <sequence>
+      <element name="flight" type="tns5:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editFlightResponse">
+    <complexType>
+     <sequence>
+      <element name="editFlightReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchFlights">
+    <complexType>
+     <sequence>
+      <element name="searchParameters" type="tns2:SearchParametersForFlights"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchFlightsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchFlightsReturn" type="tns5:Flight"/>
      </sequence>
     </complexType>
    </element>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema elementFormDefault="qualified" targetNamespace="http://reservation.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
-   <complexType name="Person">
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Reservation">
     <sequence>
-     <element name="address" nillable="true" type="xsd:string"/>
-     <element name="city" nillable="true" type="xsd:string"/>
-     <element name="dob" nillable="true" type="xsd:string"/>
-     <element name="firstName" nillable="true" type="xsd:string"/>
-     <element name="lastName" nillable="true" type="xsd:string"/>
-     <element name="state" nillable="true" type="xsd:string"/>
-     <element name="zipcode" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Customer">
-    <complexContent>
-     <extension base="tns3:Person">
-      <sequence>
-       <element name="customerId" nillable="true" type="xsd:string"/>
-       <element name="nationality" nillable="true" type="xsd:string"/>
-       <element name="passportNo" type="xsd:int"/>
-      </sequence>
-     </extension>
-    </complexContent>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Employee">
-    <complexContent>
-     <extension base="tns3:Person">
-      <sequence>
-       <element name="empDes" nillable="true" type="xsd:string"/>
-       <element name="empFlights" nillable="true" type="impl:ArrayOf_tns4_Flight"/>
-       <element name="empHiredate" nillable="true" type="xsd:string"/>
-       <element name="empId" nillable="true" type="xsd:string"/>
-       <element name="empPosition" nillable="true" type="xsd:string"/>
-      </sequence>
-     </extension>
-    </complexContent>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://flight.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Flight">
-    <sequence>
-     <element name="airlineName" nillable="true" type="xsd:string"/>
-     <element name="arrivalTime" nillable="true" type="xsd:long"/>
-     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns5_Employee"/>
-     <element name="departureTime" nillable="true" type="xsd:long"/>
-     <element name="destination" nillable="true" type="xsd:string"/>
-     <element name="flightId" nillable="true" type="xsd:string"/>
-     <element name="flightNumber" nillable="true" type="xsd:string"/>
-     <element name="numberOfSeats" type="xsd:int"/>
-     <element name="numberOfSeatsReserved" type="xsd:int"/>
-     <element name="passengers" nillable="true" type="impl:ArrayOf_tns2_Customer"/>
-     <element name="source" nillable="true" type="xsd:string"/>
-     <element name="status" nillable="true" type="xsd:string"/>
-     <element name="wsdlString" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://booking.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Booking">
-    <sequence>
-     <element name="customerBean" nillable="true" type="tns2:Customer"/>
-     <element name="flightBean" nillable="true" type="tns4:Flight"/>
-     <element name="reservationId" type="xsd:int"/>
+     <element name="creditCardNumber" type="xsd:int"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:int"/>
+     <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="flightId" type="xsd:int"/>
+     <element name="numberOfSeatsBooked" type="xsd:int"/>
+     <element name="pnr" nillable="true" type="xsd:string"/>
+     <element name="totalPrice" type="xsd:int"/>
     </sequence>
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
    <import namespace="http://general.model.goair"/>
-   <complexType name="SearchParametersForCustomers">
+   <complexType name="SearchParametersForReservation">
     <sequence/>
    </complexType>
    <complexType name="SearchParametersForEmployees">
     <sequence/>
    </complexType>
-   <complexType name="SearchParametersForFlights">
+   <complexType name="SearchParametersForCustomers">
     <sequence/>
+   </complexType>
+   <complexType name="SearchParametersForFlights">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="flightNumber" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeatsAvialable" type="xsd:int"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <complexType name="Person">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="dob" nillable="true" type="xsd:dateTime"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="gender" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="zipcode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Employee">
+    <complexContent>
+     <extension base="tns4:Person">
+      <sequence>
+       <element name="airlineName" nillable="true" type="xsd:string"/>
+       <element name="employeeId" nillable="true" type="xsd:int"/>
+       <element name="hireDate" nillable="true" type="xsd:dateTime"/>
+       <element name="jobDesc" nillable="true" type="xsd:string"/>
+       <element name="position" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Customer">
+    <complexContent>
+     <extension base="tns4:Person">
+      <sequence>
+       <element name="customerId" type="xsd:int"/>
+       <element name="emailIdString" nillable="true" type="xsd:string"/>
+       <element name="nationality" nillable="true" type="xsd:string"/>
+       <element name="passportNum" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://flight.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Flight">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
+     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns3_Employee"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="daysOfWeek" nillable="true" type="xsd:string"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="flightId" nillable="true" type="xsd:int"/>
+     <element name="flightName" nillable="true" type="xsd:string"/>
+     <element name="flightStatus" nillable="true" type="xsd:string"/>
+     <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
+     <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
+     <element name="passengers" nillable="true" type="impl:ArrayOf_tns6_Customer"/>
+     <element name="seatsAvailable" type="xsd:int"/>
+     <element name="seatsReserved" type="xsd:int"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+     <element name="ticketPrice" nillable="true" type="xsd:double"/>
+     <element name="totalSeats" type="xsd:int"/>
+    </sequence>
    </complexType>
   </schema>
  </wsdl:types>
@@ -397,30 +433,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="editCustomerResponse">
 
       <wsdl:part element="impl:editCustomerResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="editBookingRequest">
-
-      <wsdl:part element="impl:editBooking" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="deleteBookingRequest">
-
-      <wsdl:part element="impl:deleteBooking" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="searchEmployeesResponse">
-
-      <wsdl:part element="impl:searchEmployeesResponse" name="parameters">
 
       </wsdl:part>
 
@@ -442,9 +454,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getBookingsRequest">
+   <wsdl:message name="searchEmployeesResponse">
 
-      <wsdl:part element="impl:getBookings" name="parameters">
+      <wsdl:part element="impl:searchEmployeesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchReservationsResponse">
+
+      <wsdl:part element="impl:searchReservationsResponse" name="parameters">
 
       </wsdl:part>
 
@@ -474,6 +494,38 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="searchReservationsRequest">
+
+      <wsdl:part element="impl:searchReservations" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllReservationsRequest">
+
+      <wsdl:part element="impl:getAllReservations" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editReservationResponse">
+
+      <wsdl:part element="impl:editReservationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteReservationRequest">
+
+      <wsdl:part element="impl:deleteReservation" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getFlightsResponse">
 
       <wsdl:part element="impl:getFlightsResponse" name="parameters">
@@ -482,9 +534,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="searchBookingsRequest">
+   <wsdl:message name="editReservationRequest">
 
-      <wsdl:part element="impl:searchBookings" name="parameters">
+      <wsdl:part element="impl:editReservation" name="parameters">
 
       </wsdl:part>
 
@@ -506,25 +558,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="addReservationRequest">
+
+      <wsdl:part element="impl:addReservation" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteReservationResponse">
+
+      <wsdl:part element="impl:deleteReservationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="editEmployeeResponse">
 
       <wsdl:part element="impl:editEmployeeResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getBookingsResponse">
-
-      <wsdl:part element="impl:getBookingsResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="deleteFlightRequest">
-
-      <wsdl:part element="impl:deleteFlight" name="parameters">
 
       </wsdl:part>
 
@@ -538,9 +590,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteBookingResponse">
+   <wsdl:message name="deleteFlightRequest">
 
-      <wsdl:part element="impl:deleteBookingResponse" name="parameters">
+      <wsdl:part element="impl:deleteFlight" name="parameters">
 
       </wsdl:part>
 
@@ -549,6 +601,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="addEmployeeRequest">
 
       <wsdl:part element="impl:addEmployee" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReservationResponse">
+
+      <wsdl:part element="impl:addReservationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editEmployeeRequest">
+
+      <wsdl:part element="impl:editEmployee" name="parameters">
 
       </wsdl:part>
 
@@ -565,22 +633,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="deleteCustomerRequest">
 
       <wsdl:part element="impl:deleteCustomer" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="searchBookingsResponse">
-
-      <wsdl:part element="impl:searchBookingsResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="editEmployeeRequest">
-
-      <wsdl:part element="impl:editEmployee" name="parameters">
 
       </wsdl:part>
 
@@ -626,17 +678,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="editBookingResponse">
+   <wsdl:message name="getAllReservationsResponse">
 
-      <wsdl:part element="impl:editBookingResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="addFlightResponse">
-
-      <wsdl:part element="impl:addFlightResponse" name="parameters">
+      <wsdl:part element="impl:getAllReservationsResponse" name="parameters">
 
       </wsdl:part>
 
@@ -650,9 +694,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addCustomerRequest">
+   <wsdl:message name="addFlightResponse">
 
-      <wsdl:part element="impl:addCustomer" name="parameters">
+      <wsdl:part element="impl:addFlightResponse" name="parameters">
 
       </wsdl:part>
 
@@ -661,6 +705,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="deleteFlightResponse">
 
       <wsdl:part element="impl:deleteFlightResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCustomerRequest">
+
+      <wsdl:part element="impl:addCustomer" name="parameters">
 
       </wsdl:part>
 
@@ -700,85 +752,61 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="AdminServices">
 
-      <wsdl:operation name="deleteBooking">
+      <wsdl:operation name="deleteReservation">
 
-         <wsdl:input message="impl:deleteBookingRequest" name="deleteBookingRequest">
+         <wsdl:input message="impl:deleteReservationRequest" name="deleteReservationRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:deleteBookingResponse" name="deleteBookingResponse">
+         <wsdl:output message="impl:deleteReservationResponse" name="deleteReservationResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="editBooking">
+      <wsdl:operation name="editReservation">
 
-         <wsdl:input message="impl:editBookingRequest" name="editBookingRequest">
+         <wsdl:input message="impl:editReservationRequest" name="editReservationRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:editBookingResponse" name="editBookingResponse">
+         <wsdl:output message="impl:editReservationResponse" name="editReservationResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCustomers">
+      <wsdl:operation name="addReservation">
 
-         <wsdl:input message="impl:getCustomersRequest" name="getCustomersRequest">
+         <wsdl:input message="impl:addReservationRequest" name="addReservationRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getCustomersResponse" name="getCustomersResponse">
+         <wsdl:output message="impl:addReservationResponse" name="addReservationResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="editFlight">
+      <wsdl:operation name="getAllReservations">
 
-         <wsdl:input message="impl:editFlightRequest" name="editFlightRequest">
+         <wsdl:input message="impl:getAllReservationsRequest" name="getAllReservationsRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:editFlightResponse" name="editFlightResponse">
+         <wsdl:output message="impl:getAllReservationsResponse" name="getAllReservationsResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteFlight">
+      <wsdl:operation name="searchReservations">
 
-         <wsdl:input message="impl:deleteFlightRequest" name="deleteFlightRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:deleteFlightResponse" name="deleteFlightResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchCustomers">
-
-         <wsdl:input message="impl:searchCustomersRequest" name="searchCustomersRequest">
+         <wsdl:input message="impl:searchReservationsRequest" name="searchReservationsRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:searchCustomersResponse" name="searchCustomersResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getBookings">
-
-         <wsdl:input message="impl:getBookingsRequest" name="getBookingsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getBookingsResponse" name="getBookingsResponse">
+         <wsdl:output message="impl:searchReservationsResponse" name="searchReservationsResponse">
 
        </wsdl:output>
 
@@ -796,18 +824,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="searchBookings">
-
-         <wsdl:input message="impl:searchBookingsRequest" name="searchBookingsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:searchBookingsResponse" name="searchBookingsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="editEmployee">
 
          <wsdl:input message="impl:editEmployeeRequest" name="editEmployeeRequest">
@@ -815,78 +831,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:editEmployeeResponse" name="editEmployeeResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="addEmployee">
-
-         <wsdl:input message="impl:addEmployeeRequest" name="addEmployeeRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addEmployeeResponse" name="addEmployeeResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getEmployees">
-
-         <wsdl:input message="impl:getEmployeesRequest" name="getEmployeesRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getEmployeesResponse" name="getEmployeesResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchEmployees">
-
-         <wsdl:input message="impl:searchEmployeesRequest" name="searchEmployeesRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:searchEmployeesResponse" name="searchEmployeesResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchFlights">
-
-         <wsdl:input message="impl:searchFlightsRequest" name="searchFlightsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:searchFlightsResponse" name="searchFlightsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="deleteCustomer">
-
-         <wsdl:input message="impl:deleteCustomerRequest" name="deleteCustomerRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:deleteCustomerResponse" name="deleteCustomerResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="editCustomer">
-
-         <wsdl:input message="impl:editCustomerRequest" name="editCustomerRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:editCustomerResponse" name="editCustomerResponse">
 
        </wsdl:output>
 
@@ -904,6 +848,66 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getEmployees">
+
+         <wsdl:input message="impl:getEmployeesRequest" name="getEmployeesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEmployeesResponse" name="getEmployeesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addEmployee">
+
+         <wsdl:input message="impl:addEmployeeRequest" name="addEmployeeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addEmployeeResponse" name="addEmployeeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCustomer">
+
+         <wsdl:input message="impl:deleteCustomerRequest" name="deleteCustomerRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteCustomerResponse" name="deleteCustomerResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchEmployees">
+
+         <wsdl:input message="impl:searchEmployeesRequest" name="searchEmployeesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchEmployeesResponse" name="searchEmployeesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editCustomer">
+
+         <wsdl:input message="impl:editCustomerRequest" name="editCustomerRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:editCustomerResponse" name="editCustomerResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addCustomer">
 
          <wsdl:input message="impl:addCustomerRequest" name="addCustomerRequest">
@@ -911,6 +915,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addCustomerResponse" name="addCustomerResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCustomers">
+
+         <wsdl:input message="impl:getCustomersRequest" name="getCustomersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCustomersResponse" name="getCustomersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchCustomers">
+
+         <wsdl:input message="impl:searchCustomersRequest" name="searchCustomersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchCustomersResponse" name="searchCustomersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFlight">
+
+         <wsdl:input message="impl:deleteFlightRequest" name="deleteFlightRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteFlightResponse" name="deleteFlightResponse">
 
        </wsdl:output>
 
@@ -928,23 +968,47 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="editFlight">
+
+         <wsdl:input message="impl:editFlightRequest" name="editFlightRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:editFlightResponse" name="editFlightResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchFlights">
+
+         <wsdl:input message="impl:searchFlightsRequest" name="searchFlightsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchFlightsResponse" name="searchFlightsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="AdminServicesSoapBinding" type="impl:AdminServices">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="deleteBooking">
+      <wsdl:operation name="deleteReservation">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deleteBookingRequest">
+         <wsdl:input name="deleteReservationRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deleteBookingResponse">
+         <wsdl:output name="deleteReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -952,17 +1016,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="editBooking">
+      <wsdl:operation name="editReservation">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="editBookingRequest">
+         <wsdl:input name="editReservationRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="editBookingResponse">
+         <wsdl:output name="editReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -970,17 +1034,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCustomers">
+      <wsdl:operation name="addReservation">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getCustomersRequest">
+         <wsdl:input name="addReservationRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getCustomersResponse">
+         <wsdl:output name="addReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -988,17 +1052,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="editFlight">
+      <wsdl:operation name="getAllReservations">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="editFlightRequest">
+         <wsdl:input name="getAllReservationsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="editFlightResponse">
+         <wsdl:output name="getAllReservationsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1006,53 +1070,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteFlight">
+      <wsdl:operation name="searchReservations">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deleteFlightRequest">
+         <wsdl:input name="searchReservationsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deleteFlightResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchCustomers">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchCustomersRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchCustomersResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getBookings">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getBookingsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getBookingsResponse">
+         <wsdl:output name="searchReservationsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1078,24 +1106,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="searchBookings">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchBookingsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchBookingsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="editEmployee">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1107,114 +1117,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="editEmployeeResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="addEmployee">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addEmployeeRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addEmployeeResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getEmployees">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getEmployeesRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getEmployeesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchEmployees">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchEmployeesRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchEmployeesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchFlights">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchFlightsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchFlightsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="deleteCustomer">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="deleteCustomerRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="deleteCustomerResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="editCustomer">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="editCustomerRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="editCustomerResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1240,6 +1142,96 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getEmployees">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEmployeesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEmployeesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addEmployee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addEmployeeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addEmployeeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCustomer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteCustomerRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteCustomerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchEmployees">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchEmployeesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchEmployeesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editCustomer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editCustomerRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editCustomerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addCustomer">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1251,6 +1243,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addCustomerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCustomers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCustomersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCustomersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchCustomers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchCustomersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchCustomersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFlight">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteFlightRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteFlightResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1276,13 +1322,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="editFlight">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editFlightRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editFlightResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchFlights">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchFlightsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchFlightsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:binding>
 
    <wsdl:service name="AdminServicesService">
 
       <wsdl:port binding="impl:AdminServicesSoapBinding" name="AdminServices">
 
-         <wsdlsoap:address location="http://tempuri.org/goAir/services/AdminServices"/>
+         <wsdlsoap:address location="http://localhost:8080/goAir/services/AdminServices"/>
 
       </wsdl:port>
 
