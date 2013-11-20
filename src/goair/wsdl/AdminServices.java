@@ -7,7 +7,7 @@ import goair.model.flight.Flight;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
-import goair.util.SearchUtil;
+import goair.util.AdminUtil;
 
 public class AdminServices {
 	
@@ -33,7 +33,7 @@ public class AdminServices {
 			// he/she is serving with histories.
 	
 
-	public SearchUtil searchUtil = new SearchUtil();
+	public AdminUtil adminUtil = new AdminUtil();
 	
 	/**
 	 * Search flights - This method searches all the flights with a given criteria
@@ -42,7 +42,7 @@ public class AdminServices {
 	 */
 	public Flight[] searchFlights(SearchParametersForFlights searchParameters)
 	{
-		return searchUtil.searchFlightsForAdmin(searchParameters);
+		return adminUtil.searchFlightsForAdmin(searchParameters);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class AdminServices {
 	 */
 	public Flight[] getFlights()
 	{
-		return null;
+		return adminUtil.getAllFlightsForAdmin();
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class AdminServices {
 	 */
 	public int addFlight(Flight flight)
 	{
-		return -1;
+		return adminUtil.addFlight(flight);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class AdminServices {
 	 */
 	public int editFlight(Flight flight)
 	{
-		return -1;
+		return adminUtil.editFlight(flight);
 	}
 	
 
