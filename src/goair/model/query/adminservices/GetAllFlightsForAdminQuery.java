@@ -12,15 +12,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-public class SearchAllFlightsForAdminQuery {
+public class GetAllFlightsForAdminQuery {
 	
-	public static Logger logger = Logger.getLogger(SearchAllFlightsForAdminQuery.class);
+	public static Logger logger = Logger.getLogger(GetAllFlightsForAdminQuery.class);
 	
 	/**
 	 * This method will get all the flights in system for a Admin
 	 * @return Flight[] 
 	 */
-	public Flight[] searchFlightsForAdmin(Connection connection)
+	public Flight[] getAllFlightsForAdmin(Connection connection)
 	{
 		List<Flight> flights = new ArrayList<Flight>();
 
@@ -56,7 +56,7 @@ public class SearchAllFlightsForAdminQuery {
 				flight.setDestination(resultSet.getString("destination"));
 				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setStatus(resultSet.getString("status"));
+				flight.setFlightStatus(resultSet.getString("status"));
 				flight.setTotalSeats(resultSet.getInt("totalSeats"));
 				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
 				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));

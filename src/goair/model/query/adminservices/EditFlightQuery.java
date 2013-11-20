@@ -31,7 +31,7 @@ public class EditFlightQuery {
 		String deleteFlyingInfoTableQuery = "delete from flightflyinginformation where flightId=?";
 		
 		String flightFlyingInfoTableQuery = "insert into flightflyinginformation(flightId, "
-				+ "dateOfFlying, status, "
+				+ "dateOfFlying, flightStatus, "
 				+ "employeeId, ticketPrice) "
 				+ "values (?,?,?,?,?) ";
 		
@@ -236,7 +236,7 @@ public class EditFlightQuery {
 				{
 					preparedStatement.setInt(1, flightId);
 					preparedStatement.setDate(2, new Date(cal.getTimeInMillis()));
-					preparedStatement.setString(3, flight.getStatus());
+					preparedStatement.setString(3, flight.getFlightStatus());
 					preparedStatement.setInt(4, emp.getEmployeeId());
 					preparedStatement.setDouble(5, flight.getTicketPrice());
 					
@@ -247,7 +247,7 @@ public class EditFlightQuery {
 			{
 				preparedStatement.setInt(1, flightId);
 				preparedStatement.setDate(2, new Date(cal.getTimeInMillis()));
-				preparedStatement.setString(3, flight.getStatus());
+				preparedStatement.setString(3, flight.getFlightStatus());
 				preparedStatement.setNull(4, java.sql.Types.INTEGER);
 				preparedStatement.setDouble(5, flight.getTicketPrice());
 				

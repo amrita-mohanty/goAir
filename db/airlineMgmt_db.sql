@@ -20,6 +20,7 @@ CREATE TABLE `customer` (
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
   `dob` DATE NOT NULL,
+  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,6 +39,7 @@ CREATE TABLE `employee` (
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
   `dob` DATE NOT NULL,
+  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -55,6 +57,7 @@ CREATE TABLE  `flight` (
   `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
   `flyingStartDate` DATE NOT NULL,
   `flyingEndDate` DATE NOT NULL,
+  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
   PRIMARY KEY  (`flightId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -62,7 +65,7 @@ CREATE TABLE  `flight` (
 CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` DATE NOT NULL,
-  `status` VARCHAR(20),
+  `flightStatus` VARCHAR(20),
   `employeeId` INT(11), -- This can be null as we can add employees as we go.
   `ticketPrice` DECIMAL(10,2) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
@@ -79,6 +82,7 @@ CREATE TABLE `reservation`(
 	`dateOfBooking` DATE NOT NULL,
 	`dateOfFlying` DATE NOT NULL,
 	`totalPrice` DECIMAL(10,2) NOT NULL, 
+	`currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
 	FOREIGN KEY (flightId) REFERENCES flight(flightId),
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)

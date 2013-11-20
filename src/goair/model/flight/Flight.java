@@ -15,7 +15,7 @@ public class Flight {
     String destination;
     Date departureTime;
     Date arrivalTime;
-    String status;
+    String flightStatus;
     int totalSeats;
     int seatsReserved;
     int seatsAvailable;
@@ -23,6 +23,7 @@ public class Flight {
     Date flyingStartDate;
     Date flyingEndDate;
     Double ticketPrice;
+    String currentStatus;
     
 	Employee[] crewDetails;
 	Customer[] passengers;
@@ -83,12 +84,12 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 	}
 	
-	public String getStatus() {
-		return status;
+	public String getFlightStatus() {
+		return flightStatus;
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
+	public void setFlightStatus(String flightStatus) {
+		this.flightStatus = flightStatus;
 	}
 	
 	public int getTotalSeats() {
@@ -165,20 +166,28 @@ public class Flight {
 		this.ticketPrice = ticketPrice;
 	}
 
+	public String getCurrentStatus() {
+		return currentStatus;
+	}
+
+	public void setCurrentStatus(String currentStatus) {
+		this.currentStatus = currentStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Flight [flightId=" + flightId + ", flightName=" + flightName
 				+ ", airlineName=" + airlineName + ", source=" + source
 				+ ", destination=" + destination + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime + ", status="
-				+ status + ", totalSeats=" + totalSeats + ", seatsReserved="
-				+ seatsReserved + ", seatsAvailable=" + seatsAvailable
-				+ ", daysOfWeek=" + daysOfWeek + ", flyingStartDate="
-				+ flyingStartDate + ", flyingEndDate=" + flyingEndDate
-				+ ", ticketPrice=" + ticketPrice + ", crewDetails="
-				+ Arrays.toString(crewDetails) + ", passengers="
-				+ Arrays.toString(passengers) + "]";
+				+ departureTime + ", arrivalTime=" + arrivalTime
+				+ ", flightStatus=" + flightStatus + ", totalSeats="
+				+ totalSeats + ", seatsReserved=" + seatsReserved
+				+ ", seatsAvailable=" + seatsAvailable + ", daysOfWeek="
+				+ daysOfWeek + ", flyingStartDate=" + flyingStartDate
+				+ ", flyingEndDate=" + flyingEndDate + ", ticketPrice="
+				+ ticketPrice + ", currentStatus=" + currentStatus
+				+ ", crewDetails=" + Arrays.toString(crewDetails)
+				+ ", passengers=" + Arrays.toString(passengers) + "]";
 	}
 
-	
 }

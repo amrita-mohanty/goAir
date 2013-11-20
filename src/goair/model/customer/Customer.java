@@ -8,8 +8,8 @@ public class Customer extends Person{
     String emailIdString;
     String passportNum ;
     String nationality ;
-    
-	public Customer() {}
+
+    public Customer() {}
 
 	public int getCustomerId() {
 		return customerId;
@@ -48,11 +48,13 @@ public class Customer extends Person{
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", emailIdString="
 				+ emailIdString + ", passportNum=" + passportNum
-				+ ", nationality=" + nationality + ", emailId=" + emailId
-				+ ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", gender=" + gender + ", address=" + address + ", city="
-				+ city + ", state=" + state + ", zipcode=" + zipcode + ", dob="
-				+ dob + "]";
+				+ ", nationality=" + nationality + ", currentStatus="
+				+ currentStatus + ", emailId=" + emailId + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", address=" + address + ", city=" + city + ", state="
+				+ state + ", zipcode=" + zipcode + ", dob=" + dob + "]";
 	}
+
+	
 }
 

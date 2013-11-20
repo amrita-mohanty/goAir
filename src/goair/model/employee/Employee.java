@@ -51,7 +51,8 @@ public class Employee extends Person {
 				+ ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", gender=" + gender + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", zipcode=" + zipcode + ", dob="
-				+ dob + "]";
+				+ dob + ", currentStatus=" + currentStatus + "]";
 	}
+	
 }
 

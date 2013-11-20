@@ -1,36 +1,35 @@
 package goair.model.query.adminservices;
 
-import goair.model.flight.Flight;
+import goair.model.customer.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import org.apache.log4j.Logger;
 
-public class DeleteFlightQuery {
+public class DeleteCustomerQuery {
 	
-	public static Logger logger = Logger.getLogger(DeleteFlightQuery.class);
+	public static Logger logger = Logger.getLogger(DeleteCustomerQuery.class);
 	
 	/**
-	 * Edit the flight
-	 * @param flight
+	 * Edit the Customer
+	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 * In delete we just update the status to Deleted instead of removing the whole row
 	 * success : 0, failure : -1
 	 */
-	public int deleteFlight(Flight flight, Connection connection)
+	public int deleteCustomer(Customer customer, Connection connection)
 	{
-		String deleteFlightTableQuery = "update flight set currentStatus='Deleted' where flightId=?";
+		String deleteCustomerTableQuery = "update customer set currentStatus = 'Deleted' where customerId=?";
 
 		PreparedStatement preparedStatement = null;
 		try
 		{
-			logger.info("Delete query for flight table : "+deleteFlightTableQuery);
+			logger.info("Delete query for customer table : "+deleteCustomerTableQuery);
 			
-			preparedStatement = connection.prepareStatement(deleteFlightTableQuery);
-			preparedStatement.setInt(1, flight.getFlightId());
-			
+			preparedStatement = connection.prepareStatement(deleteCustomerTableQuery);
+			preparedStatement.setInt(1, customer.getCustomerId());
 			preparedStatement.execute();
 			preparedStatement.close();
 			

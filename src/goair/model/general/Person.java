@@ -15,6 +15,7 @@ public class Person {
 	public String state;
 	public String zipcode;
 	public Date dob;
+	public String currentStatus;
 	
 	public String getEmailId() {
 		return emailId;
@@ -69,6 +70,12 @@ public class Person {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getCurrentStatus() {
+		return currentStatus;
+	}
+	public void setCurrentStatus(String currentStatus) {
+		this.currentStatus = currentStatus;
 	}
 
 }

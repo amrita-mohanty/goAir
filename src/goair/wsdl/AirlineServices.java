@@ -1,9 +1,9 @@
 package goair.wsdl;
 
 import goair.Exception.AirlineException;
-import goair.model.booking.Reservation;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
+import goair.model.reservation.Reservation;
 
 public class AirlineServices {
 	

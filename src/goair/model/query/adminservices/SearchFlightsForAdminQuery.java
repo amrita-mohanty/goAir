@@ -58,7 +58,7 @@ public class SearchFlightsForAdminQuery {
 				flight.setDestination(resultSet.getString("destination"));
 				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setStatus(resultSet.getString("status"));
+				flight.setFlightStatus(resultSet.getString("status"));
 				flight.setTotalSeats(resultSet.getInt("totalSeats"));
 				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
 				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));

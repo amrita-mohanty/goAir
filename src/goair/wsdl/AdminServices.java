@@ -1,13 +1,14 @@
 package goair.wsdl;
 
-import goair.model.booking.Reservation;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
+import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
 import goair.util.AdminUtil;
+import goair.util.SearchParametersForReservation;
 
 public class AdminServices {
 	
@@ -95,7 +96,7 @@ public class AdminServices {
 	 */
 	public Customer[] searchCustomers(SearchParametersForCustomers searchParameters)
 	{
-		return null;
+		return adminUtil.searchCustomersForAdmin(searchParameters);
 	}
 	
 	/**
@@ -104,7 +105,7 @@ public class AdminServices {
 	 */
 	public Customer[] getCustomers()
 	{
-		return null;
+		return adminUtil.getAllCustomersForAdmin();
 	}
 	
 	/**
@@ -115,7 +116,7 @@ public class AdminServices {
 	 */
 	public int addCustomer(Customer customer)
 	{
-		return -1;
+		return adminUtil.addCustomer(customer);
 	}
 	
 	/**
@@ -126,7 +127,7 @@ public class AdminServices {
 	 */
 	public int editCustomer(Customer customer)
 	{
-		return -1;
+		return adminUtil.editCustomer(customer);
 	}
 	
 	/**
@@ -137,7 +138,7 @@ public class AdminServices {
 	 */
 	public int deleteCustomer(Customer customer)
 	{
-		return -1;
+		return adminUtil.deleteCustomer(customer);
 	}
 	
 	/**
@@ -147,7 +148,7 @@ public class AdminServices {
 	 */
 	public Employee[] searchEmployees(SearchParametersForEmployees searchParameters)
 	{
-		return null;
+		return adminUtil.searchEmployeesForAdmin(searchParameters);
 	}
 	
 	/**
@@ -156,7 +157,7 @@ public class AdminServices {
 	 */
 	public Employee[] getEmployees()
 	{
-		return null;
+		return adminUtil.getAllEmployeesForAdmin();
 	}
 	
 	/**
@@ -167,7 +168,7 @@ public class AdminServices {
 	 */
 	public int addEmployee(Employee employee)
 	{
-		return -1;
+		return adminUtil.addEmployee(employee);
 	}
 	
 	/**
@@ -178,7 +179,7 @@ public class AdminServices {
 	 */
 	public int editEmployee(Employee employee)
 	{
-		return -1;
+		return adminUtil.editEmployee(employee);
 	}
 	
 	/**
@@ -189,7 +190,7 @@ public class AdminServices {
 	 */
 	public int deleteEmployee(Employee employee)
 	{
-		return -1;
+		return adminUtil.deleteEmployee(employee);
 	}
 	
 	/**
@@ -197,9 +198,9 @@ public class AdminServices {
 	 * @return Reservation[] - Return list of Reservation.
 	 *  
 	 */
-	public Reservation[] searchReservations(SearchParametersForEmployees searchParameters)
+	public Reservation[] searchReservations(SearchParametersForReservation searchParameters)
 	{
-		return null;
+		return adminUtil.searchReservationsForAdmin(searchParameters);
 	}
 	
 	/**
@@ -208,7 +209,17 @@ public class AdminServices {
 	 */
 	public Reservation[] getAllReservations()
 	{
-		return null;
+		return adminUtil.getAllReservationsForAdmin();
+	}
+	
+	/**
+	 * Get all the Reservation in the system
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 */
+	public int addReservation(Reservation reservation)
+	{
+		return adminUtil.addReservation(reservation);
 	}
 	
 	/**
@@ -217,9 +228,20 @@ public class AdminServices {
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 */
-	public int editReservation(Reservation booking)
+	public int editReservation(Reservation reservation)
 	{
-		return -1;
+		return adminUtil.editReservation(reservation);
+	}
+	
+	/**
+	 * Delete / Cancel Reservation to the system
+	 * @param Reservation
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 */
+	public int deleteReservation(Reservation reservation)
+	{
+		return adminUtil.deleteReservation(reservation);
 	}
 	
 }
