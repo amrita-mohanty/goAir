@@ -61,4 +61,17 @@ public class AdminUtil {
 		logger.info("Edit a flight : "+flight.toString());
 		return adminServiceQuery.editFlight(flight);
 	}
+	
+	/**
+	 * Delete flight to the system
+	 * @param flight
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 * success : 0, failure : -1
+	 */
+	public int deleteFlight(Flight flight)
+	{
+		logger.info("Delete a flight : "+flight.toString());
+		return adminServiceQuery.deleteFlight(flight);
+	}
 }

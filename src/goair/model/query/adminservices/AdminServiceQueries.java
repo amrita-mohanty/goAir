@@ -20,6 +20,7 @@ public class AdminServiceQueries
 	SearchAllFlightsForAdminQuery searchAllFlightsForAdmin 	= null;
 	AddFlightQuery addFlightQuery 							= null;
 	EditFlightQuery editFlightQuery 					    = null;
+	DeleteFlightQuery deleteFlightQuery 					= null;
 	
 	public AdminServiceQueries()
 	{
@@ -29,6 +30,7 @@ public class AdminServiceQueries
 		searchAllFlightsForAdmin 	= new SearchAllFlightsForAdminQuery();
 		addFlightQuery 				= new AddFlightQuery();
 		editFlightQuery				= new EditFlightQuery();
+		deleteFlightQuery			= new DeleteFlightQuery();
 	}
 	
 	/**
@@ -75,5 +77,18 @@ public class AdminServiceQueries
 	{
 		logger.info("Edit a flight : "+flight.toString());
 		return editFlightQuery.editFlight(flight, connection);
+	}
+	
+	/**
+	 * Delete flight to the system
+	 * @param flight
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 * success : 0, failure : -1
+	 */
+	public int deleteFlight(Flight flight)
+	{
+		logger.info("Delete a flight : "+flight.toString());
+		return deleteFlightQuery.deleteFlight(flight, connection);
 	}
 }

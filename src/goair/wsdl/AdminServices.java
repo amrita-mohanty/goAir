@@ -85,7 +85,7 @@ public class AdminServices {
 	 */
 	public int deleteFlight(Flight flight)
 	{
-		return -1;
+		return adminUtil.deleteFlight(flight);
 	}
 	
 	/**
