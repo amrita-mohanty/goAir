@@ -48,10 +48,11 @@ public class Employee extends Person {
 		return "Employee [employeeId=" + employeeId + ", airlineName="
 				+ airlineName + ", jobDesc=" + jobDesc + ", position="
 				+ position + ", hireDate=" + hireDate + ", emailId=" + emailId
-				+ ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", gender=" + gender + ", address=" + address + ", city="
-				+ city + ", state=" + state + ", zipcode=" + zipcode + ", dob="
-				+ dob + ", currentStatus=" + currentStatus + "]";
+				+ ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", gender=" + gender
+				+ ", address=" + address + ", city=" + city + ", state="
+				+ state + ", zipcode=" + zipcode + ", dob=" + dob
+				+ ", currentStatus=" + currentStatus + "]";
 	}
 	
 }

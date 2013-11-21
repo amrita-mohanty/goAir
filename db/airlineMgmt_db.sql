@@ -9,7 +9,8 @@ DROP TABLE IF EXISTS `flight`;
 
 CREATE TABLE `customer` (
   `customerId` INT(11) NOT NULL AUTO_INCREMENT,
-  `emailId` VARCHAR(40) NOT NULL,
+  `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
+  `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstname` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
   `gender` VARCHAR(1) NOT NULL,
@@ -26,7 +27,8 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `employee` (
   `employeeId` INT(11) NOT NULL AUTO_INCREMENT,
-  `emailId` VARCHAR(40) NOT NULL,
+  `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
+  `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstName` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
   `gender` VARCHAR(1) NOT NULL,
@@ -100,9 +102,10 @@ STR_TO_DATE('2010-12-25', '%Y-%m-%d'),
 STR_TO_DATE('2015-12-24', '%Y-%m-%d')
 );
 
-insert into employee(emailId, firstName,lastName, gender,jobDesc, position,
+insert into employee(emailId, `password`, firstName,lastName, gender,jobDesc, position,
 hireDate, address, city, state, zipcode, dob) values (
 'a@gmail.com', 
+'pwd1',
 'Peter', 
 'Pan', 'F',
 'Pilot','Senior Pilot',STR_TO_DATE('2010-12-25', '%Y-%m-%d'),

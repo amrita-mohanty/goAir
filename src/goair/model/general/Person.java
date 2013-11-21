@@ -7,6 +7,7 @@ public class Person {
 	public Person() {}
 	
 	public String emailId;
+	public String password;
 	public String firstName;
 	public String lastName;
 	public String gender;
@@ -22,6 +23,12 @@ public class Person {
 	}
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getFirstName() {
 		return firstName;

@@ -48,13 +48,13 @@ public class Customer extends Person{
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", emailIdString="
 				+ emailIdString + ", passportNum=" + passportNum
-				+ ", nationality=" + nationality + ", currentStatus="
-				+ currentStatus + ", emailId=" + emailId + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", nationality=" + nationality + ", emailId=" + emailId
+				+ ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", gender=" + gender
 				+ ", address=" + address + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + ", dob=" + dob + "]";
+				+ state + ", zipcode=" + zipcode + ", dob=" + dob
+				+ ", currentStatus=" + currentStatus + "]";
 	}
-
 	
 }
 
