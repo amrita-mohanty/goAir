@@ -5,11 +5,11 @@ import org.apache.log4j.Logger;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
+import goair.model.query.adminservices.AdminServiceQueries;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
-import goair.util.AdminUtil;
 import goair.util.SearchParametersForReservation;
 
 public class AdminServices {
@@ -38,25 +38,31 @@ public class AdminServices {
 			// he/she is serving with histories.
 	
 
-	public AdminUtil adminUtil = new AdminUtil();
+	public AdminServiceQueries adminServiceQuery = null;
 	
-	/**
-	 * Search flights - This method searches all the flights with a given criteria
-	 * @return Flight[] -  Return list of flights
-	 *  
-	 */
-	public Flight[] searchFlights(SearchParametersForFlights searchParameters)
+	public AdminServices()
 	{
-		return adminUtil.searchFlightsForAdmin(searchParameters);
+		adminServiceQuery = new AdminServiceQueries();
 	}
 	
 	/**
-	 * Get all the flights in the system
-	 * @return Flight[] - Return list of all the flights
+	 * This method will get the flight based on search parameters passed to it
+	 * @return Flight[] 
 	 */
-	public Flight[] getFlights()
+	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
-		return adminUtil.getAllFlightsForAdmin();
+		logger.info("searchFlightsForAdmin with params : "+searchParameters.toString());
+		return adminServiceQuery.searchFlightsForAdmin(searchParameters);
+	}
+	
+	/**
+	 * This method will get the flight based on search parameters passed to it
+	 * @return Flight[] 
+	 */
+	public Flight[] getAllFlightsForAdmin()
+	{
+		logger.info("searchAllFlightsForAdmin");
+		return adminServiceQuery.getAllFlightsForAdmin();
 	}
 	
 	/**
@@ -64,10 +70,12 @@ public class AdminServices {
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int addFlight(Flight flight)
 	{
-		return adminUtil.addFlight(flight);
+		logger.info("Add a flight : "+flight.toString());
+		return adminServiceQuery.addFlight(flight);
 	}
 	
 	/**
@@ -75,178 +83,201 @@ public class AdminServices {
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int editFlight(Flight flight)
 	{
-		return adminUtil.editFlight(flight);
+		logger.info("Edit a flight : "+flight.toString());
+		return adminServiceQuery.editFlight(flight);
 	}
 	
-
 	/**
 	 * Delete flight to the system
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int deleteFlight(Flight flight)
 	{
-		return adminUtil.deleteFlight(flight);
+		logger.info("Delete a flight : "+flight.toString());
+		return adminServiceQuery.deleteFlight(flight);
 	}
 	
 	/**
-	 * Search Customers - This method searches all the Customer with a given criteria
-	 * @return Customer[] - Return list of Customers.
-	 *  
+	 * This method will get the Customer based on search parameters passed to it
+	 * @return Customer[] 
 	 */
-	public Customer[] searchCustomers(SearchParametersForCustomers searchParameters)
+	public Customer[] searchCustomersForAdmin(SearchParametersForCustomers searchParameters)
 	{
-		return adminUtil.searchCustomersForAdmin(searchParameters);
+		logger.info("searchCustomersForAdmin with params : "+searchParameters.toString());
+		return adminServiceQuery.searchCustomersForAdmin(searchParameters);
 	}
 	
 	/**
-	 * Get all the Customers in the system
-	 * @return Customer[] - Return list of all the Customers
+	 * This method will get the Customer based on search parameters passed to it
+	 * @return Customer[] 
 	 */
-	public Customer[] getCustomers()
+	public Customer[] getAllCustomersForAdmin()
 	{
-		return adminUtil.getAllCustomersForAdmin();
+		logger.info("searchAllCustomersForAdmin");
+		return adminServiceQuery.getAllCustomersForAdmin();
 	}
 	
 	/**
 	 * Add a new Customer to the system
-	 * @param Customer
+	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int addCustomer(Customer customer)
 	{
-		logger.info("Add customer : "+customer.toString());
-		return adminUtil.addCustomer(customer);
+		logger.info("Add a Customer : "+customer.toString());
+		return adminServiceQuery.addCustomer(customer);
 	}
 	
 	/**
 	 * Edit Customer to the system
-	 * @param Customer
+	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int editCustomer(Customer customer)
 	{
-		return adminUtil.editCustomer(customer);
+		logger.info("Edit a Customer : "+customer.toString());
+		return adminServiceQuery.editCustomer(customer);
 	}
 	
 	/**
 	 * Delete Customer to the system
-	 * @param Customer
+	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int deleteCustomer(Customer customer)
 	{
-		return adminUtil.deleteCustomer(customer);
+		logger.info("Delete a Customer : "+customer.toString());
+		return adminServiceQuery.deleteCustomer(customer);
 	}
 	
 	/**
-	 * Search Employee - This method searches all the Employee with a given criteria
-	 * @return Employee[] - Return list of Employee.
-	 *  
+	 * This method will get the Employee based on search parameters passed to it
+	 * @return Employee[] 
 	 */
-	public Employee[] searchEmployees(SearchParametersForEmployees searchParameters)
+	public Employee[] searchEmployeesForAdmin(SearchParametersForEmployees searchParameters)
 	{
-		return adminUtil.searchEmployeesForAdmin(searchParameters);
+		logger.info("searchEmployeesForAdmin with params : "+searchParameters.toString());
+		return adminServiceQuery.searchEmployeesForAdmin(searchParameters);
 	}
 	
 	/**
-	 * Get all the Employees in the system
-	 * @return Customer[] - Return list of all the Employees
+	 * This method will get the Employee based on search parameters passed to it
+	 * @return Employee[] 
 	 */
-	public Employee[] getEmployees()
+	public Employee[] getAllEmployeesForAdmin()
 	{
-		return adminUtil.getAllEmployeesForAdmin();
+		logger.info("searchAllEmployeesForAdmin");
+		return adminServiceQuery.getAllEmployeesForAdmin();
 	}
 	
 	/**
 	 * Add a new Employee to the system
-	 * @param Employee
+	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int addEmployee(Employee employee)
 	{
-		return adminUtil.addEmployee(employee);
+		logger.info("Add a Employee : "+employee.toString());
+		return adminServiceQuery.addEmployee(employee);
 	}
 	
 	/**
 	 * Edit Employee to the system
-	 * @param Employee
+	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int editEmployee(Employee employee)
 	{
-		return adminUtil.editEmployee(employee);
+		logger.info("Edit a Employee : "+employee.toString());
+		return adminServiceQuery.editEmployee(employee);
 	}
 	
 	/**
 	 * Delete Employee to the system
-	 * @param Employee
+	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int deleteEmployee(Employee employee)
 	{
-		return adminUtil.deleteEmployee(employee);
+		logger.info("Delete a Employee : "+employee.toString());
+		return adminServiceQuery.deleteEmployee(employee);
 	}
 	
 	/**
-	 * Search Reservation - This method searches all the Reservation with a given criteria
-	 * @return Reservation[] - Return list of Reservation.
-	 *  
+	 * This method will get the Reservation based on search parameters passed to it
+	 * @return Reservation[] 
 	 */
-	public Reservation[] searchReservations(SearchParametersForReservation searchParameters)
+	public Reservation[] searchReservationsForAdmin(SearchParametersForReservation searchParameters)
 	{
-		return adminUtil.searchReservationsForAdmin(searchParameters);
+		logger.info("searchReservationsForAdmin with params : "+searchParameters.toString());
+		return adminServiceQuery.searchReservationsForAdmin(searchParameters);
 	}
 	
 	/**
-	 * Get all the Reservation in the system
-	 * @return Reservation[] - Return list of all the Reservations
+	 * This method will get the Reservation based on search parameters passed to it
+	 * @return Reservation[] 
 	 */
-	public Reservation[] getAllReservations()
+	public Reservation[] getAllReservationsForAdmin()
 	{
-		return adminUtil.getAllReservationsForAdmin();
+		logger.info("searchAllReservationsForAdmin");
+		return adminServiceQuery.getAllReservationsForAdmin();
 	}
 	
 	/**
-	 * Get all the Reservation in the system
+	 * Add a new Reservation to the system
+	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int addReservation(Reservation reservation)
 	{
-		return adminUtil.addReservation(reservation);
+		logger.info("Add a Reservation : "+reservation.toString());
+		return adminServiceQuery.addReservation(reservation);
 	}
 	
 	/**
 	 * Edit Reservation to the system
-	 * @param Reservation
+	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int editReservation(Reservation reservation)
 	{
-		return adminUtil.editReservation(reservation);
+		logger.info("Edit a Reservation : "+reservation.toString());
+		return adminServiceQuery.editReservation(reservation);
 	}
 	
 	/**
-	 * Delete / Cancel Reservation to the system
-	 * @param Reservation
+	 * Delete Reservation to the system
+	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
+	 * success : 0, failure : -1
 	 */
 	public int deleteReservation(Reservation reservation)
 	{
-		return adminUtil.deleteReservation(reservation);
+		logger.info("Delete a Reservation : "+reservation.toString());
+		return adminServiceQuery.deleteReservation(reservation);
 	}
-	
 }

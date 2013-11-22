@@ -50,30 +50,6 @@ public class AdminServiceQueries
 	{
 		dbConnection 				= new DbConnection();
 		connection 					= dbConnection.createDbConnection();
-		
-		searchFlightsForAdmin 		= new SearchFlightsForAdminQuery();
-		getAllFlightsForAdmin 		= new GetAllFlightsForAdminQuery();
-		addFlightQuery 				= new AddFlightQuery();
-		editFlightQuery				= new EditFlightQuery();
-		deleteFlightQuery			= new DeleteFlightQuery();
-		
-		getAllCustomersForAdmin 	= new GetAllCustomersForAdminQuery();
-		searchCustomersForAdmin 	= new SearchCustomersForAdminQuery();
-		addCustomerQuery 			= new AddCustomerQuery();
-		editCustomerQuery			= new EditCustomerQuery();
-		deleteCustomerQuery			= new DeleteCustomerQuery();
-		
-		getAllEmployeesForAdmin 	= new GetAllEmployeesForAdminQuery();
-		searchEmployeesForAdmin 	= new SearchEmployeesForAdminQuery();
-		addEmployeeQuery 			= new AddEmployeeQuery();
-		editEmployeeQuery			= new EditEmployeeQuery();
-		deleteEmployeeQuery			= new DeleteEmployeeQuery();
-		
-		getAllReservationsForAdminQuery = new GetAllReservationsForAdminQuery();
-		searchReservationsForAdminQuery = new SearchReservationsForAdminQuery();
-		editReservationQuery 			= new EditReservationQuery();
-		addReservationQuery				= new AddReservationQuery();
-		deleteReservationQuery			= new DeleteReservationQuery();
 	}
 	
 	/**
@@ -82,6 +58,10 @@ public class AdminServiceQueries
 	 */
 	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
+		if(searchFlightsForAdmin == null)
+		{
+			searchFlightsForAdmin 		= new SearchFlightsForAdminQuery();
+		}
 		logger.info("searchFlightsForAdmin with params : "+searchParameters.toString());
 		return searchFlightsForAdmin.searchFlightsForAdmin(searchParameters, connection);
 	}
@@ -92,6 +72,10 @@ public class AdminServiceQueries
 	 */
 	public Flight[] getAllFlightsForAdmin()
 	{
+		if(getAllFlightsForAdmin == null)
+		{
+			getAllFlightsForAdmin 		= new GetAllFlightsForAdminQuery();
+		}
 		logger.info("searchAllFlightsForAdmin");
 		return getAllFlightsForAdmin.getAllFlightsForAdmin(connection);
 	}
@@ -105,6 +89,10 @@ public class AdminServiceQueries
 	 */
 	public int addFlight(Flight flight)
 	{
+		if(addFlightQuery == null)
+		{
+			addFlightQuery 				= new AddFlightQuery();
+		}
 		logger.info("Add a flight : "+flight.toString());
 		return addFlightQuery.addNewFlight(flight, connection);
 	}
@@ -118,6 +106,10 @@ public class AdminServiceQueries
 	 */
 	public int editFlight(Flight flight)
 	{
+		if(editFlightQuery == null)
+		{
+			editFlightQuery				= new EditFlightQuery();
+		}
 		logger.info("Edit a flight : "+flight.toString());
 		return editFlightQuery.editFlight(flight, connection);
 	}
@@ -131,6 +123,10 @@ public class AdminServiceQueries
 	 */
 	public int deleteFlight(Flight flight)
 	{
+		if(deleteFlightQuery == null)
+		{
+			deleteFlightQuery			= new DeleteFlightQuery();
+		}
 		logger.info("Delete a flight : "+flight.toString());
 		return deleteFlightQuery.deleteFlight(flight, connection);
 	}
@@ -141,6 +137,10 @@ public class AdminServiceQueries
 	 */
 	public Customer[] searchCustomersForAdmin(SearchParametersForCustomers searchParameters)
 	{
+		if(searchCustomersForAdmin == null)
+		{
+			searchCustomersForAdmin 	= new SearchCustomersForAdminQuery();
+		}
 		logger.info("searchCustomersForAdmin with params : "+searchParameters.toString());
 		return searchCustomersForAdmin.searchCustomersForAdmin(connection, searchParameters);
 	}
@@ -151,6 +151,10 @@ public class AdminServiceQueries
 	 */
 	public Customer[] getAllCustomersForAdmin()
 	{
+		if(getAllCustomersForAdmin == null)
+		{
+			getAllCustomersForAdmin 	= new GetAllCustomersForAdminQuery();
+		}
 		logger.info("searchAllCustomersForAdmin");
 		return getAllCustomersForAdmin.getAllCustomersForAdmin(connection);
 	}
@@ -164,6 +168,10 @@ public class AdminServiceQueries
 	 */
 	public int addCustomer(Customer customer)
 	{
+		if(addCustomerQuery == null)
+		{
+			addCustomerQuery = new AddCustomerQuery();
+		}
 		logger.info("Add a Customer : "+customer.toString());
 		return addCustomerQuery.addNewCustomer(customer, connection);
 	}
@@ -177,6 +185,10 @@ public class AdminServiceQueries
 	 */
 	public int editCustomer(Customer customer)
 	{
+		if(editCustomerQuery == null)
+		{
+			editCustomerQuery = new EditCustomerQuery();
+		}
 		logger.info("Edit a Customer : "+customer.toString());
 		return editCustomerQuery.editCustomer(customer, connection);
 	}
@@ -190,6 +202,10 @@ public class AdminServiceQueries
 	 */
 	public int deleteCustomer(Customer customer)
 	{
+		if(deleteCustomerQuery == null)
+		{
+			deleteCustomerQuery = new DeleteCustomerQuery();
+		}
 		logger.info("Delete a Customer : "+customer.toString());
 		return deleteCustomerQuery.deleteCustomer(customer, connection);
 	}
@@ -200,6 +216,10 @@ public class AdminServiceQueries
 	 */
 	public Employee[] searchEmployeesForAdmin(SearchParametersForEmployees searchParameters)
 	{
+		if(searchEmployeesForAdmin == null)
+		{
+			searchEmployeesForAdmin = new SearchEmployeesForAdminQuery();
+		}
 		logger.info("searchEmployeesForAdmin with params : "+searchParameters.toString());
 		return searchEmployeesForAdmin.searchEmployeesForAdmin(connection, searchParameters);
 	}
@@ -210,6 +230,10 @@ public class AdminServiceQueries
 	 */
 	public Employee[] getAllEmployeesForAdmin()
 	{
+		if(getAllEmployeesForAdmin == null)
+		{
+			getAllEmployeesForAdmin = new GetAllEmployeesForAdminQuery();
+		}
 		logger.info("searchAllEmployeesForAdmin");
 		return getAllEmployeesForAdmin.getAllEmployeesForAdmin(connection);
 	}
@@ -223,6 +247,10 @@ public class AdminServiceQueries
 	 */
 	public int addEmployee(Employee employee)
 	{
+		if(addEmployeeQuery == null)
+		{
+			addEmployeeQuery = new AddEmployeeQuery();
+		}
 		logger.info("Add a Employee : "+employee.toString());
 		return addEmployeeQuery.addNewEmployee(employee, connection);
 	}
@@ -236,6 +264,10 @@ public class AdminServiceQueries
 	 */
 	public int editEmployee(Employee employee)
 	{
+		if(editEmployeeQuery == null)
+		{
+			editEmployeeQuery = new EditEmployeeQuery();
+		}
 		logger.info("Edit a Employee : "+employee.toString());
 		return editEmployeeQuery.editEmployee(employee, connection);
 	}
@@ -249,6 +281,10 @@ public class AdminServiceQueries
 	 */
 	public int deleteEmployee(Employee employee)
 	{
+		if(deleteEmployeeQuery == null)
+		{
+			deleteEmployeeQuery = new DeleteEmployeeQuery();
+		}
 		logger.info("Delete a Employee : "+employee.toString());
 		return deleteEmployeeQuery.deleteEmployee(employee, connection);
 	}
@@ -259,6 +295,10 @@ public class AdminServiceQueries
 	 */
 	public Reservation[] searchReservationsForAdmin(SearchParametersForReservation searchParameters)
 	{
+		if(searchReservationsForAdminQuery == null)
+		{
+			searchReservationsForAdminQuery = new SearchReservationsForAdminQuery();
+		}
 		logger.info("searchReservationsForAdmin with params : "+searchParameters.toString());
 		return searchReservationsForAdminQuery.searchReservationForAdmin(connection, searchParameters);
 	}
@@ -269,6 +309,10 @@ public class AdminServiceQueries
 	 */
 	public Reservation[] getAllReservationsForAdmin()
 	{
+		if(getAllReservationsForAdminQuery == null)
+		{
+			getAllReservationsForAdminQuery = new GetAllReservationsForAdminQuery();
+		}
 		logger.info("searchAllReservationsForAdmin");
 		return getAllReservationsForAdminQuery.getAllReservationsForAdmin(connection);
 	}
@@ -282,6 +326,10 @@ public class AdminServiceQueries
 	 */
 	public int addReservation(Reservation Reservation)
 	{
+		if(addReservationQuery == null)
+		{
+			addReservationQuery = new AddReservationQuery();
+		}
 		logger.info("Add a Reservation : "+Reservation.toString());
 		return addReservationQuery.addNewReservation(Reservation, connection);
 	}
@@ -295,6 +343,10 @@ public class AdminServiceQueries
 	 */
 	public int editReservation(Reservation Reservation)
 	{
+		if(editReservationQuery == null)
+		{
+			editReservationQuery = new EditReservationQuery();
+		}
 		logger.info("Edit a Reservation : "+Reservation.toString());
 		return editReservationQuery.editReservation(Reservation, connection);
 	}
@@ -308,6 +360,10 @@ public class AdminServiceQueries
 	 */
 	public int deleteReservation(Reservation Reservation)
 	{
+		if(deleteReservationQuery == null)
+		{
+			deleteReservationQuery = new DeleteReservationQuery();
+		}
 		logger.info("Delete a Reservation : "+Reservation.toString());
 		return deleteReservationQuery.deleteReservation(Reservation, connection);
 	}
