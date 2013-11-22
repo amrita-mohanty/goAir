@@ -22,10 +22,10 @@ public class AddEmployeeQuery {
 	public int addNewEmployee(Employee employee, Connection connection)
 	{
 		String employeeTableQuery = "insert into employee("
-				+ "emailId, "
+				+ "emailId, password,"
 				+ "firstname, lastname, gender, airlineName, "
 				+ "jobDesc, position, hireDate, address, city,"
-				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		PreparedStatement preparedStatement = null;
 		try
@@ -34,18 +34,19 @@ public class AddEmployeeQuery {
 			
 			preparedStatement = connection.prepareStatement(employeeTableQuery);
 			preparedStatement.setString(1, employee.getEmailId());
-			preparedStatement.setString(2, employee.getFirstName());
-			preparedStatement.setString(3, employee.getLastName());
-			preparedStatement.setString(4, employee.getGender());
-			preparedStatement.setString(5, employee.getAirlineName());
-			preparedStatement.setString(6, employee.getJobDesc());
-			preparedStatement.setString(7, employee.getPosition());
-			preparedStatement.setDate(8, new Date(employee.getHireDate().getTime()));
-			preparedStatement.setString(9, employee.getAddress());
-			preparedStatement.setString(10, employee.getCity());
-			preparedStatement.setString(11, employee.getState());
-			preparedStatement.setString(12, employee.getZipcode());
-			preparedStatement.setDate(13, new Date(employee.getDob().getTime()));
+			preparedStatement.setString(2, employee.getPassword());
+			preparedStatement.setString(3, employee.getFirstName());
+			preparedStatement.setString(4, employee.getLastName());
+			preparedStatement.setString(5, employee.getGender());
+			preparedStatement.setString(6, employee.getAirlineName());
+			preparedStatement.setString(7, employee.getJobDesc());
+			preparedStatement.setString(8, employee.getPosition());
+			preparedStatement.setDate(9, new Date(employee.getHireDate().getTime()));
+			preparedStatement.setString(10, employee.getAddress());
+			preparedStatement.setString(11, employee.getCity());
+			preparedStatement.setString(12, employee.getState());
+			preparedStatement.setString(13, employee.getZipcode());
+			preparedStatement.setDate(14, new Date(employee.getDob().getTime()));
 			
 			preparedStatement.execute();
 			preparedStatement.close();

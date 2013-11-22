@@ -13,7 +13,7 @@ CREATE TABLE `customer` (
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstname` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
-  `gender` VARCHAR(1) NOT NULL,
+  `gender` VARCHAR(10) NOT NULL,
   `passportNum` VARCHAR(20) NOT NULL,
   `nationality` VARCHAR(20) NOT NULL,
   `address` VARCHAR(50) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `employee` (
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstName` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
-  `gender` VARCHAR(1) NOT NULL,
+  `gender` VARCHAR(10) NOT NULL,
   `airlineName` VARCHAR(50),
   `jobDesc` VARCHAR(20) NOT NULL,
   `position` VARCHAR(20) NOT NULL,
