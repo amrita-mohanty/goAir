@@ -1,6 +1,5 @@
 package goair.wsdl;
 
-import goair.Exception.AirlineException;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
 import goair.util.SearchParametersForFlights;
@@ -12,15 +11,15 @@ import goair.util.SearchParametersForFlights;
 public class EmployeeServices {
 	public EmployeeServices() {}
 
-	public int employeeLogin(String userName,String Password) throws AirlineException{
+	public int employeeLogin(String userName,String Password){
 		return 1;
 	}
 
-	public int editEmployeeProfile(Employee employeeBean) throws AirlineException{
+	public int editEmployeeProfile(Employee employeeBean){
 		return 1;
 	}
 	
-	public Flight[] searchEmployeeFlights(SearchParametersForFlights searchFlight) throws AirlineException
+	public Flight[] searchEmployeeFlights(SearchParametersForFlights searchFlight)
 	{
 		return null;
 	}
@@ -30,7 +29,7 @@ public class EmployeeServices {
 	 * @param Employee
 	 * @return Array of Flight
 	 */
-	public Flight[] viewEmployeeFlight(Employee crew) throws AirlineException{
+	public Flight[] viewEmployeeFlight(Employee crew){
               return null;
 	}
 	

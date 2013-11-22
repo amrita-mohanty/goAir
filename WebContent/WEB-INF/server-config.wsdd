@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -22,78 +22,83 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
- <ns1:service name="AdminServices" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="deleteReservation" qname="ns1:deleteReservation" returnQName="ns1:deleteReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns3:parameter qname="ns1:reservation" type="ns2:Reservation" xmlns:ns2="http://reservation.model.goair" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
+ <ns1:service name="AirlineServices" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="cancelReservation" qname="ns1:cancelReservation" returnQName="ns1:cancelReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:booking" type="ns2:Reservation" xmlns:ns2="http://reservation.model.goair" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
   </ns2:operation>
-  <ns1:operation name="searchReservations" qname="ns3:searchReservations" returnQName="ns3:searchReservationsReturn" returnType="ns4:Reservation" soapAction="" xmlns:ns3="http://wsdl.goair" xmlns:ns4="http://reservation.model.goair">
-   <ns1:parameter qname="ns3:searchParameters" type="ns5:SearchParametersForReservation" xmlns:ns5="http://util.goair"/>
+  <ns1:operation name="createReservation" qname="ns3:createReservation" returnQName="ns3:createReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:customer" type="ns4:Customer" xmlns:ns4="http://customer.model.goair"/>
+   <ns1:parameter qname="ns3:flight" type="ns5:Flight" xmlns:ns5="http://flight.model.goair"/>
   </ns1:operation>
-  <ns1:operation name="getAllReservations" qname="ns6:getAllReservations" returnQName="ns6:getAllReservationsReturn" returnType="ns7:Reservation" soapAction="" xmlns:ns6="http://wsdl.goair" xmlns:ns7="http://reservation.model.goair"/>
-  <ns1:operation name="editReservation" qname="ns8:editReservation" returnQName="ns8:editReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns8="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:reservation" type="ns9:Reservation" xmlns:ns9="http://reservation.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="addReservation" qname="ns10:addReservation" returnQName="ns10:addReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns10="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns10:reservation" type="ns11:Reservation" xmlns:ns11="http://reservation.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="editEmployee" qname="ns12:editEmployee" returnQName="ns12:editEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns12="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns12:employee" type="ns13:Employee" xmlns:ns13="http://employee.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="deleteEmployee" qname="ns14:deleteEmployee" returnQName="ns14:deleteEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns14="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns14:employee" type="ns15:Employee" xmlns:ns15="http://employee.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="getEmployees" qname="ns16:getEmployees" returnQName="ns16:getEmployeesReturn" returnType="ns17:Employee" soapAction="" xmlns:ns16="http://wsdl.goair" xmlns:ns17="http://employee.model.goair"/>
-  <ns1:operation name="searchEmployees" qname="ns18:searchEmployees" returnQName="ns18:searchEmployeesReturn" returnType="ns19:Employee" soapAction="" xmlns:ns18="http://wsdl.goair" xmlns:ns19="http://employee.model.goair">
-   <ns1:parameter qname="ns18:searchParameters" type="ns20:SearchParametersForEmployees" xmlns:ns20="http://util.goair"/>
-  </ns1:operation>
-  <ns1:operation name="addEmployee" qname="ns21:addEmployee" returnQName="ns21:addEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns21="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns21:employee" type="ns22:Employee" xmlns:ns22="http://employee.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="getFlights" qname="ns23:getFlights" returnQName="ns23:getFlightsReturn" returnType="ns24:Flight" soapAction="" xmlns:ns23="http://wsdl.goair" xmlns:ns24="http://flight.model.goair"/>
-  <ns1:operation name="editCustomer" qname="ns25:editCustomer" returnQName="ns25:editCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns25="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns25:customer" type="ns26:Customer" xmlns:ns26="http://customer.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="deleteCustomer" qname="ns27:deleteCustomer" returnQName="ns27:deleteCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns27="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns27:customer" type="ns28:Customer" xmlns:ns28="http://customer.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="addCustomer" qname="ns29:addCustomer" returnQName="ns29:addCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns29="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns29:customer" type="ns30:Customer" xmlns:ns30="http://customer.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="getCustomers" qname="ns31:getCustomers" returnQName="ns31:getCustomersReturn" returnType="ns32:Customer" soapAction="" xmlns:ns31="http://wsdl.goair" xmlns:ns32="http://customer.model.goair"/>
-  <ns1:operation name="searchCustomers" qname="ns33:searchCustomers" returnQName="ns33:searchCustomersReturn" returnType="ns34:Customer" soapAction="" xmlns:ns33="http://wsdl.goair" xmlns:ns34="http://customer.model.goair">
-   <ns1:parameter qname="ns33:searchParameters" type="ns35:SearchParametersForCustomers" xmlns:ns35="http://util.goair"/>
-  </ns1:operation>
-  <ns1:operation name="addFlight" qname="ns36:addFlight" returnQName="ns36:addFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns36="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns36:flight" type="ns37:Flight" xmlns:ns37="http://flight.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="deleteFlight" qname="ns38:deleteFlight" returnQName="ns38:deleteFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns38="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns38:flight" type="ns39:Flight" xmlns:ns39="http://flight.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="editFlight" qname="ns40:editFlight" returnQName="ns40:editFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns40="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns40:flight" type="ns41:Flight" xmlns:ns41="http://flight.model.goair"/>
-  </ns1:operation>
-  <ns1:operation name="searchFlights" qname="ns42:searchFlights" returnQName="ns42:searchFlightsReturn" returnType="ns43:Flight" soapAction="" xmlns:ns42="http://wsdl.goair" xmlns:ns43="http://flight.model.goair">
-   <ns1:parameter qname="ns42:searchParameters" type="ns44:SearchParametersForFlights" xmlns:ns44="http://util.goair"/>
-  </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="searchReservations getEmployees searchEmployees addEmployee deleteReservation deleteEmployee editCustomer editEmployee addReservation editFlight getCustomers editReservation getFlights addFlight addCustomer searchFlights searchCustomers deleteCustomer getAllReservations deleteFlight"/>
+  <ns1:parameter name="allowedMethods" value="createReservation cancelReservation"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlPortType" value="AdminServices"/>
-  <ns1:parameter name="className" value="goair.wsdl.AdminServices"/>
-  <ns1:parameter name="wsdlServicePort" value="AdminServices"/>
-  <ns1:parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://reservation.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+  <ns1:parameter name="wsdlPortType" value="AirlineServices"/>
+  <ns1:parameter name="className" value="goair.wsdl.AirlineServices"/>
+  <ns1:parameter name="wsdlServicePort" value="AirlineServices"/>
+  <ns1:parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://reservation.model.goair,http://flight.model.goair,http://wsdl.goair"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
-  <ns1:parameter name="wsdlServiceElement" value="AdminServicesService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns45:SearchParametersForEmployees" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForEmployees" xmlns:ns45="http://util.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns46:SearchParametersForReservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForReservation" xmlns:ns46="http://util.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns47:SearchParametersForCustomers" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForCustomers" xmlns:ns47="http://util.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns48:Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.flight.Flight" xmlns:ns48="http://flight.model.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns49:SearchParametersForFlights" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForFlights" xmlns:ns49="http://util.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns50:Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.reservation.Reservation" xmlns:ns50="http://reservation.model.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns51:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.employee.Employee" xmlns:ns51="http://employee.model.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns52:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.general.Person" xmlns:ns52="http://general.model.goair"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns53:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns53="http://customer.model.goair"/>
-  <ns1:arrayMapping innerType="ns55:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns54:ArrayOf_tns3_Employee" xmlns:ns54="http://wsdl.goair" xmlns:ns55="http://employee.model.goair"/>
-  <ns1:arrayMapping innerType="ns57:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns56:ArrayOf_tns6_Customer" xmlns:ns56="http://wsdl.goair" xmlns:ns57="http://customer.model.goair"/>
+  <ns1:parameter name="wsdlServiceElement" value="AirlineServicesService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.employee.Employee" xmlns:ns6="http://employee.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.general.Person" xmlns:ns7="http://general.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns8="http://customer.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.reservation.Reservation" xmlns:ns9="http://reservation.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.flight.Flight" xmlns:ns10="http://flight.model.goair"/>
+  <ns1:arrayMapping innerType="ns12:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns11:ArrayOf_tns2_Customer" xmlns:ns11="http://wsdl.goair" xmlns:ns12="http://customer.model.goair"/>
+  <ns1:arrayMapping innerType="ns14:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns13:ArrayOf_tns5_Employee" xmlns:ns13="http://wsdl.goair" xmlns:ns14="http://employee.model.goair"/>
+ </ns1:service>
+ <ns1:service name="CustomerServices" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="main" qname="ns15:main" soapAction="" xmlns:ns15="http://wsdl.goair">
+   <ns1:parameter qname="ns15:args" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="searchFlights" qname="ns16:searchFlights" returnQName="ns16:searchFlightsReturn" returnType="ns17:Flight" soapAction="" xmlns:ns16="http://wsdl.goair" xmlns:ns17="http://flight.model.goair">
+   <ns1:parameter qname="ns16:searchFlightParam" type="ns18:SearchParametersForFlights" xmlns:ns18="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="viewAllFlights" qname="ns19:viewAllFlights" returnQName="ns19:viewAllFlightsReturn" returnType="ns20:Flight" soapAction="" xmlns:ns19="http://wsdl.goair" xmlns:ns20="http://flight.model.goair">
+   <ns1:parameter qname="ns19:searchFlight" type="ns21:SearchParametersForFlights" xmlns:ns21="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="viewBooking" qname="ns22:viewBooking" returnQName="ns22:viewBookingReturn" returnType="ns23:Reservation" soapAction="" xmlns:ns22="http://wsdl.goair" xmlns:ns23="http://reservation.model.goair">
+   <ns1:parameter qname="ns22:reservationid" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="viewBookingHistory" qname="ns24:viewBookingHistory" returnQName="ns24:viewBookingHistoryReturn" returnType="ns25:Reservation" soapAction="" xmlns:ns24="http://wsdl.goair" xmlns:ns25="http://reservation.model.goair">
+   <ns1:parameter qname="ns24:customerId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="customerLogin" qname="ns26:customerLogin" returnQName="ns26:customerLoginReturn" returnType="xsd:int" soapAction="" xmlns:ns26="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns26:userName" type="xsd:string"/>
+   <ns1:parameter qname="ns26:Password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="customerRegistration" qname="ns27:customerRegistration" returnQName="ns27:customerRegistrationReturn" returnType="xsd:int" soapAction="" xmlns:ns27="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns27:customerBean" type="ns28:Customer" xmlns:ns28="http://customer.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="editCustomerProfile" qname="ns29:editCustomerProfile" returnQName="ns29:editCustomerProfileReturn" returnType="xsd:int" soapAction="" xmlns:ns29="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns29:customerBean" type="ns30:Customer" xmlns:ns30="http://customer.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="makePayment" qname="ns31:makePayment" returnQName="ns31:makePaymentReturn" returnType="xsd:int" soapAction="" xmlns:ns31="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns31:paymentBean" type="ns32:PaymentBean" xmlns:ns32="http://payment.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="cancelReservation" qname="ns33:cancelReservation" returnQName="ns33:cancelReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns33="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns33:booking" type="ns34:Reservation" xmlns:ns34="http://reservation.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="createReservation" qname="ns35:createReservation" returnQName="ns35:createReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns35="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns35:customer" type="ns36:Customer" xmlns:ns36="http://customer.model.goair"/>
+   <ns1:parameter qname="ns35:flight" type="ns37:Flight" xmlns:ns37="http://flight.model.goair"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="viewBookingHistory makePayment customerRegistration createReservation cancelReservation searchFlights customerLogin viewBooking editCustomerProfile viewAllFlights main"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="CustomerServices"/>
+  <ns1:parameter name="className" value="goair.wsdl.CustomerServices"/>
+  <ns1:parameter name="wsdlServicePort" value="CustomerServices"/>
+  <ns1:parameter name="schemaQualified" value="http://payment.model.goair,http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://reservation.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
+  <ns1:parameter name="wsdlServiceElement" value="CustomerServicesService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns38:SearchParametersForFlights" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForFlights" xmlns:ns38="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns39:PaymentBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.payment.PaymentBean" xmlns:ns39="http://payment.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns40:Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.reservation.Reservation" xmlns:ns40="http://reservation.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns41:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.employee.Employee" xmlns:ns41="http://employee.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns42:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.general.Person" xmlns:ns42="http://general.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns43:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns43="http://customer.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns44:Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.flight.Flight" xmlns:ns44="http://flight.model.goair"/>
+  <ns1:arrayMapping innerType="ns46:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns45:ArrayOf_tns3_Employee" xmlns:ns45="http://wsdl.goair" xmlns:ns46="http://employee.model.goair"/>
+  <ns1:arrayMapping innerType="ns48:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns47:ArrayOf_tns5_Customer" xmlns:ns47="http://wsdl.goair" xmlns:ns48="http://customer.model.goair"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
@@ -101,9 +106,112 @@
   <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
+ <ns1:service name="AdminServices" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="deleteReservation" qname="ns49:deleteReservation" returnQName="ns49:deleteReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns49="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns49:reservation" type="ns50:Reservation" xmlns:ns50="http://reservation.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="searchReservations" qname="ns51:searchReservations" returnQName="ns51:searchReservationsReturn" returnType="ns52:Reservation" soapAction="" xmlns:ns51="http://wsdl.goair" xmlns:ns52="http://reservation.model.goair">
+   <ns1:parameter qname="ns51:searchParameters" type="ns53:SearchParametersForReservation" xmlns:ns53="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="getAllReservations" qname="ns54:getAllReservations" returnQName="ns54:getAllReservationsReturn" returnType="ns55:Reservation" soapAction="" xmlns:ns54="http://wsdl.goair" xmlns:ns55="http://reservation.model.goair"/>
+  <ns1:operation name="editReservation" qname="ns56:editReservation" returnQName="ns56:editReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns56="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns56:reservation" type="ns57:Reservation" xmlns:ns57="http://reservation.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="addReservation" qname="ns58:addReservation" returnQName="ns58:addReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns58="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns58:reservation" type="ns59:Reservation" xmlns:ns59="http://reservation.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="editEmployee" qname="ns60:editEmployee" returnQName="ns60:editEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns60="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns60:employee" type="ns61:Employee" xmlns:ns61="http://employee.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="deleteEmployee" qname="ns62:deleteEmployee" returnQName="ns62:deleteEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns62="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns62:employee" type="ns63:Employee" xmlns:ns63="http://employee.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="getEmployees" qname="ns64:getEmployees" returnQName="ns64:getEmployeesReturn" returnType="ns65:Employee" soapAction="" xmlns:ns64="http://wsdl.goair" xmlns:ns65="http://employee.model.goair"/>
+  <ns1:operation name="searchEmployees" qname="ns66:searchEmployees" returnQName="ns66:searchEmployeesReturn" returnType="ns67:Employee" soapAction="" xmlns:ns66="http://wsdl.goair" xmlns:ns67="http://employee.model.goair">
+   <ns1:parameter qname="ns66:searchParameters" type="ns68:SearchParametersForEmployees" xmlns:ns68="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="addEmployee" qname="ns69:addEmployee" returnQName="ns69:addEmployeeReturn" returnType="xsd:int" soapAction="" xmlns:ns69="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns69:employee" type="ns70:Employee" xmlns:ns70="http://employee.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="getFlights" qname="ns71:getFlights" returnQName="ns71:getFlightsReturn" returnType="ns72:Flight" soapAction="" xmlns:ns71="http://wsdl.goair" xmlns:ns72="http://flight.model.goair"/>
+  <ns1:operation name="editCustomer" qname="ns73:editCustomer" returnQName="ns73:editCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns73="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns73:customer" type="ns74:Customer" xmlns:ns74="http://customer.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="deleteCustomer" qname="ns75:deleteCustomer" returnQName="ns75:deleteCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns75="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns75:customer" type="ns76:Customer" xmlns:ns76="http://customer.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="addCustomer" qname="ns77:addCustomer" returnQName="ns77:addCustomerReturn" returnType="xsd:int" soapAction="" xmlns:ns77="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns77:customer" type="ns78:Customer" xmlns:ns78="http://customer.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="getCustomers" qname="ns79:getCustomers" returnQName="ns79:getCustomersReturn" returnType="ns80:Customer" soapAction="" xmlns:ns79="http://wsdl.goair" xmlns:ns80="http://customer.model.goair"/>
+  <ns1:operation name="searchCustomers" qname="ns81:searchCustomers" returnQName="ns81:searchCustomersReturn" returnType="ns82:Customer" soapAction="" xmlns:ns81="http://wsdl.goair" xmlns:ns82="http://customer.model.goair">
+   <ns1:parameter qname="ns81:searchParameters" type="ns83:SearchParametersForCustomers" xmlns:ns83="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="addFlight" qname="ns84:addFlight" returnQName="ns84:addFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns84="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns84:flight" type="ns85:Flight" xmlns:ns85="http://flight.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="deleteFlight" qname="ns86:deleteFlight" returnQName="ns86:deleteFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns86="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns86:flight" type="ns87:Flight" xmlns:ns87="http://flight.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="editFlight" qname="ns88:editFlight" returnQName="ns88:editFlightReturn" returnType="xsd:int" soapAction="" xmlns:ns88="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns88:flight" type="ns89:Flight" xmlns:ns89="http://flight.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="searchFlights" qname="ns90:searchFlights" returnQName="ns90:searchFlightsReturn" returnType="ns91:Flight" soapAction="" xmlns:ns90="http://wsdl.goair" xmlns:ns91="http://flight.model.goair">
+   <ns1:parameter qname="ns90:searchParameters" type="ns92:SearchParametersForFlights" xmlns:ns92="http://util.goair"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="searchReservations getEmployees searchEmployees addEmployee deleteReservation deleteEmployee editCustomer editEmployee addReservation editFlight getCustomers editReservation getFlights addFlight addCustomer searchFlights searchCustomers deleteCustomer getAllReservations deleteFlight"/>
+  <ns1:parameter name="wsdlPortType" value="AdminServices"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://reservation.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+  <ns1:parameter name="wsdlServicePort" value="AdminServices"/>
+  <ns1:parameter name="className" value="goair.wsdl.AdminServices"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
+  <ns1:parameter name="wsdlServiceElement" value="AdminServicesService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns93:SearchParametersForEmployees" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForEmployees" xmlns:ns93="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns94:SearchParametersForReservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForReservation" xmlns:ns94="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns95:SearchParametersForCustomers" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForCustomers" xmlns:ns95="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns96:Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.flight.Flight" xmlns:ns96="http://flight.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns97:SearchParametersForFlights" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForFlights" xmlns:ns97="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns98:Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.reservation.Reservation" xmlns:ns98="http://reservation.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns99:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.employee.Employee" xmlns:ns99="http://employee.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns100:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.general.Person" xmlns:ns100="http://general.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns101:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns101="http://customer.model.goair"/>
+  <ns1:arrayMapping innerType="ns103:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns102:ArrayOf_tns3_Employee" xmlns:ns102="http://wsdl.goair" xmlns:ns103="http://employee.model.goair"/>
+  <ns1:arrayMapping innerType="ns105:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns104:ArrayOf_tns6_Customer" xmlns:ns104="http://wsdl.goair" xmlns:ns105="http://customer.model.goair"/>
+ </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="EmployeeServices" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="employeeLogin" qname="ns106:employeeLogin" returnQName="ns106:employeeLoginReturn" returnType="xsd:int" soapAction="" xmlns:ns106="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns106:userName" type="xsd:string"/>
+   <ns1:parameter qname="ns106:Password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="searchEmployeeFlights" qname="ns107:searchEmployeeFlights" returnQName="ns107:searchEmployeeFlightsReturn" returnType="ns108:Flight" soapAction="" xmlns:ns107="http://wsdl.goair" xmlns:ns108="http://flight.model.goair">
+   <ns1:parameter qname="ns107:searchFlight" type="ns109:SearchParametersForFlights" xmlns:ns109="http://util.goair"/>
+  </ns1:operation>
+  <ns1:operation name="editEmployeeProfile" qname="ns110:editEmployeeProfile" returnQName="ns110:editEmployeeProfileReturn" returnType="xsd:int" soapAction="" xmlns:ns110="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns110:employeeBean" type="ns111:Employee" xmlns:ns111="http://employee.model.goair"/>
+  </ns1:operation>
+  <ns1:operation name="viewEmployeeFlight" qname="ns112:viewEmployeeFlight" returnQName="ns112:viewEmployeeFlightReturn" returnType="ns113:Flight" soapAction="" xmlns:ns112="http://wsdl.goair" xmlns:ns113="http://flight.model.goair">
+   <ns1:parameter qname="ns112:crew" type="ns114:Employee" xmlns:ns114="http://employee.model.goair"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="editEmployeeProfile viewEmployeeFlight employeeLogin searchEmployeeFlights"/>
+  <ns1:parameter name="wsdlPortType" value="EmployeeServices"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+  <ns1:parameter name="wsdlServicePort" value="EmployeeServices"/>
+  <ns1:parameter name="className" value="goair.wsdl.EmployeeServices"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
+  <ns1:parameter name="wsdlServiceElement" value="EmployeeServicesService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns115:SearchParametersForFlights" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.util.SearchParametersForFlights" xmlns:ns115="http://util.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns116:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.employee.Employee" xmlns:ns116="http://employee.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns117:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.general.Person" xmlns:ns117="http://general.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns118:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns118="http://customer.model.goair"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns119:Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.flight.Flight" xmlns:ns119="http://flight.model.goair"/>
+  <ns1:arrayMapping innerType="ns121:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns120:ArrayOf_tns3_Employee" xmlns:ns120="http://wsdl.goair" xmlns:ns121="http://employee.model.goair"/>
+  <ns1:arrayMapping innerType="ns123:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns122:ArrayOf_tns5_Customer" xmlns:ns122="http://wsdl.goair" xmlns:ns123="http://customer.model.goair"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

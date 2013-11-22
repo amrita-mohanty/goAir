@@ -15,7 +15,7 @@
   <service name="CustomerServices" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
       <parameter name="wsdlServiceElement" value="CustomerServicesService"/>
-      <parameter name="schemaQualified" value="http://payment.model.goair,http://booking.model.goair,http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://Exception.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+      <parameter name="schemaQualified" value="http://payment.model.goair,http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://reservation.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
       <parameter name="wsdlServicePort" value="CustomerServices"/>
       <parameter name="className" value="goair.wsdl.CustomerServicesSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="CustomerServices"/>
@@ -25,45 +25,35 @@
       </operation>
       <operation name="searchFlights" qname="operNS:searchFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
         <parameter qname="pns:searchFlightParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
-      </operation>
-      <operation name="viewBooking" qname="operNS:viewBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Booking" xmlns:rtns="http://booking.model.goair" soapAction="" >
-        <parameter qname="pns:reservationid" xmlns:pns="http://wsdl.goair" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
-      </operation>
-      <operation name="viewBookingHistory" qname="operNS:viewBookingHistory" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewBookingHistoryReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Booking" xmlns:rtns="http://booking.model.goair" soapAction="" >
-        <parameter qname="pns:customerId" xmlns:pns="http://wsdl.goair" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
-      </operation>
-      <operation name="makePayment" qname="operNS:makePayment" xmlns:operNS="http://wsdl.goair" returnQName="retNS:makePaymentReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:paymentBean" xmlns:pns="http://wsdl.goair" type="tns:PaymentBean" xmlns:tns="http://payment.model.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
       </operation>
       <operation name="viewAllFlights" qname="operNS:viewAllFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewAllFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
         <parameter qname="pns:searchFlight" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
+      </operation>
+      <operation name="viewBooking" qname="operNS:viewBooking" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewBookingReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Reservation" xmlns:rtns="http://reservation.model.goair" soapAction="" >
+        <parameter qname="pns:reservationid" xmlns:pns="http://wsdl.goair" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="viewBookingHistory" qname="operNS:viewBookingHistory" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewBookingHistoryReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Reservation" xmlns:rtns="http://reservation.model.goair" soapAction="" >
+        <parameter qname="pns:customerId" xmlns:pns="http://wsdl.goair" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="customerLogin" qname="operNS:customerLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:customerLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:userName" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:Password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
       </operation>
       <operation name="customerRegistration" qname="operNS:customerRegistration" xmlns:operNS="http://wsdl.goair" returnQName="retNS:customerRegistrationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:customerBean" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
       </operation>
       <operation name="editCustomerProfile" qname="operNS:editCustomerProfile" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editCustomerProfileReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:customerBean" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
+      </operation>
+      <operation name="makePayment" qname="operNS:makePayment" xmlns:operNS="http://wsdl.goair" returnQName="retNS:makePaymentReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:paymentBean" xmlns:pns="http://wsdl.goair" type="tns:PaymentBean" xmlns:tns="http://payment.model.goair"/>
       </operation>
       <operation name="cancelReservation" qname="operNS:cancelReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:cancelReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Booking" xmlns:tns="http://booking.model.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
+        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
       </operation>
       <operation name="createReservation" qname="operNS:createReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:createReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
         <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
-        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
       </operation>
       <parameter name="allowedMethods" value="viewBookingHistory makePayment customerRegistration createReservation cancelReservation searchFlights customerLogin viewBooking editCustomerProfile viewAllFlights main"/>
 
@@ -84,9 +74,9 @@
         encodingStyle=""
       />
       <typeMapping
-        xmlns:ns="http://booking.model.goair"
-        qname="ns:Booking"
-        type="java:goair.model.booking.Booking"
+        xmlns:ns="http://reservation.model.goair"
+        qname="ns:Reservation"
+        type="java:goair.model.reservation.Reservation"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
@@ -125,14 +115,6 @@
         xmlns:ns="http://customer.model.goair"
         qname="ns:Customer"
         type="java:goair.model.customer.Customer"
-        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
-        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle=""
-      />
-      <typeMapping
-        xmlns:ns="http://Exception.goair"
-        qname="ns:AirlineException"
-        type="java:goair.Exception.AirlineException"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
