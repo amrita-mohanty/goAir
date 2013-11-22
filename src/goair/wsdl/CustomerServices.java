@@ -1,6 +1,5 @@
 package goair.wsdl;
 
-import goair.Exception.AirlineException;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
 import goair.model.payment.PaymentBean;
@@ -18,7 +17,7 @@ public class CustomerServices extends AirlineServices{
          * @return Flight[] - Return array of flights.
          *  
          */
-        public Flight[] searchFlights(SearchParametersForFlights searchFlightParam) throws AirlineException
+        public Flight[] searchFlights(SearchParametersForFlights searchFlightParam)
         {
         	Flight[] searchResult = null;
         	CustomerServiceQuery customerServiceQuery = new CustomerServiceQuery();
@@ -27,32 +26,32 @@ public class CustomerServices extends AirlineServices{
         	return searchResult;
         }
         
-        public Flight[] viewAllFlights(SearchParametersForFlights searchFlight) throws AirlineException
+        public Flight[] viewAllFlights(SearchParametersForFlights searchFlight)
         {
                 return null;
         }
         
-        public int customerLogin(String userName,String Password) throws AirlineException{
+        public int customerLogin(String userName,String Password) {
                 return 1;
         }
         
-        public int customerRegistration(Customer customerBean) throws AirlineException{
+        public int customerRegistration(Customer customerBean) {
                 return 1;
         }
         
-        public int editCustomerProfile(Customer customerBean) throws AirlineException{
+        public int editCustomerProfile(Customer customerBean) {
                 return 1;
         }
         
-        public int makePayment(PaymentBean paymentBean) throws AirlineException{
+        public int makePayment(PaymentBean paymentBean) {
                 return 1;
         }
         
-        public Reservation[] viewBookingHistory(long customerId) throws AirlineException{
+        public Reservation[] viewBookingHistory(long customerId) {
                 return null;
         }
         
-        public Reservation viewBooking(long reservationid) throws AirlineException{
+        public Reservation viewBooking(long reservationid) {
         	return null;
         }
         

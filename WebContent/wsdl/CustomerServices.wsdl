@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://Exception.goair" xmlns:tns7="http://booking.model.goair" xmlns:tns8="http://payment.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns10="http://util.java" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://reservation.model.goair" xmlns:tns7="http://payment.model.goair" xmlns:tns8="http://Exception.goair" xmlns:tns9="http://lang.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
@@ -7,10 +7,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <element name="main">
     <complexType>
@@ -46,7 +48,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
     </sequence>
    </complexType>
-   <element name="fault" type="tns6:AirlineException"/>
+   <element name="viewAllFlights">
+    <complexType>
+     <sequence>
+      <element name="searchFlight" type="tns1:SearchParametersForFlights"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllFlightsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="viewAllFlightsReturn" type="tns2:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="viewBooking">
     <complexType>
      <sequence>
@@ -57,7 +72,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="viewBookingResponse">
     <complexType>
      <sequence>
-      <element name="viewBookingReturn" type="tns7:Booking"/>
+      <element name="viewBookingReturn" type="tns6:Reservation"/>
      </sequence>
     </complexType>
    </element>
@@ -71,35 +86,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="viewBookingHistoryResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="viewBookingHistoryReturn" type="tns7:Booking"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="makePayment">
-    <complexType>
-     <sequence>
-      <element name="paymentBean" type="tns8:PaymentBean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="makePaymentResponse">
-    <complexType>
-     <sequence>
-      <element name="makePaymentReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllFlights">
-    <complexType>
-     <sequence>
-      <element name="searchFlight" type="tns1:SearchParametersForFlights"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllFlightsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="viewAllFlightsReturn" type="tns2:Flight"/>
+      <element maxOccurs="unbounded" name="viewBookingHistoryReturn" type="tns6:Reservation"/>
      </sequence>
     </complexType>
    </element>
@@ -146,10 +133,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="makePayment">
+    <complexType>
+     <sequence>
+      <element name="paymentBean" type="tns7:PaymentBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="makePaymentResponse">
+    <complexType>
+     <sequence>
+      <element name="makePaymentReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="cancelReservation">
     <complexType>
      <sequence>
-      <element name="booking" type="tns7:Booking"/>
+      <element name="booking" type="tns6:Reservation"/>
      </sequence>
     </complexType>
    </element>
@@ -160,6 +161,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <complexType name="ArrayOf_tns9_StackTraceElement">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type=""/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="tns8:AirlineException"/>
    <element name="createReservation">
     <complexType>
      <sequence>
@@ -180,10 +187,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <complexType name="SearchParametersForFlights">
     <sequence>
@@ -203,19 +212,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://util.java"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <complexType name="Person">
     <sequence>
      <element name="address" nillable="true" type="xsd:string"/>
      <element name="city" nillable="true" type="xsd:string"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
      <element name="dob" nillable="true" type="xsd:dateTime"/>
      <element name="emailId" nillable="true" type="xsd:string"/>
      <element name="firstName" nillable="true" type="xsd:string"/>
      <element name="gender" nillable="true" type="xsd:string"/>
      <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
      <element name="state" nillable="true" type="xsd:string"/>
      <element name="zipcode" nillable="true" type="xsd:string"/>
     </sequence>
@@ -226,16 +239,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <complexType name="Employee">
     <complexContent>
      <extension base="tns4:Person">
       <sequence>
        <element name="airlineName" nillable="true" type="xsd:string"/>
-       <element name="employeeId" nillable="true" type="xsd:string"/>
+       <element name="employeeId" nillable="true" type="xsd:int"/>
        <element name="hireDate" nillable="true" type="xsd:dateTime"/>
        <element name="jobDesc" nillable="true" type="xsd:string"/>
        <element name="position" nillable="true" type="xsd:string"/>
@@ -249,16 +264,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <complexType name="Customer">
     <complexContent>
      <extension base="tns4:Person">
       <sequence>
        <element name="customerId" type="xsd:int"/>
-       <element name="emailIdString" nillable="true" type="xsd:string"/>
        <element name="nationality" nillable="true" type="xsd:string"/>
        <element name="passportNum" nillable="true" type="xsd:string"/>
       </sequence>
@@ -270,60 +286,58 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://util.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
    <complexType name="Flight">
     <sequence>
      <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
      <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns3_Employee"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
      <element name="daysOfWeek" nillable="true" type="xsd:string"/>
      <element name="departureTime" nillable="true" type="xsd:dateTime"/>
      <element name="destination" nillable="true" type="xsd:string"/>
      <element name="flightId" nillable="true" type="xsd:int"/>
      <element name="flightName" nillable="true" type="xsd:string"/>
+     <element name="flightStatus" nillable="true" type="xsd:string"/>
      <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
      <element name="passengers" nillable="true" type="impl:ArrayOf_tns5_Customer"/>
      <element name="seatsAvailable" type="xsd:int"/>
      <element name="seatsReserved" type="xsd:int"/>
      <element name="source" nillable="true" type="xsd:string"/>
-     <element name="status" nillable="true" type="xsd:string"/>
      <element name="ticketPrice" nillable="true" type="xsd:double"/>
      <element name="totalSeats" type="xsd:int"/>
     </sequence>
    </complexType>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://Exception.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://util.goair"/>
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
-   <import namespace="http://payment.model.goair"/>
-   <complexType name="AirlineException">
-    <sequence/>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://booking.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema elementFormDefault="qualified" targetNamespace="http://reservation.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
+   <import namespace="http://lang.java"/>
    <import namespace="http://payment.model.goair"/>
-   <complexType name="Booking">
+   <complexType name="Reservation">
     <sequence>
-     <element name="customerBean" nillable="true" type="tns5:Customer"/>
-     <element name="flightBean" nillable="true" type="tns2:Flight"/>
-     <element name="reservationId" type="xsd:int"/>
+     <element name="creditCardNumber" type="xsd:int"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:int"/>
+     <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="flightId" type="xsd:int"/>
+     <element name="numberOfSeatsBooked" type="xsd:int"/>
+     <element name="pnr" nillable="true" type="xsd:string"/>
+     <element name="totalPrice" type="xsd:int"/>
     </sequence>
    </complexType>
   </schema>
@@ -332,10 +346,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://Exception.goair"/>
+   <import namespace="http://reservation.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
    <import namespace="http://general.model.goair"/>
-   <import namespace="http://booking.model.goair"/>
+   <import namespace="http://lang.java"/>
    <complexType name="PaymentBean">
     <complexContent>
      <extension base="tns4:Person">
@@ -347,6 +363,27 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       </sequence>
      </extension>
     </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://Exception.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://util.java"/>
+   <import namespace="http://general.model.goair"/>
+   <import namespace="http://lang.java"/>
+   <import namespace="http://payment.model.goair"/>
+   <complexType name="AirlineException">
+    <sequence>
+     <element name="causeMessage" nillable="true" type="xsd:string"/>
+     <element name="causeStackTrace" nillable="true" type="impl:ArrayOf_tns9_StackTraceElement"/>
+     <element name="errorCode" type="xsd:int"/>
+     <element name="locale" nillable="true" type="xsd:anyType"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
    </complexType>
   </schema>
  </wsdl:types>
@@ -399,17 +436,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="makePaymentRequest">
+   <wsdl:message name="makePaymentResponse">
 
-      <wsdl:part element="impl:makePayment" name="parameters">
+      <wsdl:part element="impl:makePaymentResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="makePaymentResponse">
+   <wsdl:message name="makePaymentRequest">
 
-      <wsdl:part element="impl:makePaymentResponse" name="parameters">
+      <wsdl:part element="impl:makePayment" name="parameters">
 
       </wsdl:part>
 
@@ -503,17 +540,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="searchFlightsResponse">
+   <wsdl:message name="AirlineException">
 
-      <wsdl:part element="impl:searchFlightsResponse" name="parameters">
+      <wsdl:part element="impl:fault" name="fault">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="AirlineException">
+   <wsdl:message name="searchFlightsResponse">
 
-      <wsdl:part element="impl:fault" name="fault">
+      <wsdl:part element="impl:searchFlightsResponse" name="parameters">
 
       </wsdl:part>
 
@@ -559,9 +596,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+      </wsdl:operation>
 
-       </wsdl:fault>
+      <wsdl:operation name="viewAllFlights">
+
+         <wsdl:input message="impl:viewAllFlightsRequest" name="viewAllFlightsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewAllFlightsResponse" name="viewAllFlightsResponse">
+
+       </wsdl:output>
 
       </wsdl:operation>
 
@@ -575,10 +620,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
-
       </wsdl:operation>
 
       <wsdl:operation name="viewBookingHistory">
@@ -590,42 +631,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:output message="impl:viewBookingHistoryResponse" name="viewBookingHistoryResponse">
 
        </wsdl:output>
-
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="makePayment">
-
-         <wsdl:input message="impl:makePaymentRequest" name="makePaymentRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:makePaymentResponse" name="makePaymentResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewAllFlights">
-
-         <wsdl:input message="impl:viewAllFlightsRequest" name="viewAllFlightsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewAllFlightsResponse" name="viewAllFlightsResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -639,10 +644,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
-
       </wsdl:operation>
 
       <wsdl:operation name="customerRegistration">
@@ -654,10 +655,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:output message="impl:customerRegistrationResponse" name="customerRegistrationResponse">
 
        </wsdl:output>
-
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -671,9 +668,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
+      </wsdl:operation>
 
-       </wsdl:fault>
+      <wsdl:operation name="makePayment">
+
+         <wsdl:input message="impl:makePaymentRequest" name="makePaymentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:makePaymentResponse" name="makePaymentResponse">
+
+       </wsdl:output>
 
       </wsdl:operation>
 
@@ -749,11 +754,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-         <wsdl:fault name="AirlineException">
+      </wsdl:operation>
 
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
+      <wsdl:operation name="viewAllFlights">
 
-         </wsdl:fault>
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewAllFlightsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewAllFlightsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
 
       </wsdl:operation>
 
@@ -773,12 +790,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
-
       </wsdl:operation>
 
       <wsdl:operation name="viewBookingHistory">
@@ -796,60 +807,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
-
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="makePayment">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="makePaymentRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="makePaymentResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewAllFlights">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewAllFlightsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewAllFlightsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -869,12 +826,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
-
       </wsdl:operation>
 
       <wsdl:operation name="customerRegistration">
@@ -892,12 +843,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
-
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -917,11 +862,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          </wsdl:output>
 
-         <wsdl:fault name="AirlineException">
+      </wsdl:operation>
 
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
+      <wsdl:operation name="makePayment">
 
-         </wsdl:fault>
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="makePaymentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="makePaymentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
 
       </wsdl:operation>
 
