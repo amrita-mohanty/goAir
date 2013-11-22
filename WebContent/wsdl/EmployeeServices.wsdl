@@ -9,21 +9,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
    <import namespace="http://general.model.goair"/>
-   <element name="employeeLogin">
-    <complexType>
-     <sequence>
-      <element name="userName" type="xsd:string"/>
-      <element name="Password" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="employeeLoginResponse">
-    <complexType>
-     <sequence>
-      <element name="employeeLoginReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="searchEmployeeFlights">
     <complexType>
      <sequence>
@@ -48,17 +33,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
     </sequence>
    </complexType>
-   <element name="editEmployeeProfile">
+   <element name="employeeLogin">
     <complexType>
      <sequence>
-      <element name="employeeBean" type="tns3:Employee"/>
+      <element name="userName" type="xsd:string"/>
+      <element name="Password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="editEmployeeProfileResponse">
+   <element name="employeeLoginResponse">
     <complexType>
      <sequence>
-      <element name="editEmployeeProfileReturn" type="xsd:int"/>
+      <element name="employeeLoginReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -73,6 +59,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns2:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editEmployeeProfile">
+    <complexType>
+     <sequence>
+      <element name="employeeBean" type="tns3:Employee"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editEmployeeProfileResponse">
+    <complexType>
+     <sequence>
+      <element name="editEmployeeProfileReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -253,18 +253,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="EmployeeServices">
 
-      <wsdl:operation name="employeeLogin">
-
-         <wsdl:input message="impl:employeeLoginRequest" name="employeeLoginRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:employeeLoginResponse" name="employeeLoginResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="searchEmployeeFlights">
 
          <wsdl:input message="impl:searchEmployeeFlightsRequest" name="searchEmployeeFlightsRequest">
@@ -277,13 +265,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="editEmployeeProfile">
+      <wsdl:operation name="employeeLogin">
 
-         <wsdl:input message="impl:editEmployeeProfileRequest" name="editEmployeeProfileRequest">
+         <wsdl:input message="impl:employeeLoginRequest" name="employeeLoginRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:editEmployeeProfileResponse" name="editEmployeeProfileResponse">
+         <wsdl:output message="impl:employeeLoginResponse" name="employeeLoginResponse">
 
        </wsdl:output>
 
@@ -301,29 +289,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="editEmployeeProfile">
+
+         <wsdl:input message="impl:editEmployeeProfileRequest" name="editEmployeeProfileRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:editEmployeeProfileResponse" name="editEmployeeProfileResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="EmployeeServicesSoapBinding" type="impl:EmployeeServices">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="employeeLogin">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="employeeLoginRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="employeeLoginResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="searchEmployeeFlights">
 
@@ -343,17 +325,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="editEmployeeProfile">
+      <wsdl:operation name="employeeLogin">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="editEmployeeProfileRequest">
+         <wsdl:input name="employeeLoginRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="editEmployeeProfileResponse">
+         <wsdl:output name="employeeLoginResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -372,6 +354,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="viewEmployeeFlightResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editEmployeeProfile">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editEmployeeProfileRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editEmployeeProfileResponse">
 
             <wsdlsoap:body use="literal"/>
 

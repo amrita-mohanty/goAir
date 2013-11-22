@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://reservation.model.goair" xmlns:tns7="http://payment.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://payment.model.goair" xmlns:tns7="http://reservation.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
@@ -45,48 +45,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
     </sequence>
    </complexType>
-   <element name="viewAllFlights">
-    <complexType>
-     <sequence>
-      <element name="searchFlight" type="tns1:SearchParametersForFlights"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllFlightsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="viewAllFlightsReturn" type="tns2:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewBooking">
-    <complexType>
-     <sequence>
-      <element name="reservationid" type="xsd:long"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewBookingResponse">
-    <complexType>
-     <sequence>
-      <element name="viewBookingReturn" type="tns6:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewBookingHistory">
-    <complexType>
-     <sequence>
-      <element name="customerId" type="xsd:long"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewBookingHistoryResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="viewBookingHistoryReturn" type="tns6:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="customerLogin">
     <complexType>
      <sequence>
@@ -99,20 +57,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="customerLoginReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="customerRegistration">
-    <complexType>
-     <sequence>
-      <element name="customerBean" type="tns5:Customer"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="customerRegistrationResponse">
-    <complexType>
-     <sequence>
-      <element name="customerRegistrationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -130,10 +74,38 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="viewAllFlights">
+    <complexType>
+     <sequence>
+      <element name="searchFlight" type="tns1:SearchParametersForFlights"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllFlightsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="viewAllFlightsReturn" type="tns2:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="customerRegistration">
+    <complexType>
+     <sequence>
+      <element name="customerBean" type="tns5:Customer"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="customerRegistrationResponse">
+    <complexType>
+     <sequence>
+      <element name="customerRegistrationReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="makePayment">
     <complexType>
      <sequence>
-      <element name="paymentBean" type="tns7:PaymentBean"/>
+      <element name="paymentBean" type="tns6:PaymentBean"/>
      </sequence>
     </complexType>
    </element>
@@ -144,10 +116,38 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="viewBookingHistory">
+    <complexType>
+     <sequence>
+      <element name="customerId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewBookingHistoryResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="viewBookingHistoryReturn" type="tns7:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewBooking">
+    <complexType>
+     <sequence>
+      <element name="reservationid" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewBookingResponse">
+    <complexType>
+     <sequence>
+      <element name="viewBookingReturn" type="tns7:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="cancelReservation">
     <complexType>
      <sequence>
-      <element name="booking" type="tns6:Reservation"/>
+      <element name="booking" type="tns7:Reservation"/>
      </sequence>
     </complexType>
    </element>
@@ -292,6 +292,27 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </sequence>
    </complexType>
   </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://payment.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="PaymentBean">
+    <complexContent>
+     <extension base="tns4:Person">
+      <sequence>
+       <element name="creditcardNumber" type="xsd:long"/>
+       <element name="cvvNumber" type="xsd:int"/>
+       <element name="expiryDate" nillable="true" type="xsd:string"/>
+       <element name="reservationId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://reservation.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
@@ -312,27 +333,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="pnr" nillable="true" type="xsd:string"/>
      <element name="totalPrice" type="xsd:int"/>
     </sequence>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://payment.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://util.goair"/>
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://reservation.model.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="PaymentBean">
-    <complexContent>
-     <extension base="tns4:Person">
-      <sequence>
-       <element name="creditcardNumber" type="xsd:long"/>
-       <element name="cvvNumber" type="xsd:int"/>
-       <element name="expiryDate" nillable="true" type="xsd:string"/>
-       <element name="reservationId" type="xsd:long"/>
-      </sequence>
-     </extension>
-    </complexContent>
    </complexType>
   </schema>
  </wsdl:types>
@@ -465,17 +465,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="mainRequest">
+   <wsdl:message name="viewBookingHistoryRequest">
 
-      <wsdl:part element="impl:main" name="parameters">
+      <wsdl:part element="impl:viewBookingHistory" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="viewBookingHistoryRequest">
+   <wsdl:message name="mainRequest">
 
-      <wsdl:part element="impl:viewBookingHistory" name="parameters">
+      <wsdl:part element="impl:main" name="parameters">
 
       </wsdl:part>
 
@@ -539,42 +539,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllFlights">
-
-         <wsdl:input message="impl:viewAllFlightsRequest" name="viewAllFlightsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewAllFlightsResponse" name="viewAllFlightsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewBooking">
-
-         <wsdl:input message="impl:viewBookingRequest" name="viewBookingRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewBookingResponse" name="viewBookingResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewBookingHistory">
-
-         <wsdl:input message="impl:viewBookingHistoryRequest" name="viewBookingHistoryRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewBookingHistoryResponse" name="viewBookingHistoryResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="customerLogin">
 
          <wsdl:input message="impl:customerLoginRequest" name="customerLoginRequest">
@@ -582,18 +546,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:customerLoginResponse" name="customerLoginResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="customerRegistration">
-
-         <wsdl:input message="impl:customerRegistrationRequest" name="customerRegistrationRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:customerRegistrationResponse" name="customerRegistrationResponse">
 
        </wsdl:output>
 
@@ -611,6 +563,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="viewAllFlights">
+
+         <wsdl:input message="impl:viewAllFlightsRequest" name="viewAllFlightsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewAllFlightsResponse" name="viewAllFlightsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="customerRegistration">
+
+         <wsdl:input message="impl:customerRegistrationRequest" name="customerRegistrationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:customerRegistrationResponse" name="customerRegistrationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="makePayment">
 
          <wsdl:input message="impl:makePaymentRequest" name="makePaymentRequest">
@@ -618,6 +594,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:makePaymentResponse" name="makePaymentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewBookingHistory">
+
+         <wsdl:input message="impl:viewBookingHistoryRequest" name="viewBookingHistoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewBookingHistoryResponse" name="viewBookingHistoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewBooking">
+
+         <wsdl:input message="impl:viewBookingRequest" name="viewBookingRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewBookingResponse" name="viewBookingResponse">
 
        </wsdl:output>
 
@@ -689,60 +689,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllFlights">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewAllFlightsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewAllFlightsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewBooking">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewBookingRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewBookingResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewBookingHistory">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewBookingHistoryRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewBookingHistoryResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="customerLogin">
 
          <wsdlsoap:operation soapAction=""/>
@@ -754,24 +700,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="customerLoginResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="customerRegistration">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="customerRegistrationRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="customerRegistrationResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -797,6 +725,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="viewAllFlights">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewAllFlightsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewAllFlightsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="customerRegistration">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="customerRegistrationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="customerRegistrationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="makePayment">
 
          <wsdlsoap:operation soapAction=""/>
@@ -808,6 +772,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="makePaymentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewBookingHistory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewBookingHistoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewBookingHistoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewBooking">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewBookingRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewBookingResponse">
 
             <wsdlsoap:body use="literal"/>
 
