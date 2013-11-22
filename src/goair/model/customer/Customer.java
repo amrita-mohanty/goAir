@@ -5,7 +5,6 @@ import goair.model.general.Person;
 public class Customer extends Person{
 
 	int customerId;
-    String emailIdString;
     String passportNum ;
     String nationality ;
 
@@ -19,15 +18,6 @@ public class Customer extends Person{
 		this.customerId = customerId;
 	}
 
-	public String getEmailIdString() {
-		return emailIdString;
-	}
-
-	public void setEmailIdString(String emailIdString) {
-		this.emailIdString = emailIdString;
-	}
-
-	
 	public String getPassportNum() {
 		return passportNum;
 	}
@@ -46,8 +36,7 @@ public class Customer extends Person{
 
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", emailIdString="
-				+ emailIdString + ", passportNum=" + passportNum
+		return "Customer [customerId=" + customerId + ", passportNum=" + passportNum
 				+ ", nationality=" + nationality + ", emailId=" + emailId
 				+ ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender

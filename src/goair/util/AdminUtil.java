@@ -107,6 +107,7 @@ public class AdminUtil {
 	 */
 	public int addCustomer(Customer customer)
 	{
+		System.out.println("Add a Customer : "+customer.toString());
 		logger.info("Add a Customer : "+customer.toString());
 		return adminServiceQuery.addCustomer(customer);
 	}
