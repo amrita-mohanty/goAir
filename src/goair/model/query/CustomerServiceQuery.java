@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class CustomerServiceQuery {
 		// Using SearchParametersForFlights create the query 
 		//	that will search the flights.
 		
-		String travelDate = "STR_TO_DATE('" + new Date(searchParameters.getDateOfFlying().getTime())+"', '%Y-%m-%d')";
+//		String travelDate = "STR_TO_DATE('" + new Date(searchParameters.getDateOfFlying().getTime())+"', '%Y-%m-%d')";
 		
 		/*String stmt_query = "select flight.flightid, flight.flightName, flight.airlineName, flight.source, "
 				+ "flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, "
