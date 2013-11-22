@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `employee`;
 DROP TABLE IF EXISTS `flight`;
 
 CREATE TABLE `customer` (
-  `customerId` INT(11) NOT NULL AUTO_INCREMENT,
+  `customerId` INT(11) NOT NULL AUTO_INCREMENT=10000,
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstname` VARCHAR(20) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `employee` (
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
   `dob` DATE NOT NULL,
-  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
+  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,7 +59,7 @@ CREATE TABLE  `flight` (
   `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
   `flyingStartDate` DATE NOT NULL,
   `flyingEndDate` DATE NOT NULL,
-  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
+  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
   PRIMARY KEY  (`flightId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -84,7 +84,7 @@ CREATE TABLE `reservation`(
 	`dateOfBooking` DATE NOT NULL,
 	`dateOfFlying` DATE NOT NULL,
 	`totalPrice` DECIMAL(10,2) NOT NULL, 
-	`currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
+	`currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
 	FOREIGN KEY (flightId) REFERENCES flight(flightId),
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)
@@ -120,3 +120,6 @@ values(1,STR_TO_DATE('2013-09-15', '%Y-%m-%d'), 1,450.00);
 select * from flight;
 select * from flight;
 select flight.flightid, flight.flightName, flight.airlineName, flight.source, flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, flight.seatsReserved from flight,flightflyinginformation where flight.flightId=flightflyinginformation.flightId and flight.source='San Francisco' and flight.destination='Las Vegas' and  flightflyinginformation.dateOfFlying=2013-09-15;
+
+select * from employee;
+select * from customer;
