@@ -1,5 +1,7 @@
 package goair.wsdl;
 
+import org.apache.log4j.Logger;
+
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
@@ -11,6 +13,8 @@ import goair.util.AdminUtil;
 import goair.util.SearchParametersForReservation;
 
 public class AdminServices {
+	
+	public static Logger logger = Logger.getLogger(AdminServices.class);
 	
 	//When you login as admin you see following hyper links
 	// 1. Search flight - when you get a searched flight you get option to edit / delete it.
@@ -116,6 +120,7 @@ public class AdminServices {
 	 */
 	public int addCustomer(Customer customer)
 	{
+		logger.info("Add customer : "+customer.toString());
 		return adminUtil.addCustomer(customer);
 	}
 	

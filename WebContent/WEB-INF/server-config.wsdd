@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -22,12 +22,6 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
- <ns1:service name="AdminService" provider="java:MSG">
-  <ns1:parameter name="allowedMethods" value="AdminService"/>
-  <ns1:parameter name="enableRemoteAdmin" value="false"/>
-  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
-  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
- </ns1:service>
  <ns1:service name="AdminServices" provider="java:RPC" style="wrapped" use="literal">
   <ns2:operation name="deleteReservation" qname="ns1:deleteReservation" returnQName="ns1:deleteReservationReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://wsdl.goair" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns3:parameter qname="ns1:reservation" type="ns2:Reservation" xmlns:ns2="http://reservation.model.goair" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
@@ -100,6 +94,12 @@
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns53:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:goair.model.customer.Customer" xmlns:ns53="http://customer.model.goair"/>
   <ns1:arrayMapping innerType="ns55:Employee" languageSpecificType="java:goair.model.employee.Employee[]" qname="ns54:ArrayOf_tns3_Employee" xmlns:ns54="http://wsdl.goair" xmlns:ns55="http://employee.model.goair"/>
   <ns1:arrayMapping innerType="ns57:Customer" languageSpecificType="java:goair.model.customer.Customer[]" qname="ns56:ArrayOf_tns6_Customer" xmlns:ns56="http://wsdl.goair" xmlns:ns57="http://customer.model.goair"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

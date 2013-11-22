@@ -22,10 +22,10 @@ public class AddCustomerQuery {
 	public int addNewCustomer(Customer customer, Connection connection)
 	{
 		String customerTableQuery = "insert into customer("
-				+ "emailId, "
+				+ "emailId, password,"
 				+ "firstname, lastname, gender, passportNum, "
 				+ "nationality, address, city,"
-				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?) ";
+				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		PreparedStatement preparedStatement = null;
 		try
@@ -34,16 +34,17 @@ public class AddCustomerQuery {
 			
 			preparedStatement = connection.prepareStatement(customerTableQuery);
 			preparedStatement.setString(1, customer.getEmailId());
-			preparedStatement.setString(2, customer.getFirstName());
-			preparedStatement.setString(3, customer.getLastName());
-			preparedStatement.setString(4, customer.getGender());
-			preparedStatement.setString(5, customer.getPassportNum());
-			preparedStatement.setString(6, customer.getNationality());
-			preparedStatement.setString(7, customer.getAddress());
-			preparedStatement.setString(8, customer.getCity());
-			preparedStatement.setString(9, customer.getState());
-			preparedStatement.setString(10, customer.getZipcode());
-			preparedStatement.setDate(11, new Date(customer.getDob().getTime()));
+			preparedStatement.setString(2, customer.getPassword());
+			preparedStatement.setString(3, customer.getFirstName());
+			preparedStatement.setString(4, customer.getLastName());
+			preparedStatement.setString(5, customer.getGender());
+			preparedStatement.setString(6, customer.getPassportNum());
+			preparedStatement.setString(7, customer.getNationality());
+			preparedStatement.setString(8, customer.getAddress());
+			preparedStatement.setString(9, customer.getCity());
+			preparedStatement.setString(10, customer.getState());
+			preparedStatement.setString(11, customer.getZipcode());
+			preparedStatement.setDate(12, new Date(customer.getDob().getTime()));
 			
 			preparedStatement.execute();
 			
