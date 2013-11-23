@@ -13,11 +13,11 @@ public class EditCustomerQuery {
 	public static Logger logger = Logger.getLogger(EditCustomerQuery.class);
 	
 	/**
-	 * Edit the flight
+	 * Edit Customer info in the system
 	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editCustomer(Customer customer, Connection connection)
 	{
@@ -49,7 +49,7 @@ public class EditCustomerQuery {
 			preparedStatement.execute();
 			preparedStatement.close();
 			
-			return 0;
+			return 1;
 		}
 		catch (Exception e)
 		{

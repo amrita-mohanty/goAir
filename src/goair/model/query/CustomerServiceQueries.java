@@ -53,7 +53,7 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	 * This method will get the flight based on search parameters passed to it
 	 * @return Flight[] 
 	 */
-	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
+	public Flight[] searchFlightsForCustomer(SearchParametersForFlights searchParameters)
 	{
 		if(searchFlightsForCustomer == null)
 		{

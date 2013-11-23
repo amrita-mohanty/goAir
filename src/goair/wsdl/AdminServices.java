@@ -125,11 +125,11 @@ public class AdminServices {
 	}
 	
 	/**
-	 * Add a new Customer to the system
+	 * Adds a new Customer to the system
 	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addCustomer(Customer customer)
 	{
@@ -138,11 +138,11 @@ public class AdminServices {
 	}
 	
 	/**
-	 * Edit Customer to the system
+	 * Edit Customer info in the system
 	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editCustomer(Customer customer)
 	{
