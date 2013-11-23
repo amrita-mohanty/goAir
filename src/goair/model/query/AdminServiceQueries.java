@@ -1,4 +1,4 @@
-package goair.model.query.adminservices;
+package goair.model.query;
 
 import java.sql.Connection;
 
@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
+import goair.model.query.adminservices.*;
 import goair.model.reservation.Reservation;
 import goair.util.DbConnection;
 import goair.util.SearchParametersForCustomers;
