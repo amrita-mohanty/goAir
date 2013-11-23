@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `employee`;
 DROP TABLE IF EXISTS `flight`;
 
 CREATE TABLE `customer` (
-  `customerId` INT(11) NOT NULL AUTO_INCREMENT=10000,
+  `customerId` INT(11) NOT NULL AUTO_INCREMENT,
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstname` VARCHAR(20) NOT NULL,
@@ -24,6 +24,7 @@ CREATE TABLE `customer` (
   `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `customer` AUTO_INCREMENT = 10000;
 
 CREATE TABLE `employee` (
   `employeeId` INT(11) NOT NULL AUTO_INCREMENT,
@@ -48,7 +49,7 @@ CREATE TABLE `employee` (
 -- This is flight table to hold all the information related to flight
 CREATE TABLE  `flight` (
   `flightId` INT(5) NOT NULL AUTO_INCREMENT,
-  `flightName` VARCHAR(10) NOT NULL,
+  `flightName` VARCHAR(10) NOT NULL UNIQUE,
   `airlineName` VARCHAR(50),
   `source` VARCHAR(40) NOT NULL,
   `destination` VARCHAR(40) NOT NULL,
