@@ -31,7 +31,7 @@ public class EditReservationQuery {
 			
 			preparedStatement = connection.prepareStatement(reservationTableQuery);
 			preparedStatement.setInt(1, reservation.getNumberOfSeatsBooked());
-			preparedStatement.setInt(2, reservation.getCreditCardNumber());
+			preparedStatement.setLong(2, reservation.getCreditCardNumber());
 			preparedStatement.setString(3, reservation.getPnr());
 			
 			preparedStatement.execute();

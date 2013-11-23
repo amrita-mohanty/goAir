@@ -7,10 +7,10 @@ public class Reservation {
 	public int customerId;
 	public int flightId;
 	public int numberOfSeatsBooked;
-	public int creditCardNumber;
+	public long creditCardNumber;
 	public Date dateOfBooking;
 	public Date dateOfFlying;
-	public int totalPrice;
+	public double totalPrice;
 	public String currentStatus;
 	
 	public String getPnr() {
@@ -45,11 +45,11 @@ public class Reservation {
 		this.numberOfSeatsBooked = numberOfSeatsBooked;
 	}
 	
-	public int getCreditCardNumber() {
+	public long getCreditCardNumber() {
 		return creditCardNumber;
 	}
 	
-	public void setCreditCardNumber(int creditCardNumber) {
+	public void setCreditCardNumber(long creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
 	
@@ -69,11 +69,11 @@ public class Reservation {
 		this.dateOfFlying = dateOfFlying;
 	}
 	
-	public int getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 	
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

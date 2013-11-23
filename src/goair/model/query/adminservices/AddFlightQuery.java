@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.apache.log4j.Logger;
@@ -32,16 +33,7 @@ public class AddFlightQuery {
 
 		String getFlightIdTableQuery = "select flightId "
 				+ "from flight "
-				+ "where flightName='"+ flight.getFlightName() +"' and "
-				+ "source='"+ flight.getSource() +"' and "
-				+ "destination='"+ flight.getDestination() +"' and "
-				+ "departureTime="+ new Date(flight.getDepartureTime().getTime()) +" and "
-				+ "arrivalTime="+ new Date(flight.getArrivalTime().getTime()) +" and "
-				+ "totalSeats="+ flight.getTotalSeats() +" and "
-				+ "seatsReserved="+ flight.getSeatsReserved() +" and "
-				+ "daysOfWeek='"+ flight.getDaysOfWeek() +"' and "
-				+ "flyingStartDate="+ new Date(flight.getFlyingStartDate().getTime()) +" and "
-				+ "flyingEndDate="+ new Date(flight.getFlyingEndDate().getTime()) +"";
+				+ "where flightName='"+ flight.getFlightName() +"'";
 		
 		String flightFlyingInfoTableQuery = "insert into flightflyinginformation(flightId, "
 				+ "dateOfFlying, flightStatus, "
@@ -68,10 +60,11 @@ public class AddFlightQuery {
 			preparedStatement.setDate(10, new Date(flight.getFlyingEndDate().getTime()));
 			
 			preparedStatement.execute();
-			
 			preparedStatement.close();
 			
 			// Get the flight id just added.
+			logger.info("Get the flight id just added : "+
+					getFlightIdTableQuery);
 			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(getFlightIdTableQuery);
 			Integer flightId = null;
@@ -83,152 +76,41 @@ public class AddFlightQuery {
 			// Here we have to insert into flight table then flightflyinginformation table
 			logger.info("Insert query for flightFlyingInfoTableQuery table : "+
 					flightFlyingInfoTableQuery);
+			preparedStatement = connection.prepareStatement(flightFlyingInfoTableQuery);
+			
 			// Parse the dayOfWeek and add dates as per start date and end date
 			for(String dayOfWeek : flight.getDaysOfWeek().split(","))
 			{
-				preparedStatement = connection.prepareStatement(flightFlyingInfoTableQuery); 
-				
 				if(dayOfWeek.equals("Monday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.MONDAY);
 				}
 				else if(dayOfWeek.equals("Tuesday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.TUESDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.TUESDAY);
 				}
 				else if(dayOfWeek.equals("Wednesday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.WEDNESDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.WEDNESDAY);
 				}
 				else if(dayOfWeek.equals("Thrusday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.THURSDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.THURSDAY);
 				}
 				else if(dayOfWeek.equals("Friday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.FRIDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.FRIDAY);
 				}
 				else if(dayOfWeek.equals("Saturday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.SATURDAY);
 				}
 				else if(dayOfWeek.equals("Sunday"))
 				{
-					Calendar start = Calendar.getInstance();
-					start.setTime(flight.getFlyingStartDate());
-
-					while (start.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +1);
-					}
-					
-					// Add this monday
-					addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					
-					// For all the mondays till the date is lower than end date
-					while (start.before(flight.getFlyingEndDate())) 
-					{
-					    start.add(Calendar.DAY_OF_WEEK, +7);
-					    addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, start);
-					}
+					addADay(preparedStatement, flight, flightId,Calendar.SUNDAY);
 				}
 			}
+			preparedStatement.executeBatch();
 			
 			return 0;
 		}
@@ -240,8 +122,36 @@ public class AddFlightQuery {
 		}
 	}
 	
+	private void addADay(PreparedStatement preparedStatement, Flight flight,
+			int flightId, int dayOfWeek)
+	{
+		Calendar start = Calendar.getInstance();
+		start.setTime(flight.getFlyingStartDate());
+
+		while (start.get(Calendar.DAY_OF_WEEK) != dayOfWeek) 
+		{
+		    start.add(Calendar.DAY_OF_WEEK, +1);
+		}
+		
+		SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+		logger.info("start Date: " + ft.format(start.getTime()));
+			      
+		// Add this monday
+		addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, 
+				new java.sql.Date(start.getTime().getTime()));
+		
+		// For all the mondays till the date is lower than end date
+		while (start.getTime().before(flight.getFlyingEndDate())) 
+		{
+			logger.info("next Date: " + ft.format(start.getTime()));
+			addRowToFlightFlyingInfoTable(preparedStatement, flight, flightId, 
+					new java.sql.Date(start.getTime().getTime()));
+		    start.add(Calendar.DAY_OF_WEEK, +7);
+		}
+	}
+	
 	private void addRowToFlightFlyingInfoTable(PreparedStatement preparedStatement, Flight flight,
-			int flightId, Calendar cal)
+			int flightId, Date day)
 	{
 		try
 		{
@@ -250,7 +160,7 @@ public class AddFlightQuery {
 				for(Employee emp : flight.getCrewDetails())
 				{
 					preparedStatement.setInt(1, flightId);
-					preparedStatement.setDate(2, new Date(cal.getTimeInMillis()));
+					preparedStatement.setDate(2, day);
 					preparedStatement.setString(3, flight.getFlightStatus());
 					preparedStatement.setInt(4, emp.getEmployeeId());
 					preparedStatement.setDouble(5, flight.getTicketPrice());
@@ -261,7 +171,7 @@ public class AddFlightQuery {
 			else
 			{
 				preparedStatement.setInt(1, flightId);
-				preparedStatement.setDate(2, new Date(cal.getTimeInMillis()));
+				preparedStatement.setDate(2, day);
 				preparedStatement.setString(3, flight.getFlightStatus());
 				preparedStatement.setNull(4, java.sql.Types.INTEGER);
 				preparedStatement.setDouble(5, flight.getTicketPrice());

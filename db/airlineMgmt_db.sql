@@ -118,9 +118,21 @@ STR_TO_DATE('2010-12-25', '%Y-%m-%d')
 insert into flightflyinginformation(flightId,dateOfFlying,employeeid,ticketPrice )
 values(1,STR_TO_DATE('2013-09-15', '%Y-%m-%d'), 1,450.00);
 
-select * from flight;
-select * from flight;
-select flight.flightid, flight.flightName, flight.airlineName, flight.source, flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, flight.seatsReserved from flight,flightflyinginformation where flight.flightId=flightflyinginformation.flightId and flight.source='San Francisco' and flight.destination='Las Vegas' and  flightflyinginformation.dateOfFlying=2013-09-15;
+select flight.flightid, flight.flightName, flight.airlineName, flight.source, 
+flight.destination, flight.departureTime, flight.arrivalTime, flight.totalSeats, 
+flight.seatsReserved from flight,flightflyinginformation 
+where flight.flightId=flightflyinginformation.flightId and 
+flight.source='San Francisco' and flight.destination='Las Vegas' and  
+flightflyinginformation.dateOfFlying=2013-09-15;
 
+select * from flight;
 select * from employee;
 select * from customer;
+select * from reservation;
+select * from flightflyinginformation;
+
+select flightId from flight where flightname='CX987' and source='Los Angeles' 
+and destination='San Francisco' and departureTime='2014-01-01 00:00:00' 
+and arrivalTime='2014-01-01 00:00:00' and totalSeats=500 and seatsReserved=100 
+and daysOfWeek='Monday,Tuesday' and flyingStartDate=2014-01-01 and flyingEndDate=2014-01-01;
+
