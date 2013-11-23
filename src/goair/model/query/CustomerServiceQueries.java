@@ -1,10 +1,11 @@
 package goair.model.query;
 
 import goair.model.flight.Flight;
-import goair.model.query.adminservices.SearchFlightsForAdminQuery;
+import goair.model.query.customerservices.CustomerLoginQuery;
 import goair.model.query.customerservices.SearchFlightsForCustomerQuery;
 import goair.util.DbConnection;
 import goair.util.SearchParametersForFlights;
+import goair.model.customer.Customer;
 
 import java.sql.Connection;
 
@@ -18,10 +19,33 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	
 	// Query classes
 	SearchFlightsForCustomerQuery searchFlightsForCustomer = null;
+	CustomerLoginQuery customerLogin = null;
 	
 	public CustomerServiceQueries(){
 		dbConnection 				= new DbConnection();
 		connection 					= dbConnection.createDbConnection();
+	}
+	
+	/*
+	 * This method will register a new customer by inserting
+	 * the details of the new Customer in the DB.
+	 */
+	
+	
+	
+	
+	/*
+	 * This method Check whether a customer is valid or not.
+	 * If valid, then return the details of the customer set in the Customer bean.
+	 */
+	public Customer validateCustomerLogin(String emailId,String password)
+	{
+		if(customerLogin == null)
+		{
+			customerLogin = new CustomerLoginQuery();
+		}
+		logger.info("validateCustomerLogin with params : "+ emailId + ", " + password);
+		return customerLogin.validateCustomerLogin(emailId, password, connection);
 	}
 	
 	
@@ -38,6 +62,8 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 		logger.info("searchFlightsForAdmin with params : "+searchParameters.toString());
 		return searchFlightsForCustomer.searchFlightsForCustomer(searchParameters, connection);
 	}
+	
+	
 	
 	
 	

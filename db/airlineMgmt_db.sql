@@ -11,17 +11,17 @@ CREATE TABLE `customer` (
   `customerId` INT(11) NOT NULL AUTO_INCREMENT,
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
-  `firstname` VARCHAR(20) NOT NULL,
+  `firstName` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
-  `gender` VARCHAR(10) NOT NULL,
-  `passportNum` VARCHAR(20) NOT NULL,
-  `nationality` VARCHAR(20) NOT NULL,
-  `address` VARCHAR(50) NOT NULL,
-  `city` VARCHAR(20) NOT NULL,
-  `state` VARCHAR(20) NOT NULL,
-  `zipcode` VARCHAR(20) NOT NULL,
-  `dob` DATE NOT NULL,
-  `currentStatus` VARCHAR(10), -- Active, Inactive or Deleted
+  `gender` VARCHAR(10),
+  `passportNum` VARCHAR(20),
+  `nationality` VARCHAR(20),
+  `address` VARCHAR(50),
+  `city` VARCHAR(20),
+  `state` VARCHAR(20),
+  `zipcode` VARCHAR(20),
+  `dob` DATE,
+  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active or Deleted
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE `customer` AUTO_INCREMENT = 10000;
@@ -42,7 +42,7 @@ CREATE TABLE `employee` (
   `state` VARCHAR(20) NOT NULL,
   `zipcode` VARCHAR(20) NOT NULL,
   `dob` DATE NOT NULL,
-  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
+  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active or Deleted
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
