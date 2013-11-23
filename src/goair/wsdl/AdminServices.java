@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
-import goair.model.query.adminservices.AdminServiceQueries;
+import goair.model.query.AdminServiceQueries;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;

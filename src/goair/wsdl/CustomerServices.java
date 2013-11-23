@@ -3,7 +3,7 @@ package goair.wsdl;
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
 import goair.model.payment.PaymentBean;
-import goair.model.CustomerServiceQuery;
+import goair.model.query.CustomerServiceQueries;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForFlights;
 
@@ -30,8 +30,8 @@ public class CustomerServices extends AirlineServices{
         public Flight[] searchFlights(SearchParametersForFlights searchFlightParam)
         {
         	Flight[] searchResult = null;
-        	CustomerServiceQuery customerServiceQuery = new CustomerServiceQuery();
-        	searchResult = customerServiceQuery.searchFlightsForCustomer(searchFlightParam);
+        	CustomerServiceQueries customerServiceQuery = new CustomerServiceQueries();
+        	//searchResult = customerServiceQuery.searchFlightsForCustomer(searchFlightParam);
             
         	return searchResult;
         }
