@@ -1,5 +1,7 @@
 package goair.model.query.adminservices;
 
+import goair.model.customer.Customer;
+import goair.model.flight.Flight;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForReservation;
 
@@ -49,6 +51,8 @@ public class GetAllReservationsForAdminQuery {
 			while (resultSet.next()) 
 			{
 				reservation = new Reservation();
+				reservation.setCustomerDetails(new Customer());
+				reservation.setFlightDetails(new Flight());
 
 				reservation.setPnr(resultSet.getInt("pnr"));
 				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
