@@ -11,8 +11,17 @@ public class SearchParametersForFlights {
 	Date dateOfFlying;
 	Date departureTime;
 	Date arrivalTime;
-	
 	int numberOfSeatsAvialable; // This is number of seats - number of seats reserved
+	int employeeId;
+	
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int emoloyeeId) {
+		this.employeeId = employeeId;
+	}
+
 
 	public String getFlightNumber() {
 		return flightNumber;

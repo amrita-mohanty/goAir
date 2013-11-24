@@ -1,9 +1,13 @@
 package goair.model.customer;
 
+import java.text.SimpleDateFormat;
+
 import goair.model.general.Person;
 
 public class Customer extends Person{
 
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
 	int customerId;
     String passportNum ;
     String nationality ;
@@ -41,7 +45,7 @@ public class Customer extends Person{
 				+ ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender
 				+ ", address=" + address + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + ", dob=" + dob
+				+ state + ", zipcode=" + zipcode + ", dob=" + dateFormat.format(dob.getTime())
 				+ ", currentStatus=" + currentStatus + "]";
 	}
 	

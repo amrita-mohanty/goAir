@@ -417,6 +417,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="flightId" nillable="true" type="xsd:int"/>
      <element name="flightName" nillable="true" type="xsd:string"/>
      <element name="flightStatus" nillable="true" type="xsd:string"/>
+     <element name="flyingDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
      <element name="passengers" nillable="true" type="impl:ArrayOf_tns2_Customer"/>

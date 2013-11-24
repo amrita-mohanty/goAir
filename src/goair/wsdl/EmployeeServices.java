@@ -1,7 +1,11 @@
 package goair.wsdl;
 
+import org.apache.log4j.Logger;
+
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
+import goair.model.query.AdminServiceQueries;
+import goair.model.query.EmployeeServiceQueries;
 import goair.util.SearchParametersForFlights;
 
 //When you login as employee you see following hyper links
@@ -11,26 +15,29 @@ import goair.util.SearchParametersForFlights;
 public class EmployeeServices {
 	public EmployeeServices() {}
 
-	public int employeeLogin(String userName,String Password){
-		return 1;
+
+	public static Logger logger = Logger.getLogger(EmployeeServices.class);
+	public EmployeeServiceQueries employeeServiceQueries = null;
+	public AdminServiceQueries adminServiceQueries = null;
+	
+
+	public Employee employeeLogin(String userName,String password){
+		return employeeServiceQueries.validateEmployeeLogin(userName, password);
 	}
 
 	public int editEmployeeProfile(Employee employeeBean){
-		return 1;
+		logger.info("Edit an Employee : "+employeeBean.toString());
+		return adminServiceQueries.editEmployee(employeeBean);
 	}
-	
-	public Flight[] searchEmployeeFlights(SearchParametersForFlights searchFlight)
-	{
-		return null;
-	}
-	
+
+
 	/**
 	 * To get the list of all the flights an employee is associated with
 	 * @param Employee
 	 * @return Array of Flight
 	 */
-	public Flight[] viewEmployeeFlight(Employee crew){
-              return null;
+	public Flight[] viewEmployeeFlight(SearchParametersForFlights searchFlightParam){
+		return employeeServiceQueries.viewEmployeeFlights(searchFlightParam);
 	}
-	
+
 }
