@@ -220,15 +220,18 @@ public class Flight {
 	 @Override
 		public String toString() {
 			return "Flight [airlineName="
-					+ airlineName + ", arrivalTime=" + dateFormatTime.format(arrivalTime.getTime())
+					+ airlineName 
+					+ ", arrivalTime=" + arrivalTime != null ? dateFormatTime.format(arrivalTime.getTime()) : null
 					+ ", crewDetails=" + Arrays.toString(crewDetails)
 					+ ", currentStatus=" + currentStatus + ", daysOfWeek="
-					+ daysOfWeek + ", departureTime=" + dateFormatTime.format(departureTime.getTime())
+					+ daysOfWeek 
+					+ ", departureTime=" + departureTime != null ? dateFormatTime.format(departureTime.getTime()) : null
 					+ ", destination=" + destination + ", flightId=" + flightId
 					+ ", flightName=" + flightName + ", flightStatus="
-					+ flightStatus + ", flyingEndDate=" + dateFormat.format(flyingEndDate.getTime())
-					+ ", flyingStartDate=" + dateFormat.format(flyingStartDate.getTime()) 
-					+ ", flyingDate=" + dateFormat.format(flyingDate.getTime())
+					+ flightStatus 
+					+ ", flyingEndDate=" + flyingEndDate != null ? dateFormat.format(flyingEndDate.getTime()) : null
+					+ ", flyingStartDate=" + flyingStartDate != null ? dateFormat.format(flyingStartDate.getTime()) : null 
+					+ ", flyingDate=" + flyingDate != null ? dateFormat.format(flyingDate.getTime()) : null
 					+ ", passengers="
 					+ Arrays.toString(passengers) + ", seatsAvailable="
 					+ seatsAvailable + ", seatsReserved=" + seatsReserved

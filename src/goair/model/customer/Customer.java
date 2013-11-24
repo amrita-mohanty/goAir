@@ -45,7 +45,8 @@ public class Customer extends Person{
 				+ ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender
 				+ ", address=" + address + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + ", dob=" + dateFormat.format(dob.getTime())
+				+ state + ", zipcode=" + zipcode 
+				+ ", dob=" + dob != null ? dateFormat.format(dob.getTime()) : null
 				+ ", currentStatus=" + currentStatus + "]";
 	}
 	
