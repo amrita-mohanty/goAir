@@ -139,3 +139,7 @@ and daysOfWeek='Monday,Tuesday' and flyingStartDate=2014-01-01 and flyingEndDate
 select flightid, flightName, airlineName, source, destination, departureTime, 
 arrivalTime, totalSeats, seatsReserved, daysOfWeek, flyingStartDate,flyingEndDate 
 from flight;
+
+select r.pnr, r.customerId, r.flightId, r.numberOfSeatsBooked, r.creditCardNumber, r.dateOfBooking, r.dateOfFlying,
+r.totalPrice,c.firstName,c.lastName,f.airlineName,f.flightname,f.source,f.destination,f.departureTime from reservation r, 
+flight f, customer c where r.flightId = f.flightid and r.customerId = c.customerId;

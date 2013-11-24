@@ -9,6 +9,7 @@ import goair.model.query.AdminServiceQueries;
 import goair.model.query.CustomerServiceQueries;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForFlights;
+import goair.util.SearchParametersForReservation;
 
 public class CustomerServices extends AirlineServices{
 	
@@ -86,19 +87,15 @@ public class CustomerServices extends AirlineServices{
 		return adminServiceQueries.addReservation(reservation);
 	}
 	
-	public int makePayment(PaymentBean paymentBean) {
-		return 1;
+	/*
+	 * The searchParameter.customerId attribute should contain the customerId in order 
+	 * to view all the reservations of the particular customer
+	 */
+	public Reservation[] viewAllReservations(SearchParametersForReservation searchParam) {
+		return adminServiceQueries.getAllReservationsForAdmin(searchParam);
 	}
 
-	public Reservation[] viewAllReservations(long customerId) {
-		return null;
-	}
-
-	public Reservation viewReservationDetails(long pnr) {
-		return null;
-	}
-
-
+	
 	public static void main(String args[]){
 	}
 
