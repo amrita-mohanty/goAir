@@ -134,17 +134,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="deleteReservation">
+   <element name="cancelReservation">
     <complexType>
      <sequence>
       <element name="reservation" type="tns5:Reservation"/>
      </sequence>
     </complexType>
    </element>
-   <element name="deleteReservationResponse">
+   <element name="cancelReservationResponse">
     <complexType>
      <sequence>
-      <element name="deleteReservationReturn" type="xsd:int"/>
+      <element name="cancelReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -493,9 +493,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteReservationRequest">
+   <wsdl:message name="cancelReservationRequest">
 
-      <wsdl:part element="impl:deleteReservation" name="parameters">
+      <wsdl:part element="impl:cancelReservation" name="parameters">
 
       </wsdl:part>
 
@@ -552,14 +552,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="addReservationRequest">
 
       <wsdl:part element="impl:addReservation" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="deleteReservationResponse">
-
-      <wsdl:part element="impl:deleteReservationResponse" name="parameters">
 
       </wsdl:part>
 
@@ -725,6 +717,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="cancelReservationResponse">
+
+      <wsdl:part element="impl:cancelReservationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="deleteEmployeeRequest">
 
       <wsdl:part element="impl:deleteEmployee" name="parameters">
@@ -867,13 +867,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteReservation">
+      <wsdl:operation name="cancelReservation">
 
-         <wsdl:input message="impl:deleteReservationRequest" name="deleteReservationRequest">
+         <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:deleteReservationResponse" name="deleteReservationResponse">
+         <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
 
        </wsdl:output>
 
@@ -1167,17 +1167,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteReservation">
+      <wsdl:operation name="cancelReservation">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deleteReservationRequest">
+         <wsdl:input name="cancelReservationRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deleteReservationResponse">
+         <wsdl:output name="cancelReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 
