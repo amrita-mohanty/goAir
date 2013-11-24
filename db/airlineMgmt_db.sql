@@ -136,3 +136,6 @@ and destination='San Francisco' and departureTime='2014-01-01 00:00:00'
 and arrivalTime='2014-01-01 00:00:00' and totalSeats=500 and seatsReserved=100 
 and daysOfWeek='Monday,Tuesday' and flyingStartDate=2014-01-01 and flyingEndDate=2014-01-01;
 
+select flightid, flightName, airlineName, source, destination, departureTime, 
+arrivalTime, totalSeats, seatsReserved, daysOfWeek, flyingStartDate,flyingEndDate 
+from flight;

@@ -3,12 +3,17 @@ package goair.model.query.adminservices;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
+import goair.model.general.EmployeePassengerSet;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -22,6 +27,11 @@ public class GetAllFlightsForAdminQuery {
 	 */
 	public Flight[] getAllFlightsForAdmin(Connection connection)
 	{
+		Map<Integer, Map<Date, EmployeePassengerSet>> flightMap = 
+				new HashMap<Integer, Map<Date,EmployeePassengerSet>>();
+		
+		Map<Integer, Flight> flightIdToFlightMap = new HashMap<Integer, Flight>();
+		
 		List<Flight> flights = new ArrayList<Flight>();
 
 		// Using SearchParametersForFlights create the query 
@@ -30,7 +40,7 @@ public class GetAllFlightsForAdminQuery {
 		String query = "select flightid, flightName, airlineName, source, "
 				+ "destination, departureTime, arrivalTime, totalSeats, "
 				+ "seatsReserved, daysOfWeek, flyingStartDate,"
-				+ "flyingEndDate "
+				+ "flyingEndDate,currentstatus "
 				+ "from flight ";
 
 		logger.info("Get all the flights : " + query);
@@ -41,7 +51,6 @@ public class GetAllFlightsForAdminQuery {
 		Flight flight = null;
 
 		try{
-
 			statement = connection.createStatement();  
 			resultSet = statement.executeQuery(query);  
 
@@ -56,114 +65,188 @@ public class GetAllFlightsForAdminQuery {
 				flight.setDestination(resultSet.getString("destination"));
 				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setFlightStatus(resultSet.getString("status"));
+				flight.setCurrentStatus(resultSet.getString("currentstatus"));
 				flight.setTotalSeats(resultSet.getInt("totalSeats"));
 				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
 				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
 				flight.setFlyingStartDate(resultSet.getDate("flyingStartDate"));
 				flight.setFlyingEndDate(resultSet.getDate("flyingEndDate"));
+				
+				// Add this flight to map so that we can use it later to create
+				// 	the complete flight object
+				flightIdToFlightMap.put(flight.getFlightId(), flight);
+				
+				// Add employees
+				query = "select e.employeeId, emailId, firstName, lastName,"
+						+ "gender, airlineName, jobDesc, position,"
+						+ "hireDate, address, city, state, zipcode,"
+						+ "dob, f.dateOfFlying, f.ticketPrice "
+						+ "from flightflyinginformation f, employee e "
+						+ "where f.employeeId =  e.employeeid and f.flightId = "
+						+ flight.getFlightId();
 
-				flights.add(flight);
+				logger.info("Get all the employees for flight with id : " 
+						+ flight.getFlightId() + ", query : "+query);
+
+				statement = connection.createStatement();  
+				ResultSet resultSet2 = statement.executeQuery(query);
+				
+				Map<Date, EmployeePassengerSet> dateOfFlyingEmployeePassengerSet = 
+						flightMap.get(flight.getFlightId());
+				EmployeePassengerSet employeePassengerSet = null;
+				
+				Employee employee = null;
+				while (resultSet2.next()) 
+				{
+					employee = new Employee();
+
+					employee.setEmployeeId(resultSet2.getInt("employeeId"));
+					employee.setEmailId(resultSet2.getString("emailId"));
+					employee.setFirstName(resultSet2.getString("firstName"));
+					employee.setLastName(resultSet2.getString("lastName"));
+					employee.setGender(resultSet2.getString("gender"));
+					employee.setAirlineName(resultSet2.getString("airlineName"));
+					employee.setJobDesc(resultSet2.getString("jobDesc"));
+					employee.setPosition(resultSet2.getString("position"));
+					employee.setHireDate(resultSet2.getTimestamp("hireDate"));
+					employee.setAddress(resultSet2.getString("address"));
+					employee.setCity(resultSet2.getString("city"));
+					employee.setState(resultSet2.getString("state"));
+					employee.setZipcode(resultSet2.getString("zipcode"));
+					employee.setDob(resultSet2.getTimestamp("dob"));
+					
+					Date dateOfFlying = resultSet2.getTimestamp("dateOfFlying");
+					double ticketPrice = resultSet2.getLong("ticketPrice");
+					
+					if(dateOfFlyingEmployeePassengerSet == null)
+					{
+						dateOfFlyingEmployeePassengerSet = new HashMap<Date, EmployeePassengerSet>();
+						employeePassengerSet = new EmployeePassengerSet();
+						employeePassengerSet.setTicketPrice(ticketPrice);
+						employeePassengerSet.addEmployee(employee);
+						
+						dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
+						flightMap.put(flight.getFlightId(), dateOfFlyingEmployeePassengerSet);
+					}
+					else
+					{
+						 employeePassengerSet = 
+								dateOfFlyingEmployeePassengerSet.get(dateOfFlying);
+						
+						if(employeePassengerSet == null)
+						{
+							employeePassengerSet = new EmployeePassengerSet();
+							employeePassengerSet.setTicketPrice(ticketPrice);
+							employeePassengerSet.addEmployee(employee);
+							
+							dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
+						}
+						else
+						{
+							employeePassengerSet.addEmployee(employee);
+						}
+					}
+				}
+
+				resultSet2.close();
+				statement.close();
+				
+				// Add passengers
+				query = "select c.customerId, emailId, firstName, lastName,"
+						+ "gender, passportNum, nationality, "
+						+ "address, city, state, zipcode,"
+						+ "dob,dateOfFlying "
+						+ "from reservation r, customer c "
+						+ "where r.customerId =  c.customerId and r.flightId = "
+						+ flight.getFlightId();
+
+				logger.info("Get all the passengers(customers) for flight with id : " 
+						+ flight.getFlightId() + ", query : "+query);
+
+				statement = connection.createStatement();  
+				resultSet2 = statement.executeQuery(query);
+
+				Customer passenger = null;
+				while (resultSet2.next()) 
+				{
+					passenger = new Customer();
+
+					passenger.setCustomerId(resultSet2.getInt("customerId"));
+					passenger.setEmailId(resultSet2.getString("emailId"));
+					passenger.setFirstName(resultSet2.getString("firstName"));
+					passenger.setLastName(resultSet2.getString("lastName"));
+					passenger.setGender(resultSet2.getString("gender"));
+					passenger.setPassportNum(resultSet2.getString("passportNum"));
+					passenger.setNationality(resultSet2.getString("nationality"));
+					passenger.setAddress(resultSet2.getString("address"));
+					passenger.setCity(resultSet2.getString("city"));
+					passenger.setState(resultSet2.getString("state"));
+					passenger.setZipcode(resultSet2.getString("zipcode"));
+					passenger.setDob(resultSet2.getTimestamp("dob"));
+					
+					Date dateOfFlying = resultSet2.getTimestamp("dateOfFlying");
+					
+					dateOfFlyingEmployeePassengerSet = flightMap.get(flight.getFlightId());
+					
+					if(dateOfFlyingEmployeePassengerSet == null)
+					{
+						dateOfFlyingEmployeePassengerSet = new HashMap<Date, EmployeePassengerSet>();
+						employeePassengerSet = new EmployeePassengerSet();
+						employeePassengerSet.addPassenger(passenger);
+						
+						dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
+						flightMap.put(flight.getFlightId(), dateOfFlyingEmployeePassengerSet);
+					}
+					else
+					{
+						 employeePassengerSet = 
+								dateOfFlyingEmployeePassengerSet.get(dateOfFlying);
+						
+						if(employeePassengerSet == null)
+						{
+							employeePassengerSet = new EmployeePassengerSet();
+							employeePassengerSet.addPassenger(passenger);
+							
+							dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
+						}
+						else
+						{
+							employeePassengerSet.addPassenger(passenger);
+						}
+					}
+				}
+
+				resultSet2.close();
+				statement.close();
 			}
 
 			resultSet.close();
 			statement.close();
-
-			// Add employee info
-			for(Flight addedFlight : flights)
-			{
-				query = "select employeeId, emailId, firstName, lastName,"
-						+ "gender, airlineName, jobDesc, position,"
-						+ "hireDate, address, city, state, zipcode,"
-						+ "dob "
-						+ "from flightflyinginformation f, employee e "
-						+ "where f.employeeId =  e.employee and f.flightId = "
-						+ addedFlight.getFlightId();
-
-				logger.info("Get all the employees for flight with id : " 
-						+ addedFlight.getFlightId() + ", query : "+query);
-
-				statement = connection.createStatement();  
-				resultSet = statement.executeQuery(query);
-				
-				List<Employee> empList = new ArrayList<Employee>();
-				Employee employee = null;
-				while (resultSet.next()) 
-				{
-					employee = new Employee();
-
-					employee.setEmployeeId(resultSet.getInt("employeeId"));
-					employee.setEmailId(resultSet.getString("emailId"));
-					employee.setFirstName(resultSet.getString("firstName"));
-					employee.setLastName(resultSet.getString("lastName"));
-					employee.setGender(resultSet.getString("gender"));
-					employee.setAirlineName(resultSet.getString("airlineName"));
-					employee.setJobDesc(resultSet.getString("jobDesc"));
-					employee.setPosition(resultSet.getString("position"));
-					employee.setHireDate(resultSet.getTimestamp("hireDate"));
-					employee.setAddress(resultSet.getString("address"));
-					employee.setCity(resultSet.getString("city"));
-					employee.setState(resultSet.getString("state"));
-					employee.setZipcode(resultSet.getString("zipcode"));
-					employee.setDob(resultSet.getTimestamp("dob"));
-
-					empList.add(employee);
-				}
-
-				resultSet.close();
-				statement.close();
-				
-				addedFlight.setCrewDetails(empList.toArray(new Employee[empList.size()]));
-			}
 			
-			// Add Customers or Passengers
-			for(Flight addedFlight : flights)
+			// Create the flights 
+			for(Entry<Integer, Flight> entry : flightIdToFlightMap.entrySet())
 			{
-				query = "select customerId, emailId, firstName, lastName,"
-						+ "gender, passportNum, nationality, "
-						+ "address, city, state, zipcode,"
-						+ "dob "
-						+ "from reservation r, customer c "
-						+ "where r.customerId =  c.customerId and r.flightId = "
-						+ addedFlight.getFlightId();
-
-				logger.info("Get all the passengers(customers) for flight with id : " 
-						+ addedFlight.getFlightId() + ", query : "+query);
-
-				statement = connection.createStatement();  
-				resultSet = statement.executeQuery(query);
-
-				List<Customer> passengerList = new ArrayList<Customer>();
-				Customer passenger = null;
-				while (resultSet.next()) 
+				Integer flightId = entry.getKey();
+				
+				for (Date dateOfFlying : flightMap.get(flightId).keySet())
 				{
-					passenger = new Customer();
-
-					passenger.setCustomerId(resultSet.getInt("customerId"));
-					passenger.setEmailId(resultSet.getString("emailId"));
-					passenger.setFirstName(resultSet.getString("firstName"));
-					passenger.setLastName(resultSet.getString("lastName"));
-					passenger.setGender(resultSet.getString("gender"));
-					passenger.setPassportNum(resultSet.getString("passportNum"));
-					passenger.setNationality(resultSet.getString("nationality"));
-					passenger.setAddress(resultSet.getString("address"));
-					passenger.setCity(resultSet.getString("city"));
-					passenger.setState(resultSet.getString("state"));
-					passenger.setZipcode(resultSet.getString("zipcode"));
-					passenger.setDob(resultSet.getTimestamp("dob"));
-
-					passengerList.add(passenger);
+					EmployeePassengerSet employeePassengerSet = flightMap.get(flightId).get(dateOfFlying);
+					
+					Flight newFlight = new Flight(entry.getValue());
+					newFlight.setTicketPrice(employeePassengerSet.getTicketPrice());
+					
+					newFlight.setFlyingDate(dateOfFlying);
+					
+					newFlight.setCrewDetails(employeePassengerSet.getEmployees());
+					newFlight.setPassengers(employeePassengerSet.getPassenger());
+					
+					flights.add(newFlight);
 				}
-
-				resultSet.close();
-				statement.close();
-
-				addedFlight.setPassengers(passengerList.toArray(new Customer[passengerList.size()]));
 			}
 		} 
 		catch (Exception e) 
 		{  
-			logger.info("Error while running the query.\n"+e.getMessage());
+			logger.info("Error while running the query.\n"+query+" : "+e.getMessage());
 			e.printStackTrace();  
 		}
 
