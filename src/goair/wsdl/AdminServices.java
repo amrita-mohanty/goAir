@@ -38,11 +38,11 @@ public class AdminServices {
 			// he/she is serving with histories.
 	
 
-	public AdminServiceQueries adminServiceQuery = null;
+	public AdminServiceQueries adminServiceQueries = null;
 	
 	public AdminServices()
 	{
-		adminServiceQuery = new AdminServiceQueries();
+		adminServiceQueries = new AdminServiceQueries();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class AdminServices {
 	public Flight[] searchFlightsForAdmin(SearchParametersForFlights searchParameters)
 	{
 		logger.info("searchFlightsForAdmin with params : "+searchParameters.toString());
-		return adminServiceQuery.searchFlightsForAdmin(searchParameters);
+		return adminServiceQueries.searchFlightsForAdmin(searchParameters);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class AdminServices {
 	public Flight[] getAllFlightsForAdmin()
 	{
 		logger.info("searchAllFlightsForAdmin");
-		return adminServiceQuery.getAllFlightsForAdmin();
+		return adminServiceQueries.getAllFlightsForAdmin();
 	}
 	
 	/**
@@ -70,12 +70,12 @@ public class AdminServices {
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addFlight(Flight flight)
 	{
 		logger.info("Add a flight : "+flight.toString());
-		return adminServiceQuery.addFlight(flight);
+		return adminServiceQueries.addFlight(flight);
 	}
 	
 	/**
@@ -83,12 +83,12 @@ public class AdminServices {
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editFlight(Flight flight)
 	{
 		logger.info("Edit a flight : "+flight.toString());
-		return adminServiceQuery.editFlight(flight);
+		return adminServiceQueries.editFlight(flight);
 	}
 	
 	/**
@@ -96,12 +96,12 @@ public class AdminServices {
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteFlight(Flight flight)
 	{
 		logger.info("Delete a flight : "+flight.toString());
-		return adminServiceQuery.deleteFlight(flight);
+		return adminServiceQueries.deleteFlight(flight);
 	}
 	
 	/**
@@ -111,7 +111,7 @@ public class AdminServices {
 	public Customer[] searchCustomersForAdmin(SearchParametersForCustomers searchParameters)
 	{
 		logger.info("searchCustomersForAdmin with params : "+searchParameters.toString());
-		return adminServiceQuery.searchCustomersForAdmin(searchParameters);
+		return adminServiceQueries.searchCustomersForAdmin(searchParameters);
 	}
 	
 	/**
@@ -121,7 +121,7 @@ public class AdminServices {
 	public Customer[] getAllCustomersForAdmin()
 	{
 		logger.info("searchAllCustomersForAdmin");
-		return adminServiceQuery.getAllCustomersForAdmin();
+		return adminServiceQueries.getAllCustomersForAdmin();
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class AdminServices {
 	public int addCustomer(Customer customer)
 	{
 		logger.info("Add a Customer : "+customer.toString());
-		return adminServiceQuery.addCustomer(customer);
+		return adminServiceQueries.addCustomer(customer);
 	}
 	
 	/**
@@ -147,7 +147,7 @@ public class AdminServices {
 	public int editCustomer(Customer customer)
 	{
 		logger.info("Edit a Customer : "+customer.toString());
-		return adminServiceQuery.editCustomer(customer);
+		return adminServiceQueries.editCustomer(customer);
 	}
 	
 	/**
@@ -155,12 +155,12 @@ public class AdminServices {
 	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteCustomer(Customer customer)
 	{
 		logger.info("Delete a Customer : "+customer.toString());
-		return adminServiceQuery.deleteCustomer(customer);
+		return adminServiceQueries.deleteCustomer(customer);
 	}
 	
 	/**
@@ -170,7 +170,7 @@ public class AdminServices {
 	public Employee[] searchEmployeesForAdmin(SearchParametersForEmployees searchParameters)
 	{
 		logger.info("searchEmployeesForAdmin with params : "+searchParameters.toString());
-		return adminServiceQuery.searchEmployeesForAdmin(searchParameters);
+		return adminServiceQueries.searchEmployeesForAdmin(searchParameters);
 	}
 	
 	/**
@@ -180,7 +180,7 @@ public class AdminServices {
 	public Employee[] getAllEmployeesForAdmin()
 	{
 		logger.info("searchAllEmployeesForAdmin");
-		return adminServiceQuery.getAllEmployeesForAdmin();
+		return adminServiceQueries.getAllEmployeesForAdmin();
 	}
 	
 	/**
@@ -188,12 +188,12 @@ public class AdminServices {
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addEmployee(Employee employee)
 	{
 		logger.info("Add a Employee : "+employee.toString());
-		return adminServiceQuery.addEmployee(employee);
+		return adminServiceQueries.addEmployee(employee);
 	}
 	
 	/**
@@ -201,12 +201,12 @@ public class AdminServices {
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editEmployee(Employee employee)
 	{
 		logger.info("Edit a Employee : "+employee.toString());
-		return adminServiceQuery.editEmployee(employee);
+		return adminServiceQueries.editEmployee(employee);
 	}
 	
 	/**
@@ -214,12 +214,12 @@ public class AdminServices {
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteEmployee(Employee employee)
 	{
 		logger.info("Delete a Employee : "+employee.toString());
-		return adminServiceQuery.deleteEmployee(employee);
+		return adminServiceQueries.deleteEmployee(employee);
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class AdminServices {
 	public Reservation[] searchReservationsForAdmin(SearchParametersForReservation searchParameters)
 	{
 		logger.info("searchReservationsForAdmin with params : "+searchParameters.toString());
-		return adminServiceQuery.searchReservationsForAdmin(searchParameters);
+		return adminServiceQueries.searchReservationsForAdmin(searchParameters);
 	}
 	
 	/**
@@ -239,7 +239,7 @@ public class AdminServices {
 	public Reservation[] getAllReservationsForAdmin()
 	{
 		logger.info("searchAllReservationsForAdmin");
-		return adminServiceQuery.getAllReservationsForAdmin();
+		return adminServiceQueries.getAllReservationsForAdmin();
 	}
 	
 	/**
@@ -252,7 +252,7 @@ public class AdminServices {
 	public int addReservation(Reservation reservation)
 	{
 		logger.info("Add a Reservation : "+reservation.toString());
-		return adminServiceQuery.addReservation(reservation);
+		return adminServiceQueries.addReservation(reservation);
 	}
 	
 	/**
@@ -260,12 +260,12 @@ public class AdminServices {
 	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editReservation(Reservation reservation)
 	{
 		logger.info("Edit a Reservation : "+reservation.toString());
-		return adminServiceQuery.editReservation(reservation);
+		return adminServiceQueries.editReservation(reservation);
 	}
 	
 	/**
@@ -273,11 +273,11 @@ public class AdminServices {
 	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteReservation(Reservation reservation)
 	{
 		logger.info("Delete a Reservation : "+reservation.toString());
-		return adminServiceQuery.deleteReservation(reservation);
+		return adminServiceQueries.cancelReservation(reservation);
 	}
 }

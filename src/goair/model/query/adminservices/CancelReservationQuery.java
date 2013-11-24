@@ -7,37 +7,37 @@ import java.sql.PreparedStatement;
 
 import org.apache.log4j.Logger;
 
-public class DeleteReservationQuery {
+public class CancelReservationQuery {
 	
-	public static Logger logger = Logger.getLogger(DeleteReservationQuery.class);
+	public static Logger logger = Logger.getLogger(CancelReservationQuery.class);
 	
 	/**
-	 * Delete the Reservation
+	 * Cancel the Reservation
 	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 * In delete we just update the status to Deleted instead of removing the whole row
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
-	public int deleteReservation(Reservation reservation, Connection connection)
+	public int cancelReservation(Reservation reservation, Connection connection)
 	{
-		String deleteReservationTableQuery = "update reservation set currentStatus = 'Deleted' where pnr=?";
+		String cancelReservationTableQuery = "update reservation set currentStatus = 'Cancelled' where pnr=?";
 
 		PreparedStatement preparedStatement = null;
 		try
 		{
-			logger.info("Delete query for customer table : "+deleteReservationTableQuery);
+			logger.info("Cancel reservation query : "+ cancelReservationTableQuery);
 			
-			preparedStatement = connection.prepareStatement(deleteReservationTableQuery);
+			preparedStatement = connection.prepareStatement(cancelReservationTableQuery);
 			preparedStatement.setLong(1, reservation.getPnr());
 			preparedStatement.execute();
 			preparedStatement.close();
 			
-			return 0;
+			return 1;
 		}
 		catch (Exception e)
 		{
-			logger.error("Error while delete.\n"+e.getMessage());
+			logger.error("Error while cancelling the reservation.\n"+e.getMessage());
 			e.printStackTrace();
 			return -1;
 		}

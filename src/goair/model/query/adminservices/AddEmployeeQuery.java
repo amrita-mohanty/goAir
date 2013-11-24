@@ -17,7 +17,7 @@ public class AddEmployeeQuery {
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addNewEmployee(Employee employee, Connection connection)
 	{
@@ -51,7 +51,7 @@ public class AddEmployeeQuery {
 			preparedStatement.execute();
 			preparedStatement.close();
 			
-			return 0;
+			return 1;
 		}
 		catch (Exception e)
 		{

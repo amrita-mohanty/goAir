@@ -17,7 +17,7 @@ public class DeleteCustomerQuery {
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 * In delete we just update the status to Deleted instead of removing the whole row
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteCustomer(Customer customer, Connection connection)
 	{
@@ -33,7 +33,7 @@ public class DeleteCustomerQuery {
 			preparedStatement.execute();
 			preparedStatement.close();
 			
-			return 0;
+			return 1;
 		}
 		catch (Exception e)
 		{

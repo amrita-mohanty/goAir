@@ -45,7 +45,7 @@ public class AdminServiceQueries
 	SearchReservationsForAdminQuery searchReservationsForAdminQuery = null;
 	EditReservationQuery			editReservationQuery			= null;
 	AddReservationQuery				addReservationQuery				= null;
-	DeleteReservationQuery			deleteReservationQuery			= null;
+	CancelReservationQuery			cancelReservationQuery			= null;
 	
 	public AdminServiceQueries()
 	{
@@ -86,7 +86,7 @@ public class AdminServiceQueries
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addFlight(Flight flight)
 	{
@@ -103,7 +103,7 @@ public class AdminServiceQueries
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editFlight(Flight flight)
 	{
@@ -120,7 +120,7 @@ public class AdminServiceQueries
 	 * @param flight
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteFlight(Flight flight)
 	{
@@ -199,7 +199,7 @@ public class AdminServiceQueries
 	 * @param customer
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteCustomer(Customer customer)
 	{
@@ -244,7 +244,7 @@ public class AdminServiceQueries
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int addEmployee(Employee employee)
 	{
@@ -261,7 +261,7 @@ public class AdminServiceQueries
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editEmployee(Employee employee)
 	{
@@ -278,7 +278,7 @@ public class AdminServiceQueries
 	 * @param employee
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int deleteEmployee(Employee employee)
 	{
@@ -340,7 +340,7 @@ public class AdminServiceQueries
 	 * @param Reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
 	public int editReservation(Reservation Reservation)
 	{
@@ -353,19 +353,19 @@ public class AdminServiceQueries
 	}
 	
 	/**
-	 * Delete Reservation to the system
+	 * Cancel Reservation in the system
 	 * @param Reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
-	 * success : 0, failure : -1
+	 * success : 1, failure : -1
 	 */
-	public int deleteReservation(Reservation Reservation)
+	public int cancelReservation(Reservation Reservation)
 	{
-		if(deleteReservationQuery == null)
+		if(cancelReservationQuery == null)
 		{
-			deleteReservationQuery = new DeleteReservationQuery();
+			cancelReservationQuery = new CancelReservationQuery();
 		}
 		logger.info("Delete a Reservation : "+Reservation.toString());
-		return deleteReservationQuery.deleteReservation(Reservation, connection);
+		return cancelReservationQuery.cancelReservation(Reservation, connection);
 	}
 }
