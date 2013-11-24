@@ -50,6 +50,9 @@
       <operation name="editEmployee" qname="operNS:editEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
+      <operation name="editFlight" qname="operNS:editFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
+      </operation>
       <operation name="addEmployee" qname="operNS:addEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
@@ -69,9 +72,6 @@
         <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
       </operation>
       <operation name="getAllFlightsForAdmin" qname="operNS:getAllFlightsForAdmin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getAllFlightsForAdminReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
-      </operation>
-      <operation name="editFlight" qname="operNS:editFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
       </operation>
       <operation name="searchFlightsForAdmin" qname="operNS:searchFlightsForAdmin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchFlightsForAdminReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
         <parameter qname="pns:searchParameters" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>

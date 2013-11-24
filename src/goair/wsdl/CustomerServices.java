@@ -95,9 +95,9 @@ public class CustomerServices extends AirlineServices{
 		return adminServiceQueries.searchReservationsForAdmin(searchParam);
 	}
 	
-	public int cancelReservation(){
+	/*public int cancelReservation(){
 		return 0;
-	}
+	}*/
 
 	
 	public static void main(String args[]){

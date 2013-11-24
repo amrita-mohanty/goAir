@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://employee.model.goair" xmlns:tns2="http://general.model.goair" xmlns:tns3="http://flight.model.goair" xmlns:tns4="http://customer.model.goair" xmlns:tns5="http://util.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://wsdl.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
    <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
    <import namespace="http://general.model.goair"/>
    <element name="viewEmployeeFlight">
     <complexType>
      <sequence>
-      <element name="crew" type="tns1:Employee"/>
+      <element name="searchFlightParam" type="tns1:SearchParametersForFlights"/>
      </sequence>
     </complexType>
    </element>
    <element name="viewEmployeeFlightResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns3:Flight"/>
+      <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns2:Flight"/>
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns1_Employee">
+   <complexType name="ArrayOf_tns3_Employee">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Employee"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns3:Employee"/>
     </sequence>
    </complexType>
-   <complexType name="ArrayOf_tns4_Customer">
+   <complexType name="ArrayOf_tns5_Customer">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns4:Customer"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
     </sequence>
    </complexType>
    <element name="editEmployeeProfile">
     <complexType>
      <sequence>
-      <element name="employeeBean" type="tns1:Employee"/>
+      <element name="employeeBean" type="tns3:Employee"/>
      </sequence>
     </complexType>
    </element>
@@ -51,36 +51,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="userName" type="xsd:string"/>
-      <element name="Password" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
    <element name="employeeLoginResponse">
     <complexType>
      <sequence>
-      <element name="employeeLoginReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchEmployeeFlights">
-    <complexType>
-     <sequence>
-      <element name="searchFlight" type="tns5:SearchParametersForFlights"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchEmployeeFlightsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchEmployeeFlightsReturn" type="tns3:Flight"/>
+      <element name="employeeLoginReturn" type="tns3:Employee"/>
      </sequence>
     </complexType>
    </element>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="SearchParametersForFlights">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="employeeId" type="xsd:int"/>
+     <element name="flightNumber" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeatsAvialable" type="xsd:int"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
    <complexType name="Person">
@@ -100,14 +106,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://general.model.goair"/>
    <complexType name="Employee">
     <complexContent>
-     <extension base="tns2:Person">
+     <extension base="tns4:Person">
       <sequence>
        <element name="airlineName" nillable="true" type="xsd:string"/>
        <element name="employeeId" nillable="true" type="xsd:int"/>
@@ -120,14 +126,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
-   <import namespace="http://util.goair"/>
    <import namespace="http://employee.model.goair"/>
    <import namespace="http://general.model.goair"/>
    <complexType name="Customer">
     <complexContent>
-     <extension base="tns2:Person">
+     <extension base="tns4:Person">
       <sequence>
        <element name="customerId" type="xsd:int"/>
        <element name="nationality" nillable="true" type="xsd:string"/>
@@ -138,8 +144,8 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://flight.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://wsdl.goair"/>
    <import namespace="http://util.goair"/>
+   <import namespace="http://wsdl.goair"/>
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
    <import namespace="http://general.model.goair"/>
@@ -147,7 +153,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <sequence>
      <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
-     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns1_Employee"/>
+     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns3_Employee"/>
      <element name="currentStatus" nillable="true" type="xsd:string"/>
      <element name="daysOfWeek" nillable="true" type="xsd:string"/>
      <element name="departureTime" nillable="true" type="xsd:dateTime"/>
@@ -158,7 +164,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="flyingDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
-     <element name="passengers" nillable="true" type="impl:ArrayOf_tns4_Customer"/>
+     <element name="passengers" nillable="true" type="impl:ArrayOf_tns5_Customer"/>
      <element name="seatsAvailable" type="xsd:int"/>
      <element name="seatsReserved" type="xsd:int"/>
      <element name="source" nillable="true" type="xsd:string"/>
@@ -167,42 +173,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </sequence>
    </complexType>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="SearchParametersForFlights">
-    <sequence>
-     <element name="airlineName" nillable="true" type="xsd:string"/>
-     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
-     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
-     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
-     <element name="destination" nillable="true" type="xsd:string"/>
-     <element name="flightNumber" nillable="true" type="xsd:string"/>
-     <element name="numberOfSeatsAvialable" type="xsd:int"/>
-     <element name="source" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-  </schema>
  </wsdl:types>
-
-   <wsdl:message name="searchEmployeeFlightsResponse">
-
-      <wsdl:part element="impl:searchEmployeeFlightsResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="searchEmployeeFlightsRequest">
-
-      <wsdl:part element="impl:searchEmployeeFlights" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
 
    <wsdl:message name="viewEmployeeFlightResponse">
 
@@ -290,18 +261,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="searchEmployeeFlights">
-
-         <wsdl:input message="impl:searchEmployeeFlightsRequest" name="searchEmployeeFlightsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:searchEmployeeFlightsResponse" name="searchEmployeeFlightsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="EmployeeServicesSoapBinding" type="impl:EmployeeServices">
@@ -355,24 +314,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="employeeLoginResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchEmployeeFlights">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchEmployeeFlightsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchEmployeeFlightsResponse">
 
             <wsdlsoap:body use="literal"/>
 
