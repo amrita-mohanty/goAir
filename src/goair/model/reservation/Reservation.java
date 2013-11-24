@@ -1,11 +1,14 @@
 package goair.model.reservation;
 
+import goair.model.customer.Customer;
+import goair.model.flight.Flight;
+
 import java.util.Date;
 
 public class Reservation {
-	public String pnr;
-	public int customerId;
-	public int flightId;
+	public long pnr;
+	public Customer customerDetails;
+	public Flight flightDetails;
 	public int numberOfSeatsBooked;
 	public long creditCardNumber;
 	public Date dateOfBooking;
@@ -13,28 +16,12 @@ public class Reservation {
 	public double totalPrice;
 	public String currentStatus;
 	
-	public String getPnr() {
+	public long getPnr() {
 		return pnr;
 	}
 	
-	public void setPnr(String pnr) {
+	public void setPnr(long pnr) {
 		this.pnr = pnr;
-	}
-	
-	public int getCustomerId() {
-		return customerId;
-	}
-	
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	
-	public int getFlightId() {
-		return flightId;
-	}
-	
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
 	}
 	
 	public int getNumberOfSeatsBooked() {
@@ -85,14 +72,32 @@ public class Reservation {
 		this.currentStatus = currentStatus;
 	}
 
+	public Customer getCustomerDetails() {
+		return customerDetails;
+	}
+
+	public void setCustomerDetails(Customer customerDetails) {
+		this.customerDetails = customerDetails;
+	}
+
+	public Flight getFlightDetails() {
+		return flightDetails;
+	}
+
+	public void setFlightDetails(Flight flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+
 	@Override
 	public String toString() {
-		return "Reservation [pnr=" + pnr + ", customerId=" + customerId
-				+ ", flightId=" + flightId + ", numberOfSeatsBooked="
-				+ numberOfSeatsBooked + ", creditCardNumber="
-				+ creditCardNumber + ", dateOfBooking=" + dateOfBooking
-				+ ", dateOfFlying=" + dateOfFlying + ", totalPrice="
-				+ totalPrice + ", currentStatus=" + currentStatus+ "]";
+		return "Reservation [pnr=" + pnr + ", customerDetails="
+				+ customerDetails + ", flightDetails=" + flightDetails
+				+ ", numberOfSeatsBooked=" + numberOfSeatsBooked
+				+ ", creditCardNumber=" + creditCardNumber + ", dateOfBooking="
+				+ dateOfBooking + ", dateOfFlying=" + dateOfFlying
+				+ ", totalPrice=" + totalPrice + ", currentStatus="
+				+ currentStatus + "]";
 	}
+
 }
 

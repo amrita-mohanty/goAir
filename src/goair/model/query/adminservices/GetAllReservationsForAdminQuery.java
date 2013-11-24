@@ -15,7 +15,8 @@ public class GetAllReservationsForAdminQuery {
 	public static Logger logger = Logger.getLogger(GetAllReservationsForAdminQuery.class);
 	
 	/**
-	 * This method will get all the customers in system for a Admin
+	 * This method will get all the reservations in the system for 
+	 * an  admin or a customer based on the searchParameters
 	 * @return Reservation[] 
 	 */
 	public Reservation[] getAllReservationsForAdmin(Connection connection)
@@ -45,9 +46,16 @@ public class GetAllReservationsForAdminQuery {
 			{
 				reservation = new Reservation();
 
-				reservation.setPnr(resultSet.getString("pnr"));
-				reservation.setCustomerId(resultSet.getInt("customerid"));
-				reservation.setFlightId(resultSet.getInt("flightId"));
+				reservation.setPnr(resultSet.getInt("pnr"));
+				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
+				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
+				reservation.getCustomerDetails().setFirstName(resultSet.getString("lastName"));
+				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
+				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
+				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
+				reservation.getFlightDetails().setSource(resultSet.getString("source"));
+				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
+				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));

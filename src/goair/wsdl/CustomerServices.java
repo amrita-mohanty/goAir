@@ -73,21 +73,28 @@ public class CustomerServices extends AirlineServices{
 		return searchResult;
 	}
 
-	public int makeReservation(Reservation reservationDetails){
-		
-		return 1;
-		
+	/**
+	 * Add a new Reservation to the system
+	 * @param reservation
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 * success : 1, failure : -1
+	 */
+	public int addReservation(Reservation reservation)
+	{
+		logger.info("Add a Reservation : "+reservation.toString());
+		return adminServiceQueries.addReservation(reservation);
 	}
 	
 	public int makePayment(PaymentBean paymentBean) {
 		return 1;
 	}
 
-	public Reservation[] viewBookingHistory(long customerId) {
+	public Reservation[] viewAllReservations(long customerId) {
 		return null;
 	}
 
-	public Reservation viewBooking(long reservationid) {
+	public Reservation viewReservationDetails(long pnr) {
 		return null;
 	}
 
