@@ -29,7 +29,7 @@ public class DeleteReservationQuery {
 			logger.info("Delete query for customer table : "+deleteReservationTableQuery);
 			
 			preparedStatement = connection.prepareStatement(deleteReservationTableQuery);
-			preparedStatement.setString(1, reservation.getPnr());
+			preparedStatement.setLong(1, reservation.getPnr());
 			preparedStatement.execute();
 			preparedStatement.close();
 			

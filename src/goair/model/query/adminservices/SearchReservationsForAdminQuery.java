@@ -47,9 +47,9 @@ public class SearchReservationsForAdminQuery {
 			{
 				reservation = new Reservation();
 
-				reservation.setPnr(resultSet.getString("pnr"));
-				reservation.setCustomerId(resultSet.getInt("customerid"));
-				reservation.setFlightId(resultSet.getInt("flightId"));
+				reservation.setPnr(resultSet.getInt("pnr"));
+				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
+				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
