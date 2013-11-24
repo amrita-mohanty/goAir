@@ -51,11 +51,13 @@ public class Employee extends Person {
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", airlineName="
 				+ airlineName + ", jobDesc=" + jobDesc + ", position="
-				+ position + ", hireDate=" + dateFormat.format(hireDate.getTime()) + ", emailId=" + emailId
+				+ position + ", hireDate=" + hireDate != null ? dateFormat.format(hireDate.getTime()) : null 
+				+ ", emailId=" + emailId
 				+ ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender
 				+ ", address=" + address + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + ", dob=" + dateFormat.format(dob.getTime())
+				+ state + ", zipcode=" + zipcode 
+				+ ", dob=" + dob != null ? dateFormat.format(dob.getTime()) : null
 				+ ", currentStatus=" + currentStatus + "]";
 	}
 	
