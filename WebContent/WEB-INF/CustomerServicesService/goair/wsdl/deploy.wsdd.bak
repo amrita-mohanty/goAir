@@ -32,6 +32,9 @@
       <operation name="addReservation" qname="operNS:addReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:reservation" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
       </operation>
+      <operation name="cancelReservation" qname="operNS:cancelReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:cancelReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:reservation" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
+      </operation>
       <operation name="editCustomer" qname="operNS:editCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
       </operation>
@@ -41,9 +44,6 @@
       <operation name="customerLogin" qname="operNS:customerLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:customerLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
         <parameter qname="pns:emailId" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="cancelReservation" qname="operNS:cancelReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:cancelReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:booking" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
       </operation>
       <operation name="createReservation" qname="operNS:createReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:createReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>

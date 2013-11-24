@@ -95,9 +95,17 @@ public class CustomerServices extends AirlineServices{
 		return adminServiceQueries.searchReservationsForAdmin(searchParam);
 	}
 	
-	/*public int cancelReservation(){
-		return 0;
-	}*/
+	/**
+	 * Cancel Reservation to the system
+	 * @param reservation
+	 * @return int status of the operation this maps to the list of error codes defined 
+	 * for the system.
+	 * success : 1, failure : -1
+	 */
+	public int cancelReservation(Reservation reservation){
+		logger.info("Cancel a Reservation : "+ reservation.toString());
+		return adminServiceQueries.cancelReservation(reservation);
+	}
 
 	
 	public static void main(String args[]){

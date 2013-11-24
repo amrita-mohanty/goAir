@@ -72,6 +72,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="cancelReservation">
+    <complexType>
+     <sequence>
+      <element name="reservation" type="tns6:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelReservationResponse">
+    <complexType>
+     <sequence>
+      <element name="cancelReservationReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="editCustomer">
     <complexType>
      <sequence>
@@ -112,20 +126,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="customerLoginReturn" type="tns5:Customer"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="cancelReservation">
-    <complexType>
-     <sequence>
-      <element name="booking" type="tns6:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="cancelReservationResponse">
-    <complexType>
-     <sequence>
-      <element name="cancelReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -347,9 +347,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="cancelReservationResponse">
+   <wsdl:message name="viewAllReservationsResponse">
 
-      <wsdl:part element="impl:cancelReservationResponse" name="parameters">
+      <wsdl:part element="impl:viewAllReservationsResponse" name="parameters">
 
       </wsdl:part>
 
@@ -363,9 +363,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="viewAllReservationsResponse">
+   <wsdl:message name="cancelReservationResponse">
 
-      <wsdl:part element="impl:viewAllReservationsResponse" name="parameters">
+      <wsdl:part element="impl:cancelReservationResponse" name="parameters">
 
       </wsdl:part>
 
@@ -485,6 +485,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="cancelReservation">
+
+         <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="editCustomer">
 
          <wsdl:input message="impl:editCustomerRequest" name="editCustomerRequest">
@@ -516,18 +528,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:customerLoginResponse" name="customerLoginResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="cancelReservation">
-
-         <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
 
        </wsdl:output>
 
@@ -623,6 +623,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="cancelReservation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelReservationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelReservationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="editCustomer">
 
          <wsdlsoap:operation soapAction=""/>
@@ -670,24 +688,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="customerLoginResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="cancelReservation">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="cancelReservationRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="cancelReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -269,15 +269,15 @@ public class AdminServices {
 	}
 	
 	/**
-	 * Delete Reservation to the system
+	 * Cancel Reservation to the system
 	 * @param reservation
 	 * @return int status of the operation this maps to the list of error codes defined 
 	 * for the system.
 	 * success : 1, failure : -1
 	 */
-	public int deleteReservation(Reservation reservation)
+	public int cancelReservation(Reservation reservation)
 	{
-		logger.info("Delete a Reservation : "+reservation.toString());
+		logger.info("Cancel a Reservation : "+reservation.toString());
 		return adminServiceQueries.cancelReservation(reservation);
 	}
 }
