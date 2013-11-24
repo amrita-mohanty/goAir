@@ -6,6 +6,7 @@ import goair.util.SearchParametersForReservation;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import org.apache.log4j.Logger;
 public class SearchReservationsForAdminQuery {
 	
 	public static Logger logger = Logger.getLogger(SearchReservationsForAdminQuery.class);
+	public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String query = null;
 	
 	/**
 	 * This method will get all the customers in system for a Admin
@@ -24,12 +27,12 @@ public class SearchReservationsForAdminQuery {
 	{
 		List<Reservation> reservations = new ArrayList<Reservation>();
 
-		String query = "select "
+		/*String query = "select "
 					+ "pnr, customerId, "
 					+ "flightId, numberOfSeatsBooked, "
 					+ "creditCardNumber, dateOfBooking, "
 					+ "dateOfFlying, totalPrice "
-					+ "from reservation ";
+					+ "from reservation ";*/
 
 		logger.info("Get all the reservation : " + query);
 
@@ -49,7 +52,14 @@ public class SearchReservationsForAdminQuery {
 
 				reservation.setPnr(resultSet.getInt("pnr"));
 				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
+				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
+				reservation.getCustomerDetails().setLastName(resultSet.getString("lastName"));
 				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
+				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
+				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
+				reservation.getFlightDetails().setSource(resultSet.getString("source"));
+				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
+				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
@@ -69,6 +79,35 @@ public class SearchReservationsForAdminQuery {
 		}
 
 		return reservations.toArray(new Reservation[reservations.size()]);
+	}
+	
+	public void createSqlQuery(SearchParametersForReservation searchParam){
+		 query = "select "
+				+ "r.pnr, r.customerId, "
+				+ "r.flightId, r.numberOfSeatsBooked, "
+				+ "r.creditCardNumber, r.dateOfBooking, "
+				+ "r.dateOfFlying,r.totalPrice,c.firstName,c.lastName,"
+				+ "f.airlineName,f.flightname,f.source,f.destination,f.departureTime "
+				+ "from reservation r, flight f, customer c where r.flightId = f.flightid and "
+				+ "r.customerId = c.customerId";
+		 
+		 if(searchParam != null){
+			 if(searchParam.pnr != 0){
+				 query = query + " and r.pnr=" + searchParam.getPnr();
+			 }
+			 
+			 if(searchParam.customerId != 0){
+				 query = query + " and r.customerId=" + searchParam.getCustomerId();
+			 }
+			 
+			 if(searchParam.flightId != 0){
+				 query = query + " and r.flightId=" + searchParam.getFlightId();
+			 }
+			 
+			 if(searchParam.dateOfFlying != null){
+				 query = query + " and r.dateOfFlying=" + dateFormat.format(searchParam.getDateOfFlying());
+			 }
+		 }
 	}
 
 }

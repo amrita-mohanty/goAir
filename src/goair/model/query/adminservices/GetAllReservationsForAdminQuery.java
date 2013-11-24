@@ -15,8 +15,6 @@ import org.apache.log4j.Logger;
 public class GetAllReservationsForAdminQuery {
 	
 	public static Logger logger = Logger.getLogger(GetAllReservationsForAdminQuery.class);
-	public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	public String query;
 	
 	/**
 	 * This method will get all the reservations in the system for 
@@ -26,15 +24,15 @@ public class GetAllReservationsForAdminQuery {
 	public Reservation[] getAllReservationsForAdmin(SearchParametersForReservation searchParam,Connection connection)
 	{
 		List<Reservation> reservations = new ArrayList<Reservation>();
-		createSqlQuery(searchParam);
 
-		/*String query = "select "
-					+ "r.pnr, r.customerId, "
-					+ "r.flightId, r.numberOfSeatsBooked, "
-					+ "r.creditCardNumber, r.dateOfBooking, "
-					+ "r.dateOfFlying,r.totalPrice "
-					+ "from reservation r, flight f, customer c where reservation.flightId = flight.flightid and "
-					+ "reservation.customerId = customer.customerId ";*/
+		String query = "select "
+				+ "r.pnr, r.customerId, "
+				+ "r.flightId, r.numberOfSeatsBooked, "
+				+ "r.creditCardNumber, r.dateOfBooking, "
+				+ "r.dateOfFlying,r.totalPrice,c.firstName,c.lastName,"
+				+ "f.airlineName,f.flightname,f.source,f.destination,f.departureTime "
+				+ "from reservation r, flight f, customer c where r.flightId = f.flightid and "
+				+ "r.customerId = c.customerId";
 
 		logger.info("Get all the reservation query : " + query);
 
@@ -83,33 +81,6 @@ public class GetAllReservationsForAdminQuery {
 		return reservations.toArray(new Reservation[reservations.size()]);
 	}
 	
-	public void createSqlQuery(SearchParametersForReservation searchParam){
-		 query = "select "
-				+ "r.pnr, r.customerId, "
-				+ "r.flightId, r.numberOfSeatsBooked, "
-				+ "r.creditCardNumber, r.dateOfBooking, "
-				+ "r.dateOfFlying,r.totalPrice,c.firstName,c.lastName,"
-				+ "f.airlineName,f.flightname,f.source,f.destination,f.departureTime "
-				+ "from reservation r, flight f, customer c where r.flightId = f.flightid and "
-				+ "r.customerId = c.customerId";
-		 
-		 if(searchParam != null){
-			 if(searchParam.pnr != 0){
-				 query = query + " and r.pnr=" + searchParam.getPnr();
-			 }
-			 
-			 if(searchParam.customerId != 0){
-				 query = query + " and r.customerId=" + searchParam.getCustomerId();
-			 }
-			 
-			 if(searchParam.flightId != 0){
-				 query = query + " and r.flightId=" + searchParam.getFlightId();
-			 }
-			 
-			 if(searchParam.dateOfFlying != null){
-				 query = query + " and r.dateOfFlying=" + dateFormat.format(searchParam.getDateOfFlying());
-			 }
-		 }
-	}
+	
 
 }//class

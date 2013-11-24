@@ -92,7 +92,7 @@ public class CustomerServices extends AirlineServices{
 	 * to view all the reservations of the particular customer
 	 */
 	public Reservation[] viewAllReservations(SearchParametersForReservation searchParam) {
-		return adminServiceQueries.getAllReservationsForAdmin(searchParam);
+		return adminServiceQueries.searchReservationsForAdmin(searchParam);
 	}
 
 	
