@@ -82,6 +82,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="cancelReservation">
+    <complexType>
+     <sequence>
+      <element name="reservation" type="tns5:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelReservationResponse">
+    <complexType>
+     <sequence>
+      <element name="cancelReservationReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="editReservation">
     <complexType>
      <sequence>
@@ -121,6 +135,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="deleteEmployeeReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFlight">
+    <complexType>
+     <sequence>
+      <element name="flight" type="tns6:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns4_Employee">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns4:Employee"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns2_Customer">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Customer"/>
+    </sequence>
+   </complexType>
+   <element name="deleteFlightResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteFlightReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -180,6 +218,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="searchFlightsForAdmin">
+    <complexType>
+     <sequence>
+      <element name="searchParameters" type="tns1:SearchParametersForFlights"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchFlightsForAdminResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchFlightsForAdminReturn" type="tns6:Flight"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="addCustomer">
     <complexType>
      <sequence>
@@ -194,27 +246,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="deleteFlight">
+   <element name="editFlight">
     <complexType>
      <sequence>
       <element name="flight" type="tns6:Flight"/>
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns4_Employee">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns4:Employee"/>
-    </sequence>
-   </complexType>
-   <complexType name="ArrayOf_tns2_Customer">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Customer"/>
-    </sequence>
-   </complexType>
-   <element name="deleteFlightResponse">
+   <element name="editFlightResponse">
     <complexType>
      <sequence>
-      <element name="deleteFlightReturn" type="xsd:int"/>
+      <element name="editFlightReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -239,48 +281,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element maxOccurs="unbounded" name="getAllFlightsForAdminReturn" type="tns6:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchFlightsForAdmin">
-    <complexType>
-     <sequence>
-      <element name="searchParameters" type="tns1:SearchParametersForFlights"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchFlightsForAdminResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="searchFlightsForAdminReturn" type="tns6:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="editFlight">
-    <complexType>
-     <sequence>
-      <element name="flight" type="tns6:Flight"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="editFlightResponse">
-    <complexType>
-     <sequence>
-      <element name="editFlightReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="cancelReservation">
-    <complexType>
-     <sequence>
-      <element name="reservation" type="tns5:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="cancelReservationResponse">
-    <complexType>
-     <sequence>
-      <element name="cancelReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -392,14 +392,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://general.model.goair"/>
    <complexType name="Reservation">
     <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="creditCardNumber" type="xsd:long"/>
      <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="customerFirstName" nillable="true" type="xsd:string"/>
      <element name="customerId" type="xsd:int"/>
+     <element name="customerLastName" nillable="true" type="xsd:string"/>
      <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
      <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
      <element name="flightId" type="xsd:int"/>
+     <element name="flightName" nillable="true" type="xsd:string"/>
      <element name="numberOfSeatsBooked" type="xsd:int"/>
      <element name="pnr" type="xsd:long"/>
+     <element name="source" nillable="true" type="xsd:string"/>
      <element name="totalPrice" type="xsd:double"/>
     </sequence>
    </complexType>
@@ -589,17 +596,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteFlightRequest">
+   <wsdl:message name="addEmployeeRequest">
 
-      <wsdl:part element="impl:deleteFlight" name="parameters">
+      <wsdl:part element="impl:addEmployee" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addEmployeeRequest">
+   <wsdl:message name="deleteFlightRequest">
 
-      <wsdl:part element="impl:addEmployee" name="parameters">
+      <wsdl:part element="impl:deleteFlight" name="parameters">
 
       </wsdl:part>
 
@@ -621,17 +628,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="editEmployeeRequest">
+   <wsdl:message name="deleteCustomerRequest">
 
-      <wsdl:part element="impl:editEmployee" name="parameters">
+      <wsdl:part element="impl:deleteCustomer" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="deleteCustomerRequest">
+   <wsdl:message name="editEmployeeRequest">
 
-      <wsdl:part element="impl:deleteCustomer" name="parameters">
+      <wsdl:part element="impl:editEmployee" name="parameters">
 
       </wsdl:part>
 
@@ -693,17 +700,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteFlightResponse">
+   <wsdl:message name="addCustomerRequest">
 
-      <wsdl:part element="impl:deleteFlightResponse" name="parameters">
+      <wsdl:part element="impl:addCustomer" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addCustomerRequest">
+   <wsdl:message name="deleteFlightResponse">
 
-      <wsdl:part element="impl:addCustomer" name="parameters">
+      <wsdl:part element="impl:deleteFlightResponse" name="parameters">
 
       </wsdl:part>
 
@@ -831,6 +838,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="cancelReservation">
+
+         <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="editReservation">
 
          <wsdl:input message="impl:editReservationRequest" name="editReservationRequest">
@@ -862,6 +881,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:deleteEmployeeResponse" name="deleteEmployeeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFlight">
+
+         <wsdl:input message="impl:deleteFlightRequest" name="deleteFlightRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteFlightResponse" name="deleteFlightResponse">
 
        </wsdl:output>
 
@@ -915,6 +946,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="searchFlightsForAdmin">
+
+         <wsdl:input message="impl:searchFlightsForAdminRequest" name="searchFlightsForAdminRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchFlightsForAdminResponse" name="searchFlightsForAdminResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addCustomer">
 
          <wsdl:input message="impl:addCustomerRequest" name="addCustomerRequest">
@@ -927,13 +970,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteFlight">
+      <wsdl:operation name="editFlight">
 
-         <wsdl:input message="impl:deleteFlightRequest" name="deleteFlightRequest">
+         <wsdl:input message="impl:editFlightRequest" name="editFlightRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:deleteFlightResponse" name="deleteFlightResponse">
+         <wsdl:output message="impl:editFlightResponse" name="editFlightResponse">
 
        </wsdl:output>
 
@@ -958,42 +1001,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getAllFlightsForAdminResponse" name="getAllFlightsForAdminResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchFlightsForAdmin">
-
-         <wsdl:input message="impl:searchFlightsForAdminRequest" name="searchFlightsForAdminRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:searchFlightsForAdminResponse" name="searchFlightsForAdminResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="editFlight">
-
-         <wsdl:input message="impl:editFlightRequest" name="editFlightRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:editFlightResponse" name="editFlightResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="cancelReservation">
-
-         <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
 
        </wsdl:output>
 
@@ -1113,6 +1120,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="cancelReservation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelReservationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelReservationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="editReservation">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1160,6 +1185,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="deleteEmployeeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFlight">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteFlightRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteFlightResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1239,6 +1282,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="searchFlightsForAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchFlightsForAdminRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchFlightsForAdminResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addCustomer">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1257,17 +1318,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteFlight">
+      <wsdl:operation name="editFlight">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deleteFlightRequest">
+         <wsdl:input name="editFlightRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deleteFlightResponse">
+         <wsdl:output name="editFlightResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1304,60 +1365,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getAllFlightsForAdminResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="searchFlightsForAdmin">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="searchFlightsForAdminRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="searchFlightsForAdminResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="editFlight">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="editFlightRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="editFlightResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="cancelReservation">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="cancelReservationRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="cancelReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 

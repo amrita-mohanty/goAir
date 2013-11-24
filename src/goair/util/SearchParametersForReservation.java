@@ -1,14 +1,11 @@
 package goair.util;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SearchParametersForReservation {
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	
-	public long pnr = 0;
-	public long customerId = 0;
-	public long flightId = 0;
+	public long pnr;
+	public int customerId;
+	public int flightId;
 	public Date dateOfFlying;
 	
 	public long getPnr() {
@@ -17,10 +14,10 @@ public class SearchParametersForReservation {
 	public void setPnr(long pnr) {
 		this.pnr = pnr;
 	}
-	public long getFlightId() {
+	public int getFlightId() {
 		return flightId;
 	}
-	public void setFlightId(long flightId) {
+	public void setFlightId(int flightId) {
 		this.flightId = flightId;
 	}
 	public Date getDateOfFlying() {
@@ -30,10 +27,10 @@ public class SearchParametersForReservation {
 		this.dateOfFlying = dateOfFlying;
 	}
 	
-	public long getCustomerId() {
+	public int getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 	
@@ -41,7 +38,7 @@ public class SearchParametersForReservation {
 	public String toString() {
 		return "SearchParametersForReservation [pnr=" + pnr + ", customerId="
 				+ customerId + ", flightId=" + flightId + ", dateOfFlying="
-				+ dateFormat.format(dateOfFlying) + "]";
+				+ dateOfFlying + "]";
 	}
 	
 	

@@ -16,16 +16,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns5_Employee">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Employee"/>
-    </sequence>
-   </complexType>
-   <complexType name="ArrayOf_tns2_Customer">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Customer"/>
-    </sequence>
-   </complexType>
    <element name="cancelReservationResponse">
     <complexType>
      <sequence>
@@ -41,6 +31,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <complexType name="ArrayOf_tns5_Employee">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Employee"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns2_Customer">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Customer"/>
+    </sequence>
+   </complexType>
    <element name="createReservationResponse">
     <complexType>
      <sequence>
@@ -48,6 +48,33 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://reservation.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Reservation">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="creditCardNumber" type="xsd:long"/>
+     <element name="currentStatus" nillable="true" type="xsd:string"/>
+     <element name="customerFirstName" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:int"/>
+     <element name="customerLastName" nillable="true" type="xsd:string"/>
+     <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="flightId" type="xsd:int"/>
+     <element name="flightName" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeatsBooked" type="xsd:int"/>
+     <element name="pnr" type="xsd:long"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+     <element name="totalPrice" type="xsd:double"/>
+    </sequence>
+   </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://flight.model.goair"/>
@@ -136,26 +163,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="source" nillable="true" type="xsd:string"/>
      <element name="ticketPrice" nillable="true" type="xsd:double"/>
      <element name="totalSeats" type="xsd:int"/>
-    </sequence>
-   </complexType>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://reservation.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Reservation">
-    <sequence>
-     <element name="creditCardNumber" type="xsd:long"/>
-     <element name="currentStatus" nillable="true" type="xsd:string"/>
-     <element name="customerDetails" nillable="true" type="tns2:Customer"/>
-     <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
-     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
-     <element name="flightDetails" nillable="true" type="tns4:Flight"/>
-     <element name="numberOfSeatsBooked" type="xsd:int"/>
-     <element name="pnr" type="xsd:long"/>
-     <element name="totalPrice" type="xsd:double"/>
     </sequence>
    </complexType>
   </schema>

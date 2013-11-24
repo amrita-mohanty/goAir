@@ -1,17 +1,29 @@
 package goair.model.reservation;
 
+import goair.model.customer.Customer;
+import goair.model.flight.Flight;
+
 import java.util.Date;
 
 public class Reservation {
-	public long pnr;
-	public int customerId;
-	public int flightId;
-	public int numberOfSeatsBooked;
-	public long creditCardNumber;
-	public Date dateOfBooking;
-	public Date dateOfFlying;
-	public double totalPrice;
-	public String currentStatus;
+	long pnr;
+	int customerId;
+	int flightId;
+	int numberOfSeatsBooked;
+	long creditCardNumber;
+	Date dateOfBooking;
+	Date dateOfFlying;
+	double totalPrice;
+	String currentStatus;
+	
+	String customerFirstName;
+	String customerLastName;
+	
+	String airlineName;
+	String flightName;
+	String source;
+	String destination;
+	Date departureTime;
 	
 	public long getPnr() {
 		return pnr;
@@ -85,6 +97,62 @@ public class Reservation {
 		this.flightId = flightId;
 	}
 
+	public String getCustomerFirstName() {
+		return customerFirstName;
+	}
+
+	public void setCustomerFirstName(String customerFirstName) {
+		this.customerFirstName = customerFirstName;
+	}
+
+	public String getCustomerLastName() {
+		return customerLastName;
+	}
+
+	public void setCustomerLastName(String customerLastName) {
+		this.customerLastName = customerLastName;
+	}
+
+	public String getAirlineName() {
+		return airlineName;
+	}
+
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
+	}
+
+	public String getFlightName() {
+		return flightName;
+	}
+
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public Date getDepartureTime() {
+		return departureTime;
+	}
+
+	public void setDepartureTime(Date departureTime) {
+		this.departureTime = departureTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [pnr=" + pnr + ", customerId=" + customerId
@@ -92,10 +160,14 @@ public class Reservation {
 				+ numberOfSeatsBooked + ", creditCardNumber="
 				+ creditCardNumber + ", dateOfBooking=" + dateOfBooking
 				+ ", dateOfFlying=" + dateOfFlying + ", totalPrice="
-				+ totalPrice + ", currentStatus=" + currentStatus + "]";
+				+ totalPrice + ", currentStatus=" + currentStatus
+				+ ", customerFirstName=" + customerFirstName
+				+ ", customerLastName=" + customerLastName + ", airlineName="
+				+ airlineName + ", flightName=" + flightName + ", source="
+				+ source + ", destination=" + destination + ", departureTime="
+				+ departureTime + "]";
 	}
 
-	
 
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://util.goair" xmlns:tns2="http://flight.model.goair" xmlns:tns3="http://employee.model.goair" xmlns:tns4="http://general.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:tns6="http://reservation.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://customer.model.goair" xmlns:tns2="http://general.model.goair" xmlns:tns3="http://util.goair" xmlns:tns4="http://flight.model.goair" xmlns:tns5="http://employee.model.goair" xmlns:tns6="http://reservation.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
@@ -10,44 +10,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://customer.model.goair"/>
    <import namespace="http://employee.model.goair"/>
    <import namespace="http://general.model.goair"/>
-   <element name="main">
+   <element name="customerLogin">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="args" type="xsd:string"/>
+      <element name="emailId" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="mainResponse">
-    <complexType/>
+   <element name="customerLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="customerLoginReturn" type="tns1:Customer"/>
+     </sequence>
+    </complexType>
    </element>
    <element name="searchFlights">
     <complexType>
      <sequence>
-      <element name="searchFlightParam" type="tns1:SearchParametersForFlights"/>
+      <element name="searchFlightParam" type="tns3:SearchParametersForFlights"/>
      </sequence>
     </complexType>
    </element>
    <element name="searchFlightsResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="searchFlightsReturn" type="tns2:Flight"/>
+      <element maxOccurs="unbounded" name="searchFlightsReturn" type="tns4:Flight"/>
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns3_Employee">
+   <complexType name="ArrayOf_tns5_Employee">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns3:Employee"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Employee"/>
     </sequence>
    </complexType>
-   <complexType name="ArrayOf_tns5_Customer">
+   <complexType name="ArrayOf_tns1_Customer">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Customer"/>
     </sequence>
    </complexType>
    <element name="viewAllReservations">
     <complexType>
      <sequence>
-      <element name="searchParam" type="tns1:SearchParametersForReservation"/>
+      <element name="searchParam" type="tns3:SearchParametersForReservation"/>
      </sequence>
     </complexType>
    </element>
@@ -55,20 +60,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element maxOccurs="unbounded" name="viewAllReservationsReturn" type="tns6:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addReservation">
-    <complexType>
-     <sequence>
-      <element name="reservation" type="tns6:Reservation"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addReservationResponse">
-    <complexType>
-     <sequence>
-      <element name="addReservationReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -86,10 +77,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="addReservation">
+    <complexType>
+     <sequence>
+      <element name="reservation" type="tns6:Reservation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReservationResponse">
+    <complexType>
+     <sequence>
+      <element name="addReservationReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="editCustomer">
     <complexType>
      <sequence>
-      <element name="customer" type="tns5:Customer"/>
+      <element name="customer" type="tns1:Customer"/>
      </sequence>
     </complexType>
    </element>
@@ -103,7 +108,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addCustomer">
     <complexType>
      <sequence>
-      <element name="customer" type="tns5:Customer"/>
+      <element name="customer" type="tns1:Customer"/>
      </sequence>
     </complexType>
    </element>
@@ -114,26 +119,11 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="customerLogin">
-    <complexType>
-     <sequence>
-      <element name="emailId" type="xsd:string"/>
-      <element name="password" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="customerLoginResponse">
-    <complexType>
-     <sequence>
-      <element name="customerLoginReturn" type="tns5:Customer"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="createReservation">
     <complexType>
      <sequence>
-      <element name="customer" type="tns5:Customer"/>
-      <element name="flight" type="tns2:Flight"/>
+      <element name="customer" type="tns1:Customer"/>
+      <element name="flight" type="tns4:Flight"/>
      </sequence>
     </complexType>
    </element>
@@ -144,35 +134,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://reservation.model.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="SearchParametersForFlights">
-    <sequence>
-     <element name="airlineName" nillable="true" type="xsd:string"/>
-     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
-     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
-     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
-     <element name="destination" nillable="true" type="xsd:string"/>
-     <element name="employeeId" type="xsd:int"/>
-     <element name="flightNumber" nillable="true" type="xsd:string"/>
-     <element name="numberOfSeatsAvialable" type="xsd:int"/>
-     <element name="source" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-   <complexType name="SearchParametersForReservation">
-    <sequence>
-     <element name="customerId" type="xsd:long"/>
-     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
-     <element name="flightId" type="xsd:long"/>
-     <element name="pnr" type="xsd:long"/>
-    </sequence>
-   </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://util.goair"/>
@@ -197,27 +158,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </sequence>
    </complexType>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://util.goair"/>
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://reservation.model.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="Employee">
-    <complexContent>
-     <extension base="tns4:Person">
-      <sequence>
-       <element name="airlineName" nillable="true" type="xsd:string"/>
-       <element name="employeeId" nillable="true" type="xsd:int"/>
-       <element name="hireDate" nillable="true" type="xsd:dateTime"/>
-       <element name="jobDesc" nillable="true" type="xsd:string"/>
-       <element name="position" nillable="true" type="xsd:string"/>
-      </sequence>
-     </extension>
-    </complexContent>
-   </complexType>
-  </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
@@ -227,11 +167,61 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://general.model.goair"/>
    <complexType name="Customer">
     <complexContent>
-     <extension base="tns4:Person">
+     <extension base="tns2:Person">
       <sequence>
        <element name="customerId" type="xsd:int"/>
        <element name="nationality" nillable="true" type="xsd:string"/>
        <element name="passportNum" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://employee.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="SearchParametersForFlights">
+    <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
+     <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="employeeId" type="xsd:int"/>
+     <element name="flightNumber" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeatsAvialable" type="xsd:int"/>
+     <element name="source" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SearchParametersForReservation">
+    <sequence>
+     <element name="customerId" type="xsd:int"/>
+     <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
+     <element name="flightId" type="xsd:int"/>
+     <element name="pnr" type="xsd:long"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://util.goair"/>
+   <import namespace="http://flight.model.goair"/>
+   <import namespace="http://wsdl.goair"/>
+   <import namespace="http://reservation.model.goair"/>
+   <import namespace="http://customer.model.goair"/>
+   <import namespace="http://general.model.goair"/>
+   <complexType name="Employee">
+    <complexContent>
+     <extension base="tns2:Person">
+      <sequence>
+       <element name="airlineName" nillable="true" type="xsd:string"/>
+       <element name="employeeId" nillable="true" type="xsd:int"/>
+       <element name="hireDate" nillable="true" type="xsd:dateTime"/>
+       <element name="jobDesc" nillable="true" type="xsd:string"/>
+       <element name="position" nillable="true" type="xsd:string"/>
       </sequence>
      </extension>
     </complexContent>
@@ -248,7 +238,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <sequence>
      <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
-     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns3_Employee"/>
+     <element name="crewDetails" nillable="true" type="impl:ArrayOf_tns5_Employee"/>
      <element name="currentStatus" nillable="true" type="xsd:string"/>
      <element name="daysOfWeek" nillable="true" type="xsd:string"/>
      <element name="departureTime" nillable="true" type="xsd:dateTime"/>
@@ -259,7 +249,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="flyingDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
-     <element name="passengers" nillable="true" type="impl:ArrayOf_tns5_Customer"/>
+     <element name="passengers" nillable="true" type="impl:ArrayOf_tns1_Customer"/>
      <element name="seatsAvailable" type="xsd:int"/>
      <element name="seatsReserved" type="xsd:int"/>
      <element name="source" nillable="true" type="xsd:string"/>
@@ -277,14 +267,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <import namespace="http://general.model.goair"/>
    <complexType name="Reservation">
     <sequence>
+     <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="creditCardNumber" type="xsd:long"/>
      <element name="currentStatus" nillable="true" type="xsd:string"/>
-     <element name="customerDetails" nillable="true" type="tns5:Customer"/>
+     <element name="customerFirstName" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:int"/>
+     <element name="customerLastName" nillable="true" type="xsd:string"/>
      <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
      <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
-     <element name="flightDetails" nillable="true" type="tns2:Flight"/>
+     <element name="departureTime" nillable="true" type="xsd:dateTime"/>
+     <element name="destination" nillable="true" type="xsd:string"/>
+     <element name="flightId" type="xsd:int"/>
+     <element name="flightName" nillable="true" type="xsd:string"/>
      <element name="numberOfSeatsBooked" type="xsd:int"/>
      <element name="pnr" type="xsd:long"/>
+     <element name="source" nillable="true" type="xsd:string"/>
      <element name="totalPrice" type="xsd:double"/>
     </sequence>
    </complexType>
@@ -318,14 +315,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="customerLoginRequest">
 
       <wsdl:part element="impl:customerLogin" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="mainResponse">
-
-      <wsdl:part element="impl:mainResponse" name="parameters">
 
       </wsdl:part>
 
@@ -374,14 +363,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="viewAllReservationsRequest">
 
       <wsdl:part element="impl:viewAllReservations" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="mainRequest">
-
-      <wsdl:part element="impl:main" name="parameters">
 
       </wsdl:part>
 
@@ -437,13 +418,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="CustomerServices">
 
-      <wsdl:operation name="main">
+      <wsdl:operation name="customerLogin">
 
-         <wsdl:input message="impl:mainRequest" name="mainRequest">
+         <wsdl:input message="impl:customerLoginRequest" name="customerLoginRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:mainResponse" name="mainResponse">
+         <wsdl:output message="impl:customerLoginResponse" name="customerLoginResponse">
 
        </wsdl:output>
 
@@ -473,18 +454,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addReservation">
-
-         <wsdl:input message="impl:addReservationRequest" name="addReservationRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addReservationResponse" name="addReservationResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="cancelReservation">
 
          <wsdl:input message="impl:cancelReservationRequest" name="cancelReservationRequest">
@@ -492,6 +461,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:cancelReservationResponse" name="cancelReservationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReservation">
+
+         <wsdl:input message="impl:addReservationRequest" name="addReservationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addReservationResponse" name="addReservationResponse">
 
        </wsdl:output>
 
@@ -521,18 +502,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="customerLogin">
-
-         <wsdl:input message="impl:customerLoginRequest" name="customerLoginRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:customerLoginResponse" name="customerLoginResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="createReservation">
 
          <wsdl:input message="impl:createReservationRequest" name="createReservationRequest">
@@ -551,17 +520,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="main">
+      <wsdl:operation name="customerLogin">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="mainRequest">
+         <wsdl:input name="customerLoginRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="mainResponse">
+         <wsdl:output name="customerLoginResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -605,24 +574,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addReservation">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addReservationRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addReservationResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="cancelReservation">
 
          <wsdlsoap:operation soapAction=""/>
@@ -634,6 +585,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="cancelReservationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReservation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addReservationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addReservationResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -670,24 +639,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addCustomerResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="customerLogin">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="customerLoginRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="customerLoginResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import goair.model.customer.Customer;
 import goair.model.flight.Flight;
-import goair.model.payment.PaymentBean;
 import goair.model.query.AdminServiceQueries;
 import goair.model.query.CustomerServiceQueries;
 import goair.model.reservation.Reservation;
@@ -92,6 +91,7 @@ public class CustomerServices extends AirlineServices{
 	 * to view all the reservations of the particular customer
 	 */
 	public Reservation[] viewAllReservations(SearchParametersForReservation searchParam) {
+		logger.info("Search all Reservations for a customer: "+searchParam.toString());
 		return adminServiceQueries.searchReservationsForAdmin(searchParam);
 	}
 	
@@ -106,9 +106,4 @@ public class CustomerServices extends AirlineServices{
 		logger.info("Cancel a Reservation : "+ reservation.toString());
 		return adminServiceQueries.cancelReservation(reservation);
 	}
-
-	
-	public static void main(String args[]){
-	}
-
 }

@@ -20,15 +20,15 @@
       <parameter name="className" value="goair.wsdl.EmployeeServicesSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="EmployeeServices"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="viewEmployeeFlight" qname="operNS:viewEmployeeFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewEmployeeFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
-        <parameter qname="pns:searchFlightParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
-      </operation>
       <operation name="editEmployeeProfile" qname="operNS:editEmployeeProfile" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeProfileReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:employeeBean" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
       <operation name="employeeLogin" qname="operNS:employeeLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:employeeLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
         <parameter qname="pns:userName" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="viewEmployeeFlight" qname="operNS:viewEmployeeFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewEmployeeFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
+        <parameter qname="pns:searchFlightParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
       </operation>
       <parameter name="allowedMethods" value="editEmployeeProfile viewEmployeeFlight employeeLogin"/>
 
@@ -42,9 +42,9 @@
       />
       <arrayMapping
         xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns3_Employee"
-        type="java:goair.model.employee.Employee[]"
-        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
+        qname="ns:ArrayOf_tns5_Customer"
+        type="java:goair.model.customer.Customer[]"
+        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
         encodingStyle=""
       />
       <typeMapping
@@ -55,19 +55,19 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns5_Customer"
-        type="java:goair.model.customer.Customer[]"
-        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
-        encodingStyle=""
-      />
       <typeMapping
         xmlns:ns="http://general.model.goair"
         qname="ns:Person"
         type="java:goair.model.general.Person"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns1_Employee"
+        type="java:goair.model.employee.Employee[]"
+        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
         encodingStyle=""
       />
       <typeMapping

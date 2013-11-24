@@ -1,7 +1,5 @@
 package goair.model.query.adminservices;
 
-import goair.model.customer.Customer;
-import goair.model.flight.Flight;
 import goair.model.reservation.Reservation;
 import goair.util.SearchParametersForReservation;
 
@@ -35,7 +33,9 @@ public class SearchReservationsForAdminQuery {
 					+ "creditCardNumber, dateOfBooking, "
 					+ "dateOfFlying, totalPrice "
 					+ "from reservation ";*/
-
+		createSqlQuery(searchParameters);
+		
+		
 		logger.info("Get all the reservation : " + query);
 
 		ResultSet resultSet = null;  
@@ -51,19 +51,19 @@ public class SearchReservationsForAdminQuery {
 			while (resultSet.next()) 
 			{
 				reservation = new Reservation();
-//				reservation.setCustomerDetails(new Customer());
-//				reservation.setFlightDetails(new Flight());
-
+				
+				reservation.setCustomerId(resultSet.getInt("customerid"));
+				reservation.setCustomerFirstName(resultSet.getString("firstName"));
+				reservation.setCustomerLastName(resultSet.getString("lastName"));
+				
+				reservation.setFlightId(resultSet.getInt("flightId"));
+				reservation.setAirlineName(resultSet.getString("airlineName"));
+				reservation.setFlightName(resultSet.getString("flightName"));
+				reservation.setSource(resultSet.getString("source"));
+				reservation.setDestination(resultSet.getString("destination"));
+				reservation.setDepartureTime(resultSet.getTimestamp("departureTime"));
+				
 				reservation.setPnr(resultSet.getInt("pnr"));
-//				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
-//				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
-//				reservation.getCustomerDetails().setLastName(resultSet.getString("lastName"));
-//				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
-//				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
-//				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
-//				reservation.getFlightDetails().setSource(resultSet.getString("source"));
-//				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
-//				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));

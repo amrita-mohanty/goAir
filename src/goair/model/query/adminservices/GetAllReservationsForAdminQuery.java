@@ -1,7 +1,5 @@
 package goair.model.query.adminservices;
 
-import goair.model.customer.Customer;
-import goair.model.flight.Flight;
 import goair.model.reservation.Reservation;
 
 import java.sql.Connection;
