@@ -21,7 +21,7 @@ public class GetAllReservationsForAdminQuery {
 	 * an  admin or a customer based on the searchParameters
 	 * @return Reservation[] 
 	 */
-	public Reservation[] getAllReservationsForAdmin(SearchParametersForReservation searchParam,Connection connection)
+	public Reservation[] getAllReservationsForAdmin(Connection connection)
 	{
 		List<Reservation> reservations = new ArrayList<Reservation>();
 

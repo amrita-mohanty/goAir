@@ -308,14 +308,14 @@ public class AdminServiceQueries
 	 * Get all the Reservations in the system
 	 * @return Reservation[] - Return list of all the Reservations
 	 */
-	public Reservation[] getAllReservationsForAdmin(SearchParametersForReservation searchParam)
+	public Reservation[] getAllReservationsForAdmin()
 	{
 		if(getAllReservationsForAdminQuery == null)
 		{
 			getAllReservationsForAdminQuery = new GetAllReservationsForAdminQuery();
 		}
 		logger.info("searchAllReservationsForAdmin");
-		return getAllReservationsForAdminQuery.getAllReservationsForAdmin(searchParam,connection);
+		return getAllReservationsForAdminQuery.getAllReservationsForAdmin(connection);
 	}
 	
 	/**
