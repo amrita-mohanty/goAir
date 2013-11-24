@@ -33,8 +33,8 @@ public class AddReservationQuery {
 			logger.info("Insert query for reservation table : "+reservationTableQuery);
 			
 			preparedStatement = connection.prepareStatement(reservationTableQuery);
-			preparedStatement.setInt(1, reservation.getCustomerDetails().getCustomerId());
-			preparedStatement.setInt(2, reservation.getFlightDetails().getFlightId());
+			preparedStatement.setInt(1, reservation.getCustomerId());
+			preparedStatement.setInt(2, reservation.getFlightId());
 			preparedStatement.setInt(3, reservation.getNumberOfSeatsBooked());
 			preparedStatement.setLong(4, reservation.getCreditCardNumber());
 			preparedStatement.setDate(5, new Date(reservation.getDateOfBooking().getTime()));

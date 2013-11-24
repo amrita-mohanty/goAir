@@ -51,19 +51,19 @@ public class SearchReservationsForAdminQuery {
 			while (resultSet.next()) 
 			{
 				reservation = new Reservation();
-				reservation.setCustomerDetails(new Customer());
-				reservation.setFlightDetails(new Flight());
+//				reservation.setCustomerDetails(new Customer());
+//				reservation.setFlightDetails(new Flight());
 
 				reservation.setPnr(resultSet.getInt("pnr"));
-				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
-				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
-				reservation.getCustomerDetails().setLastName(resultSet.getString("lastName"));
-				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
-				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
-				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
-				reservation.getFlightDetails().setSource(resultSet.getString("source"));
-				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
-				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
+//				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
+//				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
+//				reservation.getCustomerDetails().setLastName(resultSet.getString("lastName"));
+//				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
+//				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
+//				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
+//				reservation.getFlightDetails().setSource(resultSet.getString("source"));
+//				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
+//				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
