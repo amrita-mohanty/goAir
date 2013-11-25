@@ -30,7 +30,7 @@ public class CancelReservationQuery {
 		Statement statement = null;
 		try
 		{
-			String cancelReservationTableQuery = "update reservation set currentStatus = 'Cancelled' where pnr="+reservation.getPnr();
+			String cancelReservationTableQuery = "update reservation set currentStatus = 'Deleted' where pnr="+reservation.getPnr();
 			
 			logger.info("Cancel query for reservation table : "+cancelReservationTableQuery);
 			
