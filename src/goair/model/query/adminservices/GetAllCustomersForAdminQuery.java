@@ -26,7 +26,7 @@ public class GetAllCustomersForAdminQuery {
 				+ "firstname, lastname, gender, passportNum, "
 				+ "nationality, address, city,"
 				+ "state, zipcode, dob "
-				+ "from customer ";
+				+ "from customer where currentStatus = 'Active'";
 
 		logger.info("Get all the customers : " + query);
 

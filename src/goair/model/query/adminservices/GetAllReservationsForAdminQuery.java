@@ -30,7 +30,7 @@ public class GetAllReservationsForAdminQuery {
 				+ "r.dateOfFlying,r.totalPrice,c.firstName,c.lastName,"
 				+ "f.airlineName,f.flightname,f.source,f.destination,f.departureTime "
 				+ "from reservation r, flight f, customer c where r.flightId = f.flightid and "
-				+ "r.customerId = c.customerId";
+				+ "r.customerId = c.customerId and r.currentStatus = 'Active'";
 
 		logger.info("Get all the reservation query : " + query);
 

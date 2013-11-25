@@ -1,8 +1,5 @@
 package goair.model.reservation;
 
-import goair.model.customer.Customer;
-import goair.model.flight.Flight;
-
 import java.util.Date;
 
 public class Reservation {

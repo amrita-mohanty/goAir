@@ -124,76 +124,54 @@ public class EditFlightQuery {
 	{
 		String updateFlightTableQuery = "update flight set ";
 		
-//		  `flightName` VARCHAR(10) NOT NULL UNIQUE,
-//		  `source` VARCHAR(40) NOT NULL,
-//		  `destination` VARCHAR(40) NOT NULL,
-//		  `departureTime` DATETIME NOT NULL,
-//		  `arrivalTime` DATETIME NOT NULL,
-//		  `totalSeats` INT(20) NOT NULL,
-//		  `seatsReserved` INT(10) NOT NULL,
-//		  `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
-//		  `flyingStartDate` DATE NOT NULL,
-//		  `flyingEndDate` DATE NOT NULL,
-//		  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
-		
-		boolean addComma = false;
 		if(flight.getFlightName() != null)
 		{
-			updateFlightTableQuery += " flightName='"+flight.getFlightName()+"' ";
-			addComma = true;
+			updateFlightTableQuery += ", flightName='"+flight.getFlightName()+"' ";
 		}
 		if(flight.getSource() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " source='"+flight.getSource()+"' ";
-			addComma = true;
+			updateFlightTableQuery += ", source='"+flight.getSource()+"' ";
 		}
 		if(flight.getDestination() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " destination='"+flight.getDestination()+"' ";
-			addComma = true;
+			updateFlightTableQuery += ", destination='"+flight.getDestination()+"' ";
 		}
 		if(flight.getDepartureTime() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " departureTime='"+timeFormat.format(flight.getDepartureTime())+"' ";
-			addComma = true;
+			updateFlightTableQuery += ", departureTime='"+timeFormat.format(flight.getDepartureTime())+"' ";
 		}
 		if(flight.getArrivalTime() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " arrivalTime='"+timeFormat.format(flight.getArrivalTime())+"' ";
-			addComma = true;
+			updateFlightTableQuery += ", arrivalTime='"+timeFormat.format(flight.getArrivalTime())+"' ";
 		}
 		if(flight.getTotalSeats() > 0)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " totalSeats="+flight.getTotalSeats()+" ";
-			addComma = true;
+			updateFlightTableQuery += ", totalSeats="+flight.getTotalSeats()+" ";
 		}
 		if(flight.getSeatsReserved() > 0)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " seatsReserved="+flight.getSeatsReserved()+" ";
-			addComma = true;
+			updateFlightTableQuery += ", seatsReserved="+flight.getSeatsReserved()+" ";
 		}
 		if(flight.getDaysOfWeek() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " daysOfWeek='"+flight.getDaysOfWeek()+"' ";
-			addComma = true;
+			updateFlightTableQuery += ",  daysOfWeek='"+flight.getDaysOfWeek()+"' ";
 		}
 		if(flight.getFlyingStartDate() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " flyingStartDate='"+dateFormat.format(flight.getFlyingStartDate())+"' ";
-			addComma = true;
+			updateFlightTableQuery += ",  flyingStartDate='"+dateFormat.format(flight.getFlyingStartDate())+"' ";
 		}
 		if(flight.getFlyingEndDate() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " flyingEndDate='"+dateFormat.format(flight.getFlyingEndDate())+"' ";
-			addComma = true;
+			updateFlightTableQuery += ",  flyingEndDate='"+dateFormat.format(flight.getFlyingEndDate())+"' ";
 		}
 		if(flight.getCurrentStatus() != null)
 		{
-			updateFlightTableQuery += (addComma ? "," : "") + " currentStatus='"+flight.getCurrentStatus()+"' ";
-			addComma = true;
+			updateFlightTableQuery += ",  currentStatus='"+flight.getCurrentStatus()+"' ";
 		}
 		
 		updateFlightTableQuery += " where flightId=" + flight.getFlightId();
+		
+		updateFlightTableQuery = updateFlightTableQuery.replace("set ,", "");
 		
 		return updateFlightTableQuery;
 	}

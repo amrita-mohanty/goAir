@@ -25,65 +25,53 @@ public class EditCustomerQuery {
 	{
 		String customerTableQuery = "update customer set ";
 		
-		boolean addComma = false;
-		
 		if(customer.getEmailId() != null)
 		{
-			customerTableQuery += " emailId='"+customer.getEmailId()+"' ";
-			addComma = true;
+			customerTableQuery += ", emailId='"+customer.getEmailId()+"' ";
 		}
 		if(customer.getFirstName() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " firstname='"+customer.getFirstName()+"' ";
-			addComma = true;
+			customerTableQuery += ", firstname='"+customer.getFirstName()+"' ";
 		}
 		if(customer.getLastName() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " lastname='"+customer.getLastName()+"' ";
-			addComma = true;
+			customerTableQuery += ", lastname='"+customer.getLastName()+"' ";
 		}
 		if(customer.getPassportNum() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") +" passportNum='"+customer.getPassportNum()+"' ";
-			addComma = true;
+			customerTableQuery += ", passportNum='"+customer.getPassportNum()+"' ";
 		}
 		if(customer.getNationality() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " nationality='"+customer.getNationality()+"' ";
-			addComma = true;
+			customerTableQuery += ", nationality='"+customer.getNationality()+"' ";
 		}
 		if(customer.getAddress() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " address='"+customer.getAddress()+"' ";
-			addComma = true;
+			customerTableQuery += ", address='"+customer.getAddress()+"' ";
 		}
 		if(customer.getCity() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " city='"+customer.getCity()+"' ";
-			addComma = true;
+			customerTableQuery += ", city='"+customer.getCity()+"' ";
 		}
 		if(customer.getState() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " state='"+customer.getState()+"' ";
-			addComma = true;
+			customerTableQuery += ", state='"+customer.getState()+"' ";
 		}
 		if(customer.getZipcode() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " zipcode='"+customer.getZipcode()+"' ";
-			addComma = true;
+			customerTableQuery += ", zipcode='"+customer.getZipcode()+"' ";
 		}
 		if(customer.getDob() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " dob='"+dateFormat.format(customer.getDob())+"' ";
-			addComma = true;
+			customerTableQuery += ", dob='"+dateFormat.format(customer.getDob())+"' ";
 		}
 		if(customer.getPassword() != null)
 		{
-			customerTableQuery += (addComma ? "," : "") + " password="+customer.getPassword()+" ";
-			addComma = true;
+			customerTableQuery += ", password="+customer.getPassword()+" ";
 		}
 		
 		customerTableQuery += " where customerId="+customer.getCustomerId();
+		customerTableQuery = customerTableQuery.replace("set ,", "");
 		
 		Statement statement = null;
 		try

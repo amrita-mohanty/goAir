@@ -41,9 +41,9 @@ public class GetAllFlightsForAdminQuery {
 				+ "destination, departureTime, arrivalTime, totalSeats, "
 				+ "seatsReserved, daysOfWeek, flyingStartDate,"
 				+ "flyingEndDate,currentstatus "
-				+ "from flight ";
+				+ "from flight where currentStatus = 'Active'";
 
-		logger.info("Get all the flights : " + query);
+		logger.info("Get all the active flights : " + query);
 
 		ResultSet resultSet = null;  
 		Statement statement = null;

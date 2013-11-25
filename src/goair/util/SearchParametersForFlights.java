@@ -18,7 +18,7 @@ public class SearchParametersForFlights {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int emoloyeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 

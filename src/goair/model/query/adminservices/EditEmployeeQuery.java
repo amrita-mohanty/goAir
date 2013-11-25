@@ -26,69 +26,57 @@ public class EditEmployeeQuery {
 	{
 		String employeeTableQuery = "update employee set ";  
 
-		boolean addComma = false;
 		if(employee.getEmailId() != null)
 		{
-			employeeTableQuery += " emailId='"+employee.getEmailId()+"' ";
-			addComma = true;
+			employeeTableQuery += ", emailId='"+employee.getEmailId()+"' ";
 		}
 		if(employee.getFirstName() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " firstname='"+employee.getFirstName()+"' ";
-			addComma = true;
+			employeeTableQuery += ", firstname='"+employee.getFirstName()+"' ";
 		}
 		if(employee.getLastName() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " lastname='"+employee.getLastName()+"' ";
-			addComma = true;
+			employeeTableQuery += ", lastname='"+employee.getLastName()+"' ";
 		}
 		if(employee.getJobDesc() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " jobDesc='"+employee.getJobDesc()+"' ";
-			addComma = true;
+			employeeTableQuery += ", jobDesc='"+employee.getJobDesc()+"' ";
 		}
 		if(employee.getPosition() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " position='"+employee.getPosition()+"' ";
-			addComma = true;
+			employeeTableQuery += ", position='"+employee.getPosition()+"' ";
 		}
 		if(employee.getHireDate() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " hireDate='"+dateFormat.format(employee.getHireDate())+"' ";
-			addComma = true;
+			employeeTableQuery += ", hireDate='"+dateFormat.format(employee.getHireDate())+"' ";
 		}
 		if(employee.getAddress() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " address='"+employee.getAddress()+"' ";
-			addComma = true;
+			employeeTableQuery += ", address='"+employee.getAddress()+"' ";
 		}
 		if(employee.getCity() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " city='"+employee.getCity()+"' ";
-			addComma = true;
+			employeeTableQuery += ", city='"+employee.getCity()+"' ";
 		}
 		if(employee.getState() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " state='"+employee.getState()+"' ";
-			addComma = true;
+			employeeTableQuery += ", state='"+employee.getState()+"' ";
 		}
 		if(employee.getZipcode() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " zipcode='"+employee.getZipcode()+"' ";
-			addComma = true;
+			employeeTableQuery += ", zipcode='"+employee.getZipcode()+"' ";
 		}
 		if(employee.getDob() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " dob='"+dateFormat.format(employee.getDob())+"' ";
-			addComma = true;
+			employeeTableQuery += ", dob='"+dateFormat.format(employee.getDob())+"' ";
 		}
 		if(employee.getPassword() != null)
 		{
-			employeeTableQuery += (addComma ? "," : "") + " password="+employee.getPassword()+" ";
-			addComma = true;
+			employeeTableQuery += ", password="+employee.getPassword()+" ";
 		}
 		
 		employeeTableQuery += " where employeeId="+employee.getEmployeeId();
+		employeeTableQuery = employeeTableQuery.replace("set ,", "");
 		
 		Statement statement = null;
 		try

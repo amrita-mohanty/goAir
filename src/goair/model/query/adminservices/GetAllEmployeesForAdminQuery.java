@@ -26,9 +26,9 @@ public class GetAllEmployeesForAdminQuery {
 				+ "firstname, lastname, gender, airlineName, "
 				+ "jobDesc, position, hireDate, address, city,"
 				+ "state, zipcode, dob "
-				+ "from employee ";
+				+ "from employee where currentStatus = 'Active'";
 
-		logger.info("Get all the employees : " + query);
+		logger.info("Get all active employees : " + query);
 
 		ResultSet resultSet = null;  
 		Statement statement = null;
