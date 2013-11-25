@@ -35,11 +35,6 @@ public class AddFlightQuery {
 				+ "from flight "
 				+ "where flightName='"+ flight.getFlightName() +"'";
 		
-		String flightFlyingInfoTableQuery = "insert into flightflyinginformation(flightId, "
-				+ "dateOfFlying, flightStatus, "
-				+ "employeeId, ticketPrice) "
-				+ "values (?,?,?,?,?) ";
-		
 		PreparedStatement preparedStatement = null;
 		Statement statement = null;
 		
@@ -72,6 +67,11 @@ public class AddFlightQuery {
 			{
 				flightId = resultSet.getInt("flightId");
 			}
+			
+			String flightFlyingInfoTableQuery = "insert into flightflyinginformation(flightId, "
+					+ "dateOfFlying, flightStatus, "
+					+ "employeeId, ticketPrice) "
+					+ "values (?,?,?,?,?) ";
 			
 			// Here we have to insert into flight table then flightflyinginformation table
 			logger.info("Insert query for flightFlyingInfoTableQuery table : "+

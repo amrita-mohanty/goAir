@@ -3,14 +3,17 @@ package goair.model.query.adminservices;
 import goair.model.employee.Employee;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
 
 public class EditEmployeeQuery {
 	
 	public static Logger logger = Logger.getLogger(EditEmployeeQuery.class);
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	/**
 	 * Edit the Employee
@@ -21,34 +24,79 @@ public class EditEmployeeQuery {
 	 */
 	public int editEmployee(Employee employee, Connection connection)
 	{
-		String employeeTableQuery = "update employee set "  
-				+ "emailId=?, "
-				+ "firstname=?, lastname=?, gender=?, airlineName=?, "
-				+ "jobDesc=?, position=?, hireDate=?, address=?, city=?,"
-				+ "state=?, zipcode=?, dob=? where employeeId=?";
+		String employeeTableQuery = "update employee set ";  
 
-		PreparedStatement preparedStatement = null;
+		boolean addComma = false;
+		if(employee.getEmailId() != null)
+		{
+			employeeTableQuery += " emailId='"+employee.getEmailId()+"' ";
+			addComma = true;
+		}
+		if(employee.getFirstName() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " firstname='"+employee.getFirstName()+"' ";
+			addComma = true;
+		}
+		if(employee.getLastName() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " lastname='"+employee.getLastName()+"' ";
+			addComma = true;
+		}
+		if(employee.getJobDesc() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " jobDesc='"+employee.getJobDesc()+"' ";
+			addComma = true;
+		}
+		if(employee.getPosition() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " position='"+employee.getPosition()+"' ";
+			addComma = true;
+		}
+		if(employee.getHireDate() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " hireDate='"+dateFormat.format(employee.getHireDate())+"' ";
+			addComma = true;
+		}
+		if(employee.getAddress() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " address='"+employee.getAddress()+"' ";
+			addComma = true;
+		}
+		if(employee.getCity() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " city='"+employee.getCity()+"' ";
+			addComma = true;
+		}
+		if(employee.getState() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " state='"+employee.getState()+"' ";
+			addComma = true;
+		}
+		if(employee.getZipcode() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " zipcode='"+employee.getZipcode()+"' ";
+			addComma = true;
+		}
+		if(employee.getDob() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " dob='"+dateFormat.format(employee.getDob())+"' ";
+			addComma = true;
+		}
+		if(employee.getPassword() != null)
+		{
+			employeeTableQuery += (addComma ? "," : "") + " password="+employee.getPassword()+" ";
+			addComma = true;
+		}
+		
+		employeeTableQuery += " where employeeId="+employee.getEmployeeId();
+		
+		Statement statement = null;
 		try
 		{
-			logger.info("Update query for customer table : "+employeeTableQuery);
+			logger.info("Update query for employee table : "+employeeTableQuery);
 			
-			preparedStatement = connection.prepareStatement(employeeTableQuery);
-			preparedStatement.setString(1, employee.getEmailId());
-			preparedStatement.setString(2, employee.getFirstName());
-			preparedStatement.setString(3, employee.getLastName());
-			preparedStatement.setString(4, employee.getGender());
-			preparedStatement.setString(5, employee.getAirlineName());
-			preparedStatement.setString(6, employee.getJobDesc());
-			preparedStatement.setString(7, employee.getPosition());
-			preparedStatement.setDate(8, new Date(employee.getHireDate().getTime()));
-			preparedStatement.setString(9, employee.getAddress());
-			preparedStatement.setString(10, employee.getCity());
-			preparedStatement.setString(11, employee.getState());
-			preparedStatement.setString(12, employee.getZipcode());
-			preparedStatement.setDate(13, new Date(employee.getDob().getTime()));
-			
-			preparedStatement.execute();
-			preparedStatement.close();
+			statement = connection.createStatement();
+			statement.executeUpdate(employeeTableQuery);
 			
 			return 1;
 		}

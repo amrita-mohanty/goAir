@@ -1,6 +1,5 @@
 package goair.model.flight;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -8,10 +7,6 @@ import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 
 public class Flight {
-
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	SimpleDateFormat dateFormatTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	
 	Integer flightId;
 	String flightName;
 	String airlineName;
@@ -221,17 +216,17 @@ public class Flight {
 		public String toString() {
 			return "Flight [airlineName="
 					+ airlineName 
-					+ ", arrivalTime=" + arrivalTime != null ? dateFormatTime.format(arrivalTime.getTime()) : null
+					+ ", arrivalTime=" + arrivalTime
 					+ ", crewDetails=" + Arrays.toString(crewDetails)
 					+ ", currentStatus=" + currentStatus + ", daysOfWeek="
 					+ daysOfWeek 
-					+ ", departureTime=" + departureTime != null ? dateFormatTime.format(departureTime.getTime()) : null
+					+ ", departureTime=" + departureTime
 					+ ", destination=" + destination + ", flightId=" + flightId
 					+ ", flightName=" + flightName + ", flightStatus="
 					+ flightStatus 
-					+ ", flyingEndDate=" + flyingEndDate != null ? dateFormat.format(flyingEndDate.getTime()) : null
-					+ ", flyingStartDate=" + flyingStartDate != null ? dateFormat.format(flyingStartDate.getTime()) : null 
-					+ ", flyingDate=" + flyingDate != null ? dateFormat.format(flyingDate.getTime()) : null
+					+ ", flyingEndDate=" + flyingEndDate
+					+ ", flyingStartDate=" + flyingStartDate 
+					+ ", flyingDate=" + flyingDate
 					+ ", passengers="
 					+ Arrays.toString(passengers) + ", seatsAvailable="
 					+ seatsAvailable + ", seatsReserved=" + seatsReserved

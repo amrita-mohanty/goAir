@@ -1,14 +1,10 @@
 package goair.model.employee;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import goair.model.general.Person;
 
 public class Employee extends Person {
-	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	
 	public Employee() {}
 
 	Integer employeeId;
@@ -51,13 +47,13 @@ public class Employee extends Person {
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", airlineName="
 				+ airlineName + ", jobDesc=" + jobDesc + ", position="
-				+ position + ", hireDate=" + hireDate != null ? dateFormat.format(hireDate.getTime()) : null 
+				+ position + ", hireDate=" + hireDate 
 				+ ", emailId=" + emailId
 				+ ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender
 				+ ", address=" + address + ", city=" + city + ", state="
 				+ state + ", zipcode=" + zipcode 
-				+ ", dob=" + dob != null ? dateFormat.format(dob.getTime()) : null
+				+ ", dob=" + dob
 				+ ", currentStatus=" + currentStatus + "]";
 	}
 	

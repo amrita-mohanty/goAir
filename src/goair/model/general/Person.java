@@ -1,12 +1,8 @@
 package goair.model.general;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person {
-	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	
 	public Person() {}
 	
 	public String emailId;
@@ -93,7 +89,7 @@ public class Person {
 				+ ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", gender=" + gender + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", zipcode=" + zipcode 
-				+ ", dob=" + dob != null ? dateFormat.format(dob) : null  
+				+ ", dob=" + dob  
 				+ ", currentStatus=" + currentStatus + "]";
 	}
 
