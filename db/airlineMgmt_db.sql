@@ -60,7 +60,7 @@ CREATE TABLE  `flight` (
   `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
   `flyingStartDate` DATE NOT NULL,
   `flyingEndDate` DATE NOT NULL,
-  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
+  `currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Deleted
   PRIMARY KEY  (`flightId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,7 +85,7 @@ CREATE TABLE `reservation`(
 	`dateOfBooking` DATE NOT NULL,
 	`dateOfFlying` DATE NOT NULL,
 	`totalPrice` DECIMAL(10,2) NOT NULL, 
-	`currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Inactive or Deleted
+	`currentStatus` VARCHAR(10) default 'ACTIVE', -- Active, Deleted
 	FOREIGN KEY (flightId) REFERENCES flight(flightId),
   	FOREIGN KEY (customerId) REFERENCES customer(customerId),
 	PRIMARY KEY  (`pnr`)

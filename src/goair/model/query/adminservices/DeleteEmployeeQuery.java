@@ -3,7 +3,7 @@ package goair.model.query.adminservices;
 import goair.model.employee.Employee;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
@@ -21,23 +21,23 @@ public class DeleteEmployeeQuery {
 	 */
 	public int deleteEmployee(Employee employee, Connection connection)
 	{
-		String deleteEmployeeTableQuery = "update employee set currentStatus = 'Deleted' where employeeId=?";
+		String deleteEmployeeTableQuery = "update employee set currentStatus = 'Deleted' where employeeId="
+				+employee.getEmployeeId();
 
-		PreparedStatement preparedStatement = null;
+		Statement statement = null;
 		try
 		{
-			logger.info("Delete query for customer table : "+deleteEmployeeTableQuery);
+			logger.info("Delete query for employee table : "+deleteEmployeeTableQuery);
 			
-			preparedStatement = connection.prepareStatement(deleteEmployeeTableQuery);
-			preparedStatement.setInt(1, employee.getEmployeeId());
-			preparedStatement.execute();
-			preparedStatement.close();
+			statement = connection.createStatement();
+			statement.execute(deleteEmployeeTableQuery);
+			statement.close();
 			
 			return 1;
 		}
 		catch (Exception e)
 		{
-			logger.error("Error while delete.\n"+e.getMessage());
+			logger.error("Error while deleting employee.\n"+e.getMessage());
 			e.printStackTrace();
 			return -1;
 		}
