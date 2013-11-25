@@ -41,6 +41,7 @@ public class CustomerServices extends AirlineServices{
 	 * else returns null;
 	 */
 	public Customer customerLogin(String emailId,String password) {
+		logger.info("Validate a Customer : email : " + emailId + ", password : " + password);
 		return customerServiceQueries.validateCustomerLogin(emailId, password);
 	}
 	
@@ -66,6 +67,7 @@ public class CustomerServices extends AirlineServices{
 	 */
 	public Flight[] searchFlights(SearchParametersForFlights searchFlightParam)
 	{
+		// Need source, destination and date of flying to run this search
 		logger.info("Search Flights for Customer : "+ searchFlightParam.toString());
 		Flight[] searchResult = null;
 		searchResult = customerServiceQueries.searchFlightsForCustomer(searchFlightParam);

@@ -25,9 +25,9 @@ public class CustomerLoginQuery {
 		String query = "select customerId, emailId, password, firstName, "
 				+ "lastName, gender, passportNum, nationality, "
 				+ "address, city, state, zipcode, dob "
-				+ "from customer where currentStatus='ACTIVE' and emailId=? and password=?";
+				+ "from customer where currentStatus='Active' and emailId=? and password=?";
 
-		logger.info("Get all the flights : " + query);
+		logger.info("Validate customer login : " + query);
 
 		ResultSet resultSet = null;  
 		PreparedStatement preparedStatement = null;
@@ -40,7 +40,7 @@ public class CustomerLoginQuery {
 			preparedStatement.setString(1,emailId);
 			preparedStatement.setString(2,password);
 
-			resultSet = preparedStatement.executeQuery(query);  
+			resultSet = preparedStatement.executeQuery();  
 
 			while (resultSet.next()) 
 			{

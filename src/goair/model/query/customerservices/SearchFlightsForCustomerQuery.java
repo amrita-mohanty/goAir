@@ -35,9 +35,7 @@ public class SearchFlightsForCustomerQuery {
 				+ "flight.flightId=flightflyinginformation.flightId and "
 				+ "flight.source=? and flight.destination=? and  flightflyinginformation.dateOfFlying=?";
 
-
-
-		logger.info("Get all the flights : " + query);
+		logger.info("Search flights for customer : " + query);
 
 		ResultSet resultSet = null;  
 		PreparedStatement preparedStatement = null;
@@ -51,7 +49,7 @@ public class SearchFlightsForCustomerQuery {
 			preparedStatement.setString(2,searchParameters.getDestination());
 			preparedStatement.setDate(3,new Date(searchParameters.getDateOfFlying().getTime()));
 
-			resultSet = preparedStatement.executeQuery(query);
+			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) 
 			{
