@@ -171,7 +171,7 @@ public class EditFlightQuery {
 		
 		updateFlightTableQuery += " where flightId=" + flight.getFlightId();
 		
-		updateFlightTableQuery = updateFlightTableQuery.replace("set ,", "");
+		updateFlightTableQuery = updateFlightTableQuery.replace("set ,", "set ");
 		
 		return updateFlightTableQuery;
 	}

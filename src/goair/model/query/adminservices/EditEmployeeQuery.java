@@ -76,7 +76,7 @@ public class EditEmployeeQuery {
 		}
 		
 		employeeTableQuery += " where employeeId="+employee.getEmployeeId();
-		employeeTableQuery = employeeTableQuery.replace("set ,", "");
+		employeeTableQuery = employeeTableQuery.replace("set ,", "set ");
 		
 		Statement statement = null;
 		try

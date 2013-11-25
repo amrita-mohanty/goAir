@@ -71,7 +71,7 @@ public class EditCustomerQuery {
 		}
 		
 		customerTableQuery += " where customerId="+customer.getCustomerId();
-		customerTableQuery = customerTableQuery.replace("set ,", "");
+		customerTableQuery = customerTableQuery.replace("set ,", "set ");
 		
 		Statement statement = null;
 		try
