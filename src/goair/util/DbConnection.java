@@ -14,7 +14,7 @@ public class DbConnection
 		try 
 		{  
 			Class.forName(connectionDriver);  
-			connection = DriverManager.getConnection(connectionParam, "root","");  
+			connection = DriverManager.getConnection(connectionParam, "root","root");  
 		} 
 		catch (Exception e) 
 		{  

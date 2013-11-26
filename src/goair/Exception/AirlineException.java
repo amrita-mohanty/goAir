@@ -3,40 +3,26 @@ package goair.Exception;
 import goair.constants.AirlineConstants;
 
 import java.text.MessageFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
+
 public class AirlineException extends Exception {
+	
+	public static Logger logger = Logger.getLogger(AirlineException.class);
 
-	private static final long serialVersionUID = 1L;
-	private ResourceBundle m_rb = null;
-	private Locale m_locale = Locale.getDefault();
-
-	public AirlineException() {
-		setup( m_locale );
-	}
-
-	public AirlineException(Locale locale)
-	{
-		setup( locale );
-	}
-
-	public void setLocale(Locale locale)
-	{
-		setup( locale );
-	}
-
-	public Locale getLocale()
-	{
-		return m_locale;  
-	}
-
+	private static ResourceBundle m_rb = null;
 	protected int m_errorCode = -1;
 	protected String m_message = null;
+	
+	public AirlineException(String message, int errorCode)
+	{
+		//super(message);
+		m_message = message;
+		m_errorCode = errorCode;
 
-	// Used for exceptions deserialized from SOAPFaultExceptions
-	protected String m_causeMessage = null;
-	protected StackTraceElement[] m_causeStackTrace = null;
+	}
+
 
 	public String getMessage()
 	{
@@ -55,82 +41,41 @@ public class AirlineException extends Exception {
 
 
 	/**
-	 * Internal only.
-	 */
-	public void setCauseMessage(String causeMessage)
-	{
-		m_causeMessage = causeMessage;
-	}
-
-	public String getCauseMessage()
-	{
-		if ( getCause() != null )
-			return getCause().getMessage();
-		else
-			return m_causeMessage;
-	}
-
-	/**
-	 * Internal only.
-	 */
-	public void setCauseStackTrace(StackTraceElement[] causeStackTrace)
-	{
-		m_causeStackTrace = causeStackTrace;
-	}
-
-	public StackTraceElement[] getCauseStackTrace()
-	{
-		if ( getCause() != null )
-			return getCause().getStackTrace();
-		else
-			return m_causeStackTrace;
-	}
-
-
-	/**
 	 * Helper to localize exception messages.
 	 */ 
-	protected String getLocalizedString(int msgCode, 
-			Object[] args, 
-			Locale locale)
+	protected static String getLocalizedString(int msgCode, String args)
 	{
 		// Returns a prefixed message, e.g., "AMS-100: Unexpected error"
 		return AirlineConstants.ERROR_PREFIX + "-" + msgCode + ": " + getMessage( msgCode, args );
 	}
 
-	public String getMessage(int id, Object arg1) 
+	public static String getMessage(int id, String arg1) 
 	{
-		return MessageFormat.format( getMessage( id ), new Object[]{ arg1 } );
+		return MessageFormat.format( getMessage( id ), new Object []{ arg1 } );
 	}
 
-	public String getMessage (int id, Object arg1, Object arg2) 
+	public static String getMessage (int id, String arg1, String arg2) 
 	{
 		return MessageFormat.format(
-				getMessage( id ), new Object[]{ arg1, arg2 } ); 
+				getMessage( id ), new Object []{ arg1, arg2 } ); 
 	}
 
-	public String getMessage(int id, Object arg1, Object arg2, Object arg3) 
+	public static String getMessage(int id, String arg1, String arg2, String arg3) 
 	{
 		return MessageFormat.format(
-				getMessage( id ), new Object[]{ arg1, arg2, arg3 } ); 
+				getMessage( id ), new Object []{ arg1, arg2, arg3 } ); 
 	}
 
-	public String getMessage(int id)
+	public static String getMessage(int id)
 	{
+		m_rb = ResourceBundle.getBundle(AirlineConstants.AIRLINE_RESBUN);
 		return m_rb.getString( AirlineConstants.ERROR_PREFIX + "-" + id );
 	}
-
-	private void setup(Locale locale)
-	{
-		try 
-		{
-			m_rb = ResourceBundle.getBundle(
-					AirlineConstants.AIRLINE_RESBUN, locale
-					);
-
-			m_locale = m_rb.getLocale();
-		}
-		catch (Exception ignored) {} // shouldn't happen
+	
+	public static AirlineException loginCredentialsIncorrect(String type) {
+		
+		return new AirlineException(getLocalizedString(AirlineConstants.LOGIN_CREDENTIALS_INCORRECT, type), AirlineConstants.LOGIN_CREDENTIALS_INCORRECT);
+		
 	}
 
 

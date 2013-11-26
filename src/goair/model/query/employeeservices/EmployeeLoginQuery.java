@@ -2,9 +2,11 @@ package goair.model.query.employeeservices;
 
 import goair.model.employee.Employee;
 import goair.model.query.adminservices.SearchFlightsForAdminQuery;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
@@ -23,23 +25,20 @@ public class EmployeeLoginQuery {
 		 */
 
 		String query = "select employeeId, emailId, password, firstName, "
-				+ "lastName, gender, airlineName, jobDesc, position, hireDate, currentStatus "
+				+ "lastName, gender, airlineName, jobDesc, position, hireDate, currentStatus, "
 				+ "address, city, state, zipcode, dob "
-				+ "from employee where currentStatus='ACTIVE' and emailId=? and password=?";
+				+ "from employee where currentStatus='ACTIVE' and emailId='"+ emailId+ "' and password='"+password+"'";
 
 		logger.info("Get employee information : " + query);
 
 		ResultSet resultSet = null;  
-		PreparedStatement preparedStatement = null;
+		Statement preparedStatement = null;
 
 		Employee employee = null;
 
 		try{
 
-			preparedStatement = connection.prepareStatement(query);  
-			preparedStatement.setString(1,emailId);
-			preparedStatement.setString(2,password);
-
+			preparedStatement = connection.createStatement();  
 			resultSet = preparedStatement.executeQuery(query);  
 
 			while (resultSet.next()) 
