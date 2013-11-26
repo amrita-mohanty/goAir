@@ -5,33 +5,41 @@ import goair.constants.AirlineConstants;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
+import javax.xml.ws.WebFault;
+
 import org.apache.log4j.Logger;
 
+@WebFault
 public class AirlineException extends Exception {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static Logger logger = Logger.getLogger(AirlineException.class);
 
-	private static ResourceBundle m_rb = null;
 	protected int m_errorCode = -1;
-	protected String m_message = null;
+	protected String m_errorMsg = "";
 	
-	public AirlineException(String message, int errorCode)
+	public AirlineException() {}
+	
+	public AirlineException(String errormessage, int errorCode)
 	{
-		//super(message);
-		m_message = message;
+		super(errormessage);
+		m_errorMsg = errormessage;
 		m_errorCode = errorCode;
 
 	}
 
-
 	public String getMessage()
 	{
-		return m_message;
+		return m_errorMsg;
 	}
 
-	public void setMessage(String message)
+	public void setMessage(String errormessage)
 	{
-		m_message = message;
+		m_errorMsg = errormessage;
 	}
 
 	public int getErrorCode()
@@ -41,11 +49,11 @@ public class AirlineException extends Exception {
 
 
 	/**
-	 * Helper to localize exception messages.
+	 * Helper to localize exception errormessages.
 	 */ 
-	protected static String getLocalizedString(int msgCode, String args)
+	public static String getLocalizedString(int msgCode, String args)
 	{
-		// Returns a prefixed message, e.g., "AMS-100: Unexpected error"
+		// Returns a prefixed errormessage, e.g., "AMS-100: Unexpected error"
 		return AirlineConstants.ERROR_PREFIX + "-" + msgCode + ": " + getMessage( msgCode, args );
 	}
 
@@ -68,7 +76,7 @@ public class AirlineException extends Exception {
 
 	public static String getMessage(int id)
 	{
-		m_rb = ResourceBundle.getBundle(AirlineConstants.AIRLINE_RESBUN);
+		ResourceBundle m_rb = ResourceBundle.getBundle(AirlineConstants.AIRLINE_RESBUN);
 		return m_rb.getString( AirlineConstants.ERROR_PREFIX + "-" + id );
 	}
 	

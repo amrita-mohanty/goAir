@@ -1,5 +1,6 @@
 package goair.model.query.employeeservices;
 
+import goair.Exception.AirlineException;
 import goair.model.flight.Flight;
 import goair.util.DbConnection;
 import goair.util.SearchParametersForFlights;

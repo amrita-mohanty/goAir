@@ -25,13 +25,8 @@ public class EmployeeServices {
 	public Employee employeeLogin(String userName,String password) throws AirlineException {
 		
 		Employee employeeBean = employeeServiceQueries.validateEmployeeLogin(userName, password);
-	//	employeeBean = null;
 		
-		if(employeeBean == null) {
-			throw AirlineException.loginCredentialsIncorrect("employee");
-		}
-		else
-			return employeeBean;
+		return employeeBean;
 	}
 
 	public int editEmployeeProfile(Employee employeeBean){
@@ -45,7 +40,7 @@ public class EmployeeServices {
 	 * @param Employee
 	 * @return Array of Flight
 	 */
-	public Flight[] viewEmployeeFlight(SearchParametersForFlights searchFlightParam) throws AirlineException {
+	public Flight[] viewEmployeeFlight(SearchParametersForFlights searchFlightParam) {
 		
 		return employeeServiceQueries.viewEmployeeFlights(searchFlightParam);
 	}
