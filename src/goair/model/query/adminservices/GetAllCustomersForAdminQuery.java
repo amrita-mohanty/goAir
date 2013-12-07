@@ -22,7 +22,7 @@ public class GetAllCustomersForAdminQuery {
 	{
 		List<Customer> customers = new ArrayList<Customer>();
 
-		String query = "select customerid, emailId, "
+		String query = "select customerid, emailId, password,"
 				+ "firstname, lastname, gender, passportNum, "
 				+ "nationality, address, city,"
 				+ "state, zipcode, dob "
@@ -45,6 +45,7 @@ public class GetAllCustomersForAdminQuery {
 				customer = new Customer();
 
 				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setPassword(resultSet.getString("password"));
 				customer.setEmailId(resultSet.getString("emailId"));
 				customer.setFirstName(resultSet.getString("firstname"));
 				customer.setLastName(resultSet.getString("lastname"));

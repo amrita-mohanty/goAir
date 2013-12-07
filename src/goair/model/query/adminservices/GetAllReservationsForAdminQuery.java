@@ -51,15 +51,15 @@ public class GetAllReservationsForAdminQuery {
 //				reservation.setFlightDetails(new Flight());
 
 				reservation.setPnr(resultSet.getInt("pnr"));
-//				reservation.getCustomerDetails().setCustomerId(resultSet.getInt("customerid"));
-//				reservation.getCustomerDetails().setFirstName(resultSet.getString("firstName"));
-//				reservation.getCustomerDetails().setLastName(resultSet.getString("lastName"));
-//				reservation.getFlightDetails().setFlightId(resultSet.getInt("flightId"));
-//				reservation.getFlightDetails().setAirlineName(resultSet.getString("airlineName"));
-//				reservation.getFlightDetails().setFlightName(resultSet.getString("flightName"));
-//				reservation.getFlightDetails().setSource(resultSet.getString("source"));
-//				reservation.getFlightDetails().setDestination(resultSet.getString("destination"));
-//				reservation.getFlightDetails().setDepartureTime(resultSet.getTimestamp("departureTime"));
+				reservation.setCustomerId(resultSet.getInt("customerid"));
+				reservation.setCustomerFirstName(resultSet.getString("firstName"));
+				reservation.setCustomerLastName(resultSet.getString("lastName"));
+				reservation.setFlightId(resultSet.getInt("flightId"));
+				reservation.setAirlineName(resultSet.getString("airlineName"));
+				reservation.setFlightName(resultSet.getString("flightName"));
+				reservation.setSource(resultSet.getString("source"));
+				reservation.setDestination(resultSet.getString("destination"));
+				reservation.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
 				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
