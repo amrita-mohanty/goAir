@@ -26,10 +26,11 @@ public class AddFlightQuery {
 	 */
 	public int addNewFlight(Flight flight, Connection connection)
 	{
-		String flightTableQuery = "insert into flight(flightName, source, "
+		String flightTableQuery = "insert into flight(flightName, arilineName, "
+				+ "source, "
 				+ "destination, departureTime, arrivalTime, totalSeats, "
 				+ "seatsReserved, daysOfWeek, flyingStartDate,"
-				+ "flyingEndDate) values (?,?,?,?,?,?,?,?,?,?) ";
+				+ "flyingEndDate) values (?,?,?,?,?,?,?,?,?,?,?) ";
 
 		String getFlightIdTableQuery = "select flightId "
 				+ "from flight "
@@ -44,15 +45,16 @@ public class AddFlightQuery {
 			
 			preparedStatement = connection.prepareStatement(flightTableQuery);
 			preparedStatement.setString(1, flight.getFlightName());
-			preparedStatement.setString(2, flight.getSource());
-			preparedStatement.setString(3, flight.getDestination());
-			preparedStatement.setDate(4, new Date(flight.getDepartureTime().getTime()));
-			preparedStatement.setDate(5, new Date(flight.getArrivalTime().getTime()));
-			preparedStatement.setInt(6, flight.getTotalSeats());
-			preparedStatement.setInt(7, flight.getSeatsReserved());
-			preparedStatement.setString(8, flight.getDaysOfWeek());
-			preparedStatement.setDate(9, new Date(flight.getFlyingStartDate().getTime()));
-			preparedStatement.setDate(10, new Date(flight.getFlyingEndDate().getTime()));
+			preparedStatement.setString(2, flight.getAirlineName());
+			preparedStatement.setString(3, flight.getSource());
+			preparedStatement.setString(4, flight.getDestination());
+			preparedStatement.setDate(5, new Date(flight.getDepartureTime().getTime()));
+			preparedStatement.setDate(6, new Date(flight.getArrivalTime().getTime()));
+			preparedStatement.setInt(7, flight.getTotalSeats());
+			preparedStatement.setInt(8, flight.getSeatsReserved());
+			preparedStatement.setString(9, flight.getDaysOfWeek());
+			preparedStatement.setDate(10, new Date(flight.getFlyingStartDate().getTime()));
+			preparedStatement.setDate(11, new Date(flight.getFlyingEndDate().getTime()));
 			
 			preparedStatement.execute();
 			preparedStatement.close();
