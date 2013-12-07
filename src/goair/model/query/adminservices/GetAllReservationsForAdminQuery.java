@@ -61,7 +61,7 @@ public class GetAllReservationsForAdminQuery {
 				reservation.setDestination(resultSet.getString("destination"));
 				reservation.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
-				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
+				reservation.setCreditCardNumber(resultSet.getString("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
 				reservation.setDateOfFlying(resultSet.getDate("dateOfFlying"));
 				reservation.setTotalPrice(resultSet.getInt("totalPrice"));

@@ -65,7 +65,7 @@ public class SearchReservationsForAdminQuery {
 				
 				reservation.setPnr(resultSet.getInt("pnr"));
 				reservation.setNumberOfSeatsBooked(resultSet.getInt("numberOfSeatsBooked"));
-				reservation.setCreditCardNumber(resultSet.getInt("creditCardNumber"));
+				reservation.setCreditCardNumber(resultSet.getString("creditCardNumber"));
 				reservation.setDateOfBooking(resultSet.getDate("dateOfBooking"));
 				reservation.setDateOfFlying(resultSet.getDate("dateOfFlying"));
 				reservation.setTotalPrice(resultSet.getInt("totalPrice"));

@@ -36,7 +36,7 @@ public class AddReservationQuery {
 			preparedStatement.setInt(1, reservation.getCustomerId());
 			preparedStatement.setInt(2, reservation.getFlightId());
 			preparedStatement.setInt(3, reservation.getNumberOfSeatsBooked());
-			preparedStatement.setLong(4, reservation.getCreditCardNumber());
+			preparedStatement.setString(4, reservation.getCreditCardNumber());
 			preparedStatement.setDate(5, new Date(reservation.getDateOfBooking().getTime()));
 			preparedStatement.setDate(6, new Date(reservation.getDateOfFlying().getTime()));
 			preparedStatement.setDouble(7, reservation.getTotalPrice());

@@ -82,7 +82,7 @@ CREATE TABLE `reservation`(
 	`customerId` INT(11) NOT NULL,
 	`flightId` INT(5) NOT NULL,
 	`numberOfSeatsBooked` INT(5) NOT NULL,
-	`creditCardNumber` INT(16) NOT NULL,
+	`creditCardNumber` VARCHAR(20) NOT NULL,
 	`dateOfBooking` DATE NOT NULL,
 	`dateOfFlying` DATE NOT NULL,
 	`totalPrice` DECIMAL(10,2) NOT NULL, 

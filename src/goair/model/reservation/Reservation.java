@@ -7,7 +7,7 @@ public class Reservation {
 	int customerId;
 	int flightId;
 	int numberOfSeatsBooked;
-	long creditCardNumber;
+	String creditCardNumber;
 	Date dateOfBooking;
 	Date dateOfFlying;
 	double totalPrice;
@@ -38,11 +38,11 @@ public class Reservation {
 		this.numberOfSeatsBooked = numberOfSeatsBooked;
 	}
 	
-	public long getCreditCardNumber() {
+	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}
 	
-	public void setCreditCardNumber(long creditCardNumber) {
+	public void setCreditCardNumber(String creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
 	
