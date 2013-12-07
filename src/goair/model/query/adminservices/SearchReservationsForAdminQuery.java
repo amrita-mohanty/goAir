@@ -35,7 +35,6 @@ public class SearchReservationsForAdminQuery {
 					+ "from reservation ";*/
 		createSqlQuery(searchParameters);
 		
-		
 		logger.info("Get all the reservation : " + query);
 
 		ResultSet resultSet = null;  
