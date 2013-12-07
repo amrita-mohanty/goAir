@@ -4,8 +4,8 @@ import goair.model.general.Person;
 
 public class Customer extends Person{
 	int customerId;
-    String passportNum ;
-    String nationality ;
+    String passportNum;
+    String nationality;
 
     public Customer() {}
 
