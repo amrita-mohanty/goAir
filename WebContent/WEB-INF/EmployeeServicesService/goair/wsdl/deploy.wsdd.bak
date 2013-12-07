@@ -15,17 +15,18 @@
   <service name="EmployeeServices" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://wsdl.goair"/>
       <parameter name="wsdlServiceElement" value="EmployeeServicesService"/>
-      <parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://flight.model.goair,http://util.goair,http://wsdl.goair"/>
+      <parameter name="schemaQualified" value="http://general.model.goair,http://employee.model.goair,http://customer.model.goair,http://flight.model.goair,http://util.goair,http://Exception.goair,http://wsdl.goair"/>
       <parameter name="wsdlServicePort" value="EmployeeServices"/>
       <parameter name="className" value="goair.wsdl.EmployeeServicesSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="EmployeeServices"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="editEmployeeProfile" qname="operNS:editEmployeeProfile" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeProfileReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:employeeBean" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
-      </operation>
       <operation name="employeeLogin" qname="operNS:employeeLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:employeeLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Employee" xmlns:rtns="http://employee.model.goair" soapAction="" >
         <parameter qname="pns:userName" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="AirlineException" qname="fns:fault" xmlns:fns="http://wsdl.goair" class="goair.Exception.AirlineException" type="tns:AirlineException" xmlns:tns="http://Exception.goair"/>
+      </operation>
+      <operation name="editEmployeeProfile" qname="operNS:editEmployeeProfile" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeProfileReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:employeeBean" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
       <operation name="viewEmployeeFlight" qname="operNS:viewEmployeeFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewEmployeeFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
         <parameter qname="pns:searchFlightParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
@@ -40,19 +41,19 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns5_Customer"
-        type="java:goair.model.customer.Customer[]"
-        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
-        encodingStyle=""
-      />
       <typeMapping
         xmlns:ns="http://employee.model.goair"
         qname="ns:Employee"
         type="java:goair.model.employee.Employee"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns6_Customer"
+        type="java:goair.model.customer.Customer[]"
+        innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
         encodingStyle=""
       />
       <typeMapping
@@ -74,6 +75,14 @@
         xmlns:ns="http://customer.model.goair"
         qname="ns:Customer"
         type="java:goair.model.customer.Customer"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://Exception.goair"
+        qname="ns:AirlineException"
+        type="java:goair.Exception.AirlineException"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""

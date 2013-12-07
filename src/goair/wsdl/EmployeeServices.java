@@ -2,7 +2,6 @@ package goair.wsdl;
 
 import org.apache.log4j.Logger;
 
-import goair.Exception.AirlineException;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
 import goair.model.query.AdminServiceQueries;
@@ -22,7 +21,7 @@ public class EmployeeServices {
 	public AdminServiceQueries adminServiceQueries = new AdminServiceQueries();
 	
 
-	public Employee employeeLogin(String userName,String password) throws AirlineException {
+	public Employee employeeLogin(String userName,String password) {
 		
 		Employee employeeBean = employeeServiceQueries.validateEmployeeLogin(userName, password);
 		

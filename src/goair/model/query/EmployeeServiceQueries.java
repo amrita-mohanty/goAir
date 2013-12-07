@@ -1,6 +1,5 @@
 package goair.model.query;
 
-import goair.Exception.AirlineException;
 import goair.model.flight.Flight;
 import goair.model.query.employeeservices.EmployeeLoginQuery;
 import goair.model.query.employeeservices.ViewEmployeeFlightsQuery;
@@ -31,7 +30,7 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	 * This method Check whether a employee is valid or not.
 	 * If valid, then return the details of the employee set in the Employee bean.
 	 */
-	public Employee validateEmployeeLogin(String emailId,String password) throws AirlineException
+	public Employee validateEmployeeLogin(String emailId,String password)
 	{
 		if(employeeLogin == null)
 		{
@@ -40,7 +39,7 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 		logger.info("validateEmployeeLogin with params : "+ emailId + ", " + password);
 		Employee emp = employeeLogin.validateEmployeeLogin(emailId, password, connection);
 		if(emp == null) {
-			throw AirlineException.loginCredentialsIncorrect("employee");
+			return null;
 		}
 		else {
 			return emp;
