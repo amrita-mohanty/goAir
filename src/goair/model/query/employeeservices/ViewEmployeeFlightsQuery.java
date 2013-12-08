@@ -49,7 +49,7 @@ public class ViewEmployeeFlightsQuery {
 		try{
 
 			preparedStatement = connection.prepareStatement(query);  
-			preparedStatement.setInt(1,searchParameters.getEmployeeId());
+			preparedStatement.setString(1,searchParameters.getEmployeeId());
 			
 			resultSet = preparedStatement.executeQuery(query);
 
