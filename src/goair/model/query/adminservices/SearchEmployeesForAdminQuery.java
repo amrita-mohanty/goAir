@@ -82,51 +82,51 @@ public class SearchEmployeesForAdminQuery {
 		 
 		 if (searchParam != null) {
 			 if (searchParam.getEmployeeId() != 0) {
-				 query = query + " and employeeId=" + searchParam.getEmployeeId();
+				 query = query + " and employeeId='" + searchParam.getEmployeeId()+"'";
 			 }
 			 if (searchParam.getAirlineName() != null && !searchParam.getAirlineName().equals("")) {
-				 query = query + " and airlineName=" + searchParam.getAirlineName();
+				 query = query + " and airlineName='" + searchParam.getAirlineName()+"'";
 			 }
 			 if (searchParam.getJobDesc() != null && !searchParam.getJobDesc().equals("")) {
-				 query = query + " and jobDesc=" + searchParam.getJobDesc();
+				 query = query + " and jobDesc='" + searchParam.getJobDesc()+"'";
 			 }
 			 if (searchParam.getPosition() != null && !searchParam.getPosition().equals("")) {
-				 query = query + " and position=" + searchParam.getPosition();
+				 query = query + " and position='" + searchParam.getPosition()+"'";
 			 }
 			 if (searchParam.getHireDate() != null && !searchParam.getHireDate().equals("")) {
-				 query = query + " and hireDate=" + dateFormat.format(searchParam.getHireDate());
+				 query = query + " and hireDate='" + dateFormat.format(searchParam.getHireDate())+"'";
 			 }
 			 
-			 //Person related attributes	
+			//Person related attributes	
 			 if (searchParam.getEmailId() != null && !searchParam.getEmailId().equals("")) {
-				 query = query + " and emailId=" + searchParam.getEmailId();
+				 query = query + " and emailId='" + searchParam.getEmailId()+"'";
 			 }
 			 if (searchParam.getPassword() != null && !searchParam.getPassword().equals("")) {
-				 query = query + " and password=" + searchParam.getPassword();
+				 query = query + " and password='" + searchParam.getPassword()+"'";
 			 }
 			 if (searchParam.getFirstName() != null && !searchParam.getFirstName().equals("")) {
-				 query = query + " and firstName=" + searchParam.getFirstName();
+				 query = query + " and firstName='" + searchParam.getFirstName()+"'";
 			 }
 			 if (searchParam.getLastName() != null && !searchParam.getLastName().equals("")) {
-				 query = query + " and lastName=" + searchParam.getLastName();
+				 query = query + " and lastName='" + searchParam.getLastName()+"'";
 			 }
 			 if (searchParam.getGender() != null && !searchParam.getGender().equals("")) {
-				 query = query + " and gender=" + searchParam.getGender();
+				 query = query + " and gender='" + searchParam.getGender()+"'";
 			 }
 			 if (searchParam.getAddress() != null && !searchParam.getAddress().equals("")) {
-				 query = query + " and address=" + searchParam.getAddress();
+				 query = query + " and address='" + searchParam.getAddress()+"'";
 			 }
 			 if (searchParam.getCity() != null && !searchParam.getCity().equals("")) {
-				 query = query + " and city=" + searchParam.getCity();
+				 query = query + " and city='" + searchParam.getCity()+"'";
 			 }
 			 if (searchParam.getState() != null && !searchParam.getState().equals("")) {
-				 query = query + " and state=" + searchParam.getState();
+				 query = query + " and state='" + searchParam.getState()+"'";
 			 }
 			 if (searchParam.getZipcode() != null && !searchParam.getZipcode().equals("")) {
-				 query = query + " and zipcode=" + searchParam.getZipcode();
+				 query = query + " and zipcode='" + searchParam.getZipcode()+"'";
 			 }
 			 if (searchParam.getDob() != null && !searchParam.getDob().equals("")) {
-				 query = query + " and dob=" +  dateFormat.format(searchParam.getDob());
+				 query = query + " and dob='" +  dateFormat.format(searchParam.getDob())+"'";
 			 }
 		 }
 		 
