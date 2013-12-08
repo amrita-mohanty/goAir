@@ -92,7 +92,7 @@ public class SearchFlightsForAdminQuery {
 				{
 					employee = new Employee();
 
-					employee.setEmployeeId(resultSet.getInt("employeeId"));
+					employee.setEmployeeId(resultSet.getString("employeeId"));
 					employee.setEmailId(resultSet.getString("emailId"));
 					employee.setFirstName(resultSet.getString("firstName"));
 					employee.setLastName(resultSet.getString("lastName"));

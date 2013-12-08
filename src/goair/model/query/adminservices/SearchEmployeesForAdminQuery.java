@@ -43,7 +43,7 @@ public class SearchEmployeesForAdminQuery {
 			{
 				employee = new Employee();
 
-				employee.setEmployeeId(resultSet.getInt("employeeid"));
+				employee.setEmployeeId(resultSet.getString("employeeid"));
 				employee.setEmailId(resultSet.getString("emailId"));
 				employee.setFirstName(resultSet.getString("firstname"));
 				employee.setLastName(resultSet.getString("lastname"));

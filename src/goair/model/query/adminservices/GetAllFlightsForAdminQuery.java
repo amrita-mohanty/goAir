@@ -100,7 +100,7 @@ public class GetAllFlightsForAdminQuery {
 				{
 					employee = new Employee();
 
-					employee.setEmployeeId(resultSet2.getInt("employeeId"));
+					employee.setEmployeeId(resultSet2.getString("employeeId"));
 					employee.setEmailId(resultSet2.getString("emailId"));
 					employee.setFirstName(resultSet2.getString("firstName"));
 					employee.setLastName(resultSet2.getString("lastName"));

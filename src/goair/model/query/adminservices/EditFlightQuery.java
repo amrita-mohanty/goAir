@@ -216,7 +216,7 @@ public class EditFlightQuery {
 					preparedStatement.setInt(1, flightId);
 					preparedStatement.setDate(2, day);
 					preparedStatement.setString(3, flight.getFlightStatus());
-					preparedStatement.setInt(4, emp.getEmployeeId());
+					preparedStatement.setString(4, emp.getEmployeeId());
 					preparedStatement.setDouble(5, flight.getTicketPrice());
 					
 					preparedStatement.addBatch();

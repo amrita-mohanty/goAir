@@ -27,7 +27,7 @@ CREATE TABLE `customer` (
 ALTER TABLE `customer` AUTO_INCREMENT = 10000;
 
 CREATE TABLE `employee` (
-  `employeeId` INT(11) NOT NULL AUTO_INCREMENT,
+  `employeeId` VARCHAR(40) NOT NULL,  --- This is in ssn format.
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstName` VARCHAR(20) NOT NULL,

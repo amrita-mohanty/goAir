@@ -16,8 +16,9 @@ STR_TO_DATE('2010-12-25', '%Y-%m-%d'),
 STR_TO_DATE('2015-12-24', '%Y-%m-%d')
 );
 
-insert into employee(emailId, `password`, firstName,lastName, gender,jobDesc, position,
+insert into employee(employeeId, emailId, `password`, firstName,lastName, gender,jobDesc, position,
 hireDate, address, city, state, zipcode, dob) values (
+'123-123-1234',
 'a@gmail.com', 
 'pwd1',
 'Peter', 

@@ -7,16 +7,16 @@ import goair.model.general.Person;
 public class Employee extends Person {
 	public Employee() {}
 
-	Integer employeeId;
+	String employeeId; // This should be in format of SSN (123-123-1234)
 	String airlineName;
 	String jobDesc;
 	String position;
 	Date hireDate;
 	
-	public Integer getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getAirlineName() {
