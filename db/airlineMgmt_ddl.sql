@@ -27,7 +27,7 @@ CREATE TABLE `customer` (
 ALTER TABLE `customer` AUTO_INCREMENT = 10000;
 
 CREATE TABLE `employee` (
-  `employeeId` VARCHAR(40) NOT NULL,  --- This is in ssn format.
+  `employeeId` VARCHAR(40) NOT NULL,  -- This is in ssn format.
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstName` VARCHAR(20) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE  `flightflyinginformation` (
   `flightId` INT(5) NOT NULL,
   `dateOfFlying` DATE NOT NULL,
   `flightStatus` VARCHAR(20),
-  `employeeId` INT(11), -- This can be null as we can add employees as we go.
+  `employeeId` VARCHAR(40), -- This can be null as we can add employees as we go.
   `ticketPrice` DECIMAL(10,2) NOT NULL, 
   FOREIGN KEY (flightId) REFERENCES flight(flightId),
   FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
