@@ -215,7 +215,7 @@ public class SearchFlightsForAdminQuery {
 			}
 			if (searchParam.getDateOfFlying() != null) {
 				String flightFlyingQuery = "(select flightId from flightflyinginformation "
-						+ "where dateOfFlying="+dateFormat.format(searchParam.getDateOfFlying())+") ";
+						+ "where dateOfFlying='"+dateFormat.format(searchParam.getDateOfFlying())+"') ";
 				query = query + "and flightId in " + flightFlyingQuery;
 			}
 		}
