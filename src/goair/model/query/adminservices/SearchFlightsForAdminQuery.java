@@ -8,6 +8,7 @@ import goair.util.SearchParametersForFlights;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import org.apache.log4j.Logger;
 public class SearchFlightsForAdminQuery {
 	
 	public static Logger logger = Logger.getLogger(SearchFlightsForAdminQuery.class);
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	/**
 	 * This method will get the flight based on search parameters passed to it
@@ -35,7 +38,7 @@ public class SearchFlightsForAdminQuery {
 				+ "flyingEndDate "
 				+ "from flight where currentStatus = 'Active'";
 
-		logger.info("Get all the active flights : " + query);
+		logger.info("Get all the active flights based on search criteria : " + query);
 
 		ResultSet resultSet = null;  
 		Statement statement = null;
@@ -172,4 +175,58 @@ public class SearchFlightsForAdminQuery {
 		return flights.toArray(new Flight[flights.size()]);
 	}
 
+	public String createSqlQuery(SearchParametersForFlights searchParam) {
+		String query = "select flightid, flightName, airlineName, source, "
+				+ "destination, departureTime, arrivalTime, totalSeats, "
+				+ "seatsReserved, daysOfWeek, flyingStartDate,"
+				+ "flyingEndDate "
+				+ "from flight where currentStatus = 'Active'";
+
+		if(searchParam != null) {
+			if(searchParam.getFlightId() != null) {
+				query = query + " and flightId=" + searchParam.getFlightId();
+			}
+			if(searchParam.getFlightName() != null && !searchParam.getFlightName().equals("")) {
+				query = query + " and flightName=" + searchParam.getFlightName();
+			}
+			if(searchParam.getAirlineName() != null && !searchParam.getAirlineName().equals("")) {
+				query = query + " and airlineName=" + searchParam.getAirlineName();
+			}
+			if(searchParam.getSource() != null && !searchParam.getSource().equals("")) {
+				query = query + " and source=" + searchParam.getSource();
+			}
+			if(searchParam.getDestination() != null && !searchParam.getDestination().equals("")) {
+				query = query + " and destination=" + searchParam.getDestination();
+			}
+			if(searchParam.getDepartureTime() != null && !searchParam.getDepartureTime().equals("")) {
+				query = query + " and departureTime=" + timeFormat.format(searchParam.getDepartureTime());
+			}
+			if(searchParam.getArrivalTime() != null && !searchParam.getArrivalTime().equals("")) {
+				query = query + " and arrivalTime=" + timeFormat.format(searchParam.getArrivalTime());
+			}
+			if(searchParam.getNumberOfSeatsAvialable() != null) {
+				query = query + " and (totalSeats - seatsReserved)=" + searchParam.getNumberOfSeatsAvialable();
+			}
+			
+			if (searchParam.getEmployeeId() != null) {
+				String flightFlyingQuery = "(select flightId from flightflyinginformation "
+						+ "where employeeId="+searchParam.getEmployeeId()+") ";
+				query = query + "and flightId in " + flightFlyingQuery;
+			}
+			if (searchParam.getCustomerId() != null) {
+				String reservationQuery = "(select flightId from reservation "
+						+ "where customerId="+searchParam.getCustomerId()+") ";
+				query = query + "and flightId in " + reservationQuery;
+				
+			}
+			if (searchParam.getDateOfFlying() != null) {
+				String flightFlyingQuery = "(select flightId from flightflyinginformation "
+						+ "where dateOfFlying="+dateFormat.format(searchParam.getDateOfFlying())+") ";
+				query = query + "and flightId in " + flightFlyingQuery;
+			}
+		}
+
+		return query;
+	}
+	
 }

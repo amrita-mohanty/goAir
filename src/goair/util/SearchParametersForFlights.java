@@ -3,34 +3,42 @@ package goair.util;
 import java.util.Date;
 
 public class SearchParametersForFlights {
-	
-	String flightNumber;
+	String flightName;
 	String airlineName;
 	String source;
 	String destination;
 	Date dateOfFlying;
 	Date departureTime;
 	Date arrivalTime;
-	int numberOfSeatsAvialable; // This is number of seats - number of seats reserved
-	int employeeId;
+	Integer numberOfSeatsAvialable; // This is number of seats - number of seats reserved
+	Integer flightId;
+	Integer employeeId;
+	Integer customerId;
 	
-	public int getEmployeeId() {
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
-
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
-
-
-	public String getFlightNumber() {
-		return flightNumber;
+	public Integer getCustomerId() {
+		return customerId;
 	}
-
-	public void setFlightNumber(String flightNumber) {
-		this.flightNumber = flightNumber;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
-
+	public Integer getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(Integer flightId) {
+		this.flightId = flightId;
+	}
 	public String getAirlineName() {
 		return airlineName;
 	}
@@ -71,11 +79,11 @@ public class SearchParametersForFlights {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public int getNumberOfSeatsAvialable() {
+	public Integer getNumberOfSeatsAvialable() {
 		return numberOfSeatsAvialable;
 	}
 
-	public void setNumberOfSeatsAvialable(int numberOfSeatsAvialable) {
+	public void setNumberOfSeatsAvialable(Integer numberOfSeatsAvialable) {
 		this.numberOfSeatsAvialable = numberOfSeatsAvialable;
 	}
 	
@@ -86,15 +94,15 @@ public class SearchParametersForFlights {
 	public void setDateOfFlying(Date dateOfFlying) {
 		this.dateOfFlying = dateOfFlying;
 	}
-
 	@Override
 	public String toString() {
-		return "SearchParametersForFlights [flightNumber=" + flightNumber
+		return "SearchParametersForFlights [flightName=" + flightName
 				+ ", airlineName=" + airlineName + ", source=" + source
 				+ ", destination=" + destination + ", dateOfFlying="
 				+ dateOfFlying + ", departureTime=" + departureTime
 				+ ", arrivalTime=" + arrivalTime + ", numberOfSeatsAvialable="
-				+ numberOfSeatsAvialable + "]";
+				+ numberOfSeatsAvialable + ", flightId=" + flightId
+				+ ", employeeId=" + employeeId + ", customerId=" + customerId
+				+ "]";
 	}
-
 }
