@@ -182,36 +182,36 @@ public class SearchFlightsForAdminQuery {
 				query = query + " and flightId=" + searchParam.getFlightId();
 			}
 			if(searchParam.getFlightName() != null && !searchParam.getFlightName().equals("")) {
-				query = query + " and flightName=" + searchParam.getFlightName();
+				query = query + " and flightName='" + searchParam.getFlightName()+"'";
 			}
 			if(searchParam.getAirlineName() != null && !searchParam.getAirlineName().equals("")) {
-				query = query + " and airlineName=" + searchParam.getAirlineName();
+				query = query + " and airlineName='" + searchParam.getAirlineName()+"'";
 			}
 			if(searchParam.getSource() != null && !searchParam.getSource().equals("")) {
-				query = query + " and source=" + searchParam.getSource();
+				query = query + " and source='" + searchParam.getSource()+"'";
 			}
 			if(searchParam.getDestination() != null && !searchParam.getDestination().equals("")) {
-				query = query + " and destination=" + searchParam.getDestination();
+				query = query + " and destination='" + searchParam.getDestination()+"'";
 			}
 			if(searchParam.getDepartureTime() != null && !searchParam.getDepartureTime().equals("")) {
-				query = query + " and departureTime=" + timeFormat.format(searchParam.getDepartureTime());
+				query = query + " and departureTime='" + timeFormat.format(searchParam.getDepartureTime())+"'";
 			}
 			if(searchParam.getArrivalTime() != null && !searchParam.getArrivalTime().equals("")) {
-				query = query + " and arrivalTime=" + timeFormat.format(searchParam.getArrivalTime());
+				query = query + " and arrivalTime='" + timeFormat.format(searchParam.getArrivalTime())+"'";
 			}
 			if(searchParam.getNumberOfSeatsAvialable() != null) {
 				query = query + " and (totalSeats - seatsReserved)=" + searchParam.getNumberOfSeatsAvialable();
 			}
 			
-			if (searchParam.getEmployeeId() != null) {
+			if (searchParam.getEmployeeId() != null && !searchParam.getEmployeeId().equals("")) {
 				String flightFlyingQuery = "(select flightId from flightflyinginformation "
-						+ "where employeeId="+searchParam.getEmployeeId()+") ";
-				query = query + "and flightId in " + flightFlyingQuery;
+						+ "where employeeId='"+searchParam.getEmployeeId()+"') ";
+				query = query + " and flightId in " + flightFlyingQuery;
 			}
 			if (searchParam.getCustomerId() != null) {
 				String reservationQuery = "(select flightId from reservation "
 						+ "where customerId="+searchParam.getCustomerId()+") ";
-				query = query + "and flightId in " + reservationQuery;
+				query = query + " and flightId in " + reservationQuery;
 				
 			}
 			if (searchParam.getDateOfFlying() != null) {
