@@ -75,7 +75,7 @@ public class EditEmployeeQuery {
 			employeeTableQuery += ", password="+employee.getPassword()+" ";
 		}
 		
-		employeeTableQuery += " where employeeId="+employee.getEmployeeId();
+		employeeTableQuery += " where employeeId='"+employee.getEmployeeId()+"'";
 		employeeTableQuery = employeeTableQuery.replace("set ,", "set ");
 		
 		Statement statement = null;

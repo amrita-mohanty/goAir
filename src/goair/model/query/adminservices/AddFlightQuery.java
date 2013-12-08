@@ -26,7 +26,7 @@ public class AddFlightQuery {
 	 */
 	public int addNewFlight(Flight flight, Connection connection)
 	{
-		String flightTableQuery = "insert into flight(flightName, arilineName, "
+		String flightTableQuery = "insert into flight(flightName, airlineName, "
 				+ "source, "
 				+ "destination, departureTime, arrivalTime, totalSeats, "
 				+ "seatsReserved, daysOfWeek, flyingStartDate,"

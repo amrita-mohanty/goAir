@@ -81,7 +81,7 @@ public class SearchEmployeesForAdminQuery {
 					+ "from employee where currentStatus = 'Active'";
 		 
 		 if (searchParam != null) {
-			 if (searchParam.getEmployeeId() != 0) {
+			 if (searchParam.getEmployeeId() != null && !searchParam.getEmployeeId().equals("")) {
 				 query = query + " and employeeId='" + searchParam.getEmployeeId()+"'";
 			 }
 			 if (searchParam.getAirlineName() != null && !searchParam.getAirlineName().equals("")) {

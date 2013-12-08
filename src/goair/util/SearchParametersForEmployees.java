@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SearchParametersForEmployees {
 	
-	Integer employeeId;
+	String employeeId;
 	String airlineName;
 	String jobDesc;
 	String position;
@@ -22,10 +22,10 @@ public class SearchParametersForEmployees {
 	Date dob;
 	String currentStatus;
 	
-	public Integer getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getAirlineName() {

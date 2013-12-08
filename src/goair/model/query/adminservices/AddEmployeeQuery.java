@@ -25,7 +25,7 @@ public class AddEmployeeQuery {
 				+ "employeeId, emailId, password,"
 				+ "firstname, lastname, gender, airlineName, "
 				+ "jobDesc, position, hireDate, address, city,"
-				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		PreparedStatement preparedStatement = null;
 		try
@@ -61,4 +61,5 @@ public class AddEmployeeQuery {
 			return -1;
 		}
 	}
+	
 }

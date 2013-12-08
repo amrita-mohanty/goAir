@@ -56,7 +56,6 @@ public class SearchFlightsForAdminQuery {
 				flight.setDestination(resultSet.getString("destination"));
 				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
 				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setFlightStatus(resultSet.getString("status"));
 				flight.setTotalSeats(resultSet.getInt("totalSeats"));
 				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
 				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
@@ -72,12 +71,12 @@ public class SearchFlightsForAdminQuery {
 			// Add employee info
 			for(Flight addedFlight : flights)
 			{
-				query = "select employeeId, emailId, firstName, lastName,"
+				query = "select e.employeeId, emailId, firstName, lastName,"
 						+ "gender, airlineName, jobDesc, position,"
 						+ "hireDate, address, city, state, zipcode,"
 						+ "dob "
 						+ "from flightflyinginformation f, employee e "
-						+ "where f.employeeId =  e.employee and f.flightId = "
+						+ "where f.employeeId =  e.employeeId and f.flightId = "
 						+ addedFlight.getFlightId();
 
 				logger.info("Get all the employees for flight with id : " 
@@ -119,7 +118,7 @@ public class SearchFlightsForAdminQuery {
 			// Add Customers or Passengers
 			for(Flight addedFlight : flights)
 			{
-				query = "select customerId, emailId, firstName, lastName,"
+				query = "select c.customerId, emailId, firstName, lastName,"
 						+ "gender, passportNum, nationality, "
 						+ "address, city, state, zipcode,"
 						+ "dob "
