@@ -12,7 +12,7 @@ public class SearchParametersForFlights {
 	Date arrivalTime;
 	Integer numberOfSeatsAvialable; // This is number of seats - number of seats reserved
 	Integer flightId;
-	Integer employeeId;
+	String employeeId;
 	Integer customerId;
 	
 	public String getFlightName() {
@@ -21,10 +21,10 @@ public class SearchParametersForFlights {
 	public void setFlightName(String flightName) {
 		this.flightName = flightName;
 	}
-	public Integer getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 	public Integer getCustomerId() {
