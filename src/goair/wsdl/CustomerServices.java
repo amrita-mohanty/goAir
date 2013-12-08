@@ -7,6 +7,7 @@ import goair.model.flight.Flight;
 import goair.model.query.AdminServiceQueries;
 import goair.model.query.CustomerServiceQueries;
 import goair.model.reservation.Reservation;
+import goair.util.CheckValidity;
 import goair.util.SearchParametersForFlights;
 import goair.util.SearchParametersForReservation;
 
@@ -34,8 +35,8 @@ public class CustomerServices extends AirlineServices{
 		logger.info("Add a Customer : "+customer.toString());
 		boolean validateZipcode = true;
 		if(customer != null){
-			if(customer.getZipcode() != null && !customer.getZipcode().equals("")){
-				validateZipcode = isZipValid(customer.getZipcode());
+			if(customer.getZipcode() != null && !customer.getZipcode().trim().equals("")){
+				validateZipcode = CheckValidity.isZipValid(customer.getZipcode());
 			}
 			if(validateZipcode){
 				return adminServiceQueries.addCustomer(customer);
@@ -47,16 +48,6 @@ public class CustomerServices extends AirlineServices{
 		return -1;
 	}
 	
-	// validate zipcode
-	public boolean isZipValid(String zip) {
-	    boolean retval = false;
-	    String zipCodePattern = "\\d{5}(-\\d{4})?";
-	    retval = zip.matches(zipCodePattern);
-	
-	    logger.info("Is Valid Zipcode ? ::: " + retval);
-	    return retval;
-	}
-
 	/*
 	 * This method Check whether a customer is valid or not.
 	 * If valid, then return the details of the customer set in the Customer bean
@@ -110,7 +101,7 @@ public class CustomerServices extends AirlineServices{
 		try{
 			if(reservation !=null){
 				String creditCardcString = reservation.getCreditCardNumber();
-				boolean isvaidCreditCard = isCreditCardValid(creditCardcString);
+				boolean isvaidCreditCard = CheckValidity.isCreditCardValid(creditCardcString);
 				if(isvaidCreditCard){
 					Long.parseLong(creditCardcString);				
 					return adminServiceQueries.addReservation(reservation);
@@ -126,17 +117,6 @@ public class CustomerServices extends AirlineServices{
 			return -2;
 		}
 	}
-	
-	//Check if the credit card number is valid or not
-	public  boolean isCreditCardValid(String creditCardcString){
-		boolean isValid = false;
-		String creditCardPattern = "\\d{16}?";
-		isValid = creditCardcString.matches(creditCardPattern);
-	    logger.info("Is Valid creditCardcString ? ::: " + isValid);
-		
-		return isValid;
-	}
-	
 	
 	/*
 	 * The searchParameter.customerId attribute should contain the customerId in order 
@@ -160,7 +140,6 @@ public class CustomerServices extends AirlineServices{
 	}
 	
 	public static void main(String[] args){
-		CustomerServices cs = new CustomerServices();
-		cs.isCreditCardValid("10000000ssss0000000");
+		CheckValidity.isCreditCardValid("10000000ssss0000000");
 	}
 }

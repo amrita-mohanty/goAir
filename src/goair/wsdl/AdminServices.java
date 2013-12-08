@@ -7,6 +7,7 @@ import goair.model.employee.Employee;
 import goair.model.flight.Flight;
 import goair.model.query.AdminServiceQueries;
 import goair.model.reservation.Reservation;
+import goair.util.CheckValidity;
 import goair.util.SearchParametersForCustomers;
 import goair.util.SearchParametersForEmployees;
 import goair.util.SearchParametersForFlights;
@@ -193,15 +194,26 @@ public class AdminServices {
 	public int addEmployee(Employee employee)
 	{
 		logger.info("Add a Employee : "+employee.toString());
+		boolean isValidZipcode = true;
 		try{
 			if(employee !=null){
 				String employeeId = employee.getEmployeeId();
-				boolean isValidEmployeeId = isEmployeeIdValid(employeeId);
+				boolean isValidEmployeeId = CheckValidity.isEmployeeIdValid(employeeId);
 				if(isValidEmployeeId){
-					return adminServiceQueries.addEmployee(employee);
+					if(employee.getZipcode() != null && !employee.getZipcode().trim().equals("")){
+						isValidZipcode = CheckValidity.isZipValid(employee.getZipcode());
+					}
+					
+					if(isValidZipcode){
+						return adminServiceQueries.addEmployee(employee);
+					}
+					else{
+						return -3; //Invalid zipcode
+					}
+					
 				}
 				else{
-					return -3; // Error code for invalid employee-id
+					return -4; // Error code for invalid employee-id
 				}
 			}
 			return -1;		
@@ -211,16 +223,6 @@ public class AdminServices {
 			return -2;
 		}
 	}
-	
-	//Check if the employee-id is valid or not
-		public  boolean isEmployeeIdValid(String employeeId){
-			boolean isValid = false;
-			String employeeIdPattern = "\\d{3}-\\d{2}-\\d{4}";
-			isValid = employeeId.matches(employeeIdPattern);
-		    logger.info("Is Valid Employee-Id ? ::: " + isValid);
-			
-			return isValid;
-		}
 	
 	/**
 	 * Edit Employee to the system
@@ -308,7 +310,6 @@ public class AdminServices {
 	}
 	
 	public static void main(String[] args){
-		AdminServices as = new AdminServices();
-		as.isEmployeeIdValid("409-18-2345");
+		CheckValidity.isEmployeeIdValid("409-18-2345");
 	}
 }
