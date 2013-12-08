@@ -31,12 +31,7 @@ public class SearchFlightsForAdminQuery {
 
 		// Using SearchParametersForFlights create the query 
 		//	that will search the flights.
-
-		String query = "select flightid, flightName, airlineName, source, "
-				+ "destination, departureTime, arrivalTime, totalSeats, "
-				+ "seatsReserved, daysOfWeek, flyingStartDate,"
-				+ "flyingEndDate "
-				+ "from flight where currentStatus = 'Active'";
+		String query = createSearchFlightSqlQuery(searchParameters);
 
 		logger.info("Get all the active flights based on search criteria : " + query);
 
@@ -175,7 +170,7 @@ public class SearchFlightsForAdminQuery {
 		return flights.toArray(new Flight[flights.size()]);
 	}
 
-	public String createSqlQuery(SearchParametersForFlights searchParam) {
+	public String createSearchFlightSqlQuery(SearchParametersForFlights searchParam) {
 		String query = "select flightid, flightName, airlineName, source, "
 				+ "destination, departureTime, arrivalTime, totalSeats, "
 				+ "seatsReserved, daysOfWeek, flyingStartDate,"
@@ -228,5 +223,4 @@ public class SearchFlightsForAdminQuery {
 
 		return query;
 	}
-	
 }
