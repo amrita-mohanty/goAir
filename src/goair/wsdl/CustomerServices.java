@@ -32,7 +32,29 @@ public class CustomerServices extends AirlineServices{
 	public int addCustomer(Customer customer)
 	{
 		logger.info("Add a Customer : "+customer.toString());
-		return adminServiceQueries.addCustomer(customer);
+		boolean validateZipcode = true;
+		if(customer != null){
+			if(customer.getZipcode() != null && !customer.getZipcode().equals("")){
+				validateZipcode = isZipValid(customer.getZipcode());
+			}
+			if(validateZipcode){
+				return adminServiceQueries.addCustomer(customer);
+			}
+			else{
+				return -3; //Invalid zipcode
+			}
+		}
+		return -1;
+	}
+	
+	// validate zipcode
+	public boolean isZipValid(String zip) {
+	    boolean retval = false;
+	    String zipCodePattern = "\\d{5}(-\\d{4})?";
+	    retval = zip.matches(zipCodePattern);
+	
+	    logger.info("Is Valid Zipcode ? ::: " + retval);
+	    return retval;
 	}
 
 	/*
@@ -85,8 +107,36 @@ public class CustomerServices extends AirlineServices{
 	public int addReservation(Reservation reservation)
 	{
 		logger.info("Add a Reservation : "+reservation.toString());
-		return adminServiceQueries.addReservation(reservation);
+		try{
+			if(reservation !=null){
+				String creditCardcString = reservation.getCreditCardNumber();
+				boolean isvaidCreditCard = isCreditCardValid(creditCardcString);
+				if(isvaidCreditCard){
+					Long.parseLong(creditCardcString);				
+					return adminServiceQueries.addReservation(reservation);
+				}
+				else{
+					return -3; // Error code for invalid credit-card number
+				}
+			}
+			return -1;		
+		}		
+		catch(Exception ex){
+			ex.printStackTrace();
+			return -2;
+		}
 	}
+	
+	//Check if the credit card number is valid or not
+	public  boolean isCreditCardValid(String creditCardcString){
+		boolean isValid = false;
+		String creditCardPattern = "\\d{16}?";
+		isValid = creditCardcString.matches(creditCardPattern);
+	    logger.info("Is Valid creditCardcString ? ::: " + isValid);
+		
+		return isValid;
+	}
+	
 	
 	/*
 	 * The searchParameter.customerId attribute should contain the customerId in order 
@@ -107,5 +157,10 @@ public class CustomerServices extends AirlineServices{
 	public int cancelReservation(Reservation reservation){
 		logger.info("Cancel a Reservation : "+ reservation.toString());
 		return adminServiceQueries.cancelReservation(reservation);
+	}
+	
+	public static void main(String[] args){
+		CustomerServices cs = new CustomerServices();
+		cs.isCreditCardValid("10000000ssss0000000");
 	}
 }

@@ -193,8 +193,34 @@ public class AdminServices {
 	public int addEmployee(Employee employee)
 	{
 		logger.info("Add a Employee : "+employee.toString());
-		return adminServiceQueries.addEmployee(employee);
+		try{
+			if(employee !=null){
+				String employeeId = employee.getEmployeeId();
+				boolean isValidEmployeeId = isEmployeeIdValid(employeeId);
+				if(isValidEmployeeId){
+					return adminServiceQueries.addEmployee(employee);
+				}
+				else{
+					return -3; // Error code for invalid employee-id
+				}
+			}
+			return -1;		
+		}		
+		catch(Exception ex){
+			ex.printStackTrace();
+			return -2;
+		}
 	}
+	
+	//Check if the employee-id is valid or not
+		public  boolean isEmployeeIdValid(String employeeId){
+			boolean isValid = false;
+			String employeeIdPattern = "\\d{3}-\\d{2}-\\d{4}";
+			isValid = employeeId.matches(employeeIdPattern);
+		    logger.info("Is Valid Employee-Id ? ::: " + isValid);
+			
+			return isValid;
+		}
 	
 	/**
 	 * Edit Employee to the system
@@ -279,5 +305,10 @@ public class AdminServices {
 	{
 		logger.info("Cancel a Reservation : "+reservation.toString());
 		return adminServiceQueries.cancelReservation(reservation);
+	}
+	
+	public static void main(String[] args){
+		AdminServices as = new AdminServices();
+		as.isEmployeeIdValid("409-18-2345");
 	}
 }
