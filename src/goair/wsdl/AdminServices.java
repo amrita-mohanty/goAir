@@ -1,5 +1,7 @@
 package goair.wsdl;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import goair.model.customer.Customer;
@@ -334,6 +336,17 @@ public class AdminServices {
 	{
 		logger.info("Cancel a Reservation : "+reservation.toString());
 		return adminServiceQueries.cancelReservation(reservation);
+	}
+	
+	
+	/*
+	 * Get all the customers in a flight
+	 * Input : dateOfFlying , flightId
+	 */
+	
+	public Customer[] getCustomersForFlight(Date dateOfFlying,int flightId){
+		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
+		return adminServiceQueries.getCustomersForFlight(dateOfFlying, flightId);
 	}
 	
 	public static void main(String[] args){

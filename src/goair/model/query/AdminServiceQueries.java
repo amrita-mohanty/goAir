@@ -1,6 +1,7 @@
 package goair.model.query;
 
 import java.sql.Connection;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -46,6 +47,7 @@ public class AdminServiceQueries
 	EditReservationQuery			editReservationQuery			= null;
 	AddReservationQuery				addReservationQuery				= null;
 	CancelReservationQuery			cancelReservationQuery			= null;
+	GetCustomersForFlightQuery      getCustomersForFlightQuery		= null;
 	
 	public AdminServiceQueries()
 	{
@@ -367,5 +369,14 @@ public class AdminServiceQueries
 		}
 		logger.info("Delete a Reservation : "+Reservation.toString());
 		return cancelReservationQuery.cancelReservation(Reservation, connection);
+	}
+
+	public Customer[] getCustomersForFlight(Date dateOfFlying, int flightId) {
+		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
+		if(getCustomersForFlightQuery == null)
+		{
+			getCustomersForFlightQuery = new GetCustomersForFlightQuery();
+		}
+		return getCustomersForFlightQuery.searchCustomersForFlight(dateOfFlying, flightId,connection);
 	}
 }
