@@ -45,8 +45,8 @@ public class SearchEmployeesForAdminQuery {
 
 				employee.setEmployeeId(resultSet.getString("employeeid"));
 				employee.setEmailId(resultSet.getString("emailId"));
-				employee.setFirstName(resultSet.getString("firstname"));
-				employee.setLastName(resultSet.getString("lastname"));
+				employee.setFirstName(resultSet.getString("firstName"));
+				employee.setLastName(resultSet.getString("lastName"));
 				employee.setGender(resultSet.getString("gender"));
 				employee.setAirlineName(resultSet.getString("airlineName"));
 				employee.setJobDesc(resultSet.getString("jobDesc"));
