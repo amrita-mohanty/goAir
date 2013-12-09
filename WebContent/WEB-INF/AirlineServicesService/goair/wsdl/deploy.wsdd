@@ -10,21 +10,21 @@
       <parameter name="className" value="goair.wsdl.AirlineServices"/>
       <parameter name="wsdlPortType" value="AirlineServices"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://wsdl.goair" xmlns:retNS="http://wsdl.goair" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="cancelReservation" qname="operNS:cancelReservation" returnQName="retNS:cancelReservationReturn" returnType="rtns:int" soapAction="">
-        <parameter xmlns:pns="http://wsdl.goair" xmlns:tns="http://reservation.model.goair" qname="pns:booking" type="tns:Reservation"/>
-      </operation>
       <operation xmlns:operNS="http://wsdl.goair" xmlns:retNS="http://wsdl.goair" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="createReservation" qname="operNS:createReservation" returnQName="retNS:createReservationReturn" returnType="rtns:int" soapAction="">
         <parameter xmlns:pns="http://wsdl.goair" xmlns:tns="http://customer.model.goair" qname="pns:customer" type="tns:Customer"/>
         <parameter xmlns:pns="http://wsdl.goair" xmlns:tns="http://flight.model.goair" qname="pns:flight" type="tns:Flight"/>
       </operation>
+      <operation xmlns:operNS="http://wsdl.goair" xmlns:retNS="http://wsdl.goair" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="cancelReservation" qname="operNS:cancelReservation" returnQName="retNS:cancelReservationReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://wsdl.goair" xmlns:tns="http://reservation.model.goair" qname="pns:booking" type="tns:Reservation"/>
+      </operation>
       <parameter name="allowedMethods" value="createReservation cancelReservation"/>
 
-      <arrayMapping xmlns:ns="http://wsdl.goair" xmlns:cmp-ns="http://customer.model.goair" qname="ns:ArrayOf_tns2_Customer" type="java:goair.model.customer.Customer[]" innerType="cmp-ns:Customer" encodingStyle=""/>
       <typeMapping xmlns:ns="http://employee.model.goair" qname="ns:Employee" type="java:goair.model.employee.Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://wsdl.goair" xmlns:cmp-ns="http://employee.model.goair" qname="ns:ArrayOf_tns4_Employee" type="java:goair.model.employee.Employee[]" innerType="cmp-ns:Employee" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://wsdl.goair" xmlns:cmp-ns="http://customer.model.goair" qname="ns:ArrayOf_tns1_Customer" type="java:goair.model.customer.Customer[]" innerType="cmp-ns:Customer" encodingStyle=""/>
       <typeMapping xmlns:ns="http://general.model.goair" qname="ns:Person" type="java:goair.model.general.Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://customer.model.goair" qname="ns:Customer" type="java:goair.model.customer.Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
-      <arrayMapping xmlns:ns="http://wsdl.goair" xmlns:cmp-ns="http://employee.model.goair" qname="ns:ArrayOf_tns5_Employee" type="java:goair.model.employee.Employee[]" innerType="cmp-ns:Employee" encodingStyle=""/>
-      <typeMapping xmlns:ns="http://reservation.model.goair" qname="ns:Reservation" type="java:goair.model.reservation.Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://flight.model.goair" qname="ns:Flight" type="java:goair.model.flight.Flight" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://reservation.model.goair" qname="ns:Reservation" type="java:goair.model.reservation.Reservation" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>

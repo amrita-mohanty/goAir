@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://employee.model.goair" xmlns:tns2="http://general.model.goair" xmlns:tns3="http://Exception.goair" xmlns:tns4="http://util.goair" xmlns:tns5="http://flight.model.goair" xmlns:tns6="http://customer.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://wsdl.goair" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl.goair" xmlns:intf="http://wsdl.goair" xmlns:tns1="http://employee.model.goair" xmlns:tns2="http://general.model.goair" xmlns:tns3="http://util.goair" xmlns:tns4="http://flight.model.goair" xmlns:tns5="http://customer.model.goair" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://wsdl.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://customer.model.goair"/>
@@ -25,7 +24,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="fault" type="tns3:AirlineException"/>
    <element name="editEmployeeProfile">
     <complexType>
      <sequence>
@@ -43,14 +41,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="viewEmployeeFlight">
     <complexType>
      <sequence>
-      <element name="searchFlightParam" type="tns4:SearchParametersForFlights"/>
+      <element name="searchFlightParam" type="tns3:SearchParametersForFlights"/>
      </sequence>
     </complexType>
    </element>
    <element name="viewEmployeeFlightResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns5:Flight"/>
+      <element maxOccurs="unbounded" name="viewEmployeeFlightReturn" type="tns4:Flight"/>
      </sequence>
     </complexType>
    </element>
@@ -59,14 +57,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Employee"/>
     </sequence>
    </complexType>
-   <complexType name="ArrayOf_tns6_Customer">
+   <complexType name="ArrayOf_tns5_Customer">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns6:Customer"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns5:Customer"/>
     </sequence>
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://general.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
@@ -89,7 +86,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://employee.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
@@ -100,7 +96,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <extension base="tns2:Person">
       <sequence>
        <element name="airlineName" nillable="true" type="xsd:string"/>
-       <element name="employeeId" nillable="true" type="xsd:int"/>
+       <element name="employeeId" nillable="true" type="xsd:string"/>
        <element name="hireDate" nillable="true" type="xsd:dateTime"/>
        <element name="jobDesc" nillable="true" type="xsd:string"/>
        <element name="position" nillable="true" type="xsd:string"/>
@@ -109,22 +105,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexContent>
    </complexType>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://Exception.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://util.goair"/>
-   <import namespace="http://flight.model.goair"/>
-   <import namespace="http://wsdl.goair"/>
-   <import namespace="http://customer.model.goair"/>
-   <import namespace="http://employee.model.goair"/>
-   <import namespace="http://general.model.goair"/>
-   <complexType name="AirlineException">
-    <sequence>
-     <element name="errorCode" type="xsd:int"/>
-     <element name="message" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-  </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://util.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://customer.model.goair"/>
@@ -134,18 +115,19 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <sequence>
      <element name="airlineName" nillable="true" type="xsd:string"/>
      <element name="arrivalTime" nillable="true" type="xsd:dateTime"/>
+     <element name="customerId" nillable="true" type="xsd:int"/>
      <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
      <element name="departureTime" nillable="true" type="xsd:dateTime"/>
      <element name="destination" nillable="true" type="xsd:string"/>
-     <element name="employeeId" type="xsd:int"/>
-     <element name="flightNumber" nillable="true" type="xsd:string"/>
-     <element name="numberOfSeatsAvialable" type="xsd:int"/>
+     <element name="employeeId" nillable="true" type="xsd:int"/>
+     <element name="flightId" nillable="true" type="xsd:int"/>
+     <element name="flightName" nillable="true" type="xsd:string"/>
+     <element name="numberOfSeatsAvialable" nillable="true" type="xsd:int"/>
      <element name="source" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://customer.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://util.goair"/>
    <import namespace="http://flight.model.goair"/>
    <import namespace="http://wsdl.goair"/>
@@ -164,7 +146,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://flight.model.goair" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://Exception.goair"/>
    <import namespace="http://util.goair"/>
    <import namespace="http://wsdl.goair"/>
    <import namespace="http://customer.model.goair"/>
@@ -185,7 +166,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="flyingDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingEndDate" nillable="true" type="xsd:dateTime"/>
      <element name="flyingStartDate" nillable="true" type="xsd:dateTime"/>
-     <element name="passengers" nillable="true" type="impl:ArrayOf_tns6_Customer"/>
+     <element name="passengers" nillable="true" type="impl:ArrayOf_tns5_Customer"/>
      <element name="seatsAvailable" type="xsd:int"/>
      <element name="seatsReserved" type="xsd:int"/>
      <element name="source" nillable="true" type="xsd:string"/>
@@ -236,14 +217,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="AirlineException">
-
-      <wsdl:part element="impl:fault" name="fault">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="editEmployeeProfileResponse">
 
       <wsdl:part element="impl:editEmployeeProfileResponse" name="parameters">
@@ -263,10 +236,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:output message="impl:employeeLoginResponse" name="employeeLoginResponse">
 
        </wsdl:output>
-
-         <wsdl:fault message="impl:AirlineException" name="AirlineException">
-
-       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -315,12 +284,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
-
-         <wsdl:fault name="AirlineException">
-
-            <wsdlsoap:fault name="AirlineException" use="literal"/>
-
-         </wsdl:fault>
 
       </wsdl:operation>
 
