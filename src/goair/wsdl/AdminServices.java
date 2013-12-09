@@ -373,6 +373,14 @@ public class AdminServices {
 		logger.info("Get all employees in a Flight: "+ flightId);
 		return adminServiceQueries.getEmployeesForFlight(flightId);
 	}
+
+	/*
+	 * This method is using jms 
+	 */
+	public void updateFlightStatusQuery(int flightId, String status) {
+		logger.info("Update status of a flight"+ flightId+", status : "+status);
+		adminServiceQueries.updateFlightStatusQuery(flightId, status);
+	}
 	
 	public static void main(String[] args){
 		CheckValidity.isEmployeeIdValid("409-18-2345");
