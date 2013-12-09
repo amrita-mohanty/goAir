@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SearchParametersForCustomers {
 	
-	int customerId;
+	String customerId;
     String passportNum;
     String nationality;
     
@@ -20,10 +20,10 @@ public class SearchParametersForCustomers {
 	Date dob;
 	String currentStatus;
 	
-	public int getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 	public String getPassportNum() {

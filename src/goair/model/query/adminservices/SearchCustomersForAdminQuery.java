@@ -81,8 +81,8 @@ public class SearchCustomersForAdminQuery {
 		
 		 if(searchParam != null){
 			 
-			 if (searchParam.getCustomerId() != 0) {
-				 query = query + " and customerId=" + searchParam.getCustomerId();
+			 if (searchParam.getCustomerId() != null && !searchParam.getCustomerId().equals("")) {
+				 query = query + " and customerId='" + searchParam.getCustomerId()+"'";
 			 }
 			 if (searchParam.getPassportNum() != null && !searchParam.getPassportNum().equals("")) {
 				 query = query + " and passportNum='" + searchParam.getPassportNum()+"'";
