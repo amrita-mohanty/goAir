@@ -343,10 +343,18 @@ public class AdminServices {
 	 * Get all the customers in a flight
 	 * Input : dateOfFlying , flightId
 	 */
-	
 	public Customer[] getCustomersForFlight(Date dateOfFlying,int flightId){
 		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
 		return adminServiceQueries.getCustomersForFlight(dateOfFlying, flightId);
+	}
+	
+	/*
+	 * Get all the employee in a flight
+	 * Input : dateOfFlying , flightId
+	 */
+	public Employee[] getEmpployeesForFlight(Date dateOfFlying,int flightId){
+		logger.info("Get all employees in a Flight: "+ flightId + "," + dateOfFlying.toString());
+		return adminServiceQueries.getEmployeesForFlight(dateOfFlying, flightId);
 	}
 	
 	public static void main(String[] args){

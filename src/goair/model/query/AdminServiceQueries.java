@@ -48,6 +48,7 @@ public class AdminServiceQueries
 	AddReservationQuery				addReservationQuery				= null;
 	CancelReservationQuery			cancelReservationQuery			= null;
 	GetCustomersForFlightQuery      getCustomersForFlightQuery		= null;
+	GetEmployeesForFlightQuery      getEmployeesForFlightQuery		= null;
 	
 	public AdminServiceQueries()
 	{
@@ -371,6 +372,10 @@ public class AdminServiceQueries
 		return cancelReservationQuery.cancelReservation(Reservation, connection);
 	}
 
+	/*
+	 * Get all the customers in a flight
+	 * Input : dateOfFlying , flightId
+	 */
 	public Customer[] getCustomersForFlight(Date dateOfFlying, int flightId) {
 		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
 		if(getCustomersForFlightQuery == null)
@@ -379,4 +384,18 @@ public class AdminServiceQueries
 		}
 		return getCustomersForFlightQuery.searchCustomersForFlight(dateOfFlying, flightId,connection);
 	}
+
+	/*
+	 * Get all the employee in a flight
+	 * Input : dateOfFlying , flightId
+	 */
+	public Employee[] getEmployeesForFlight(Date dateOfFlying, int flightId) {
+		logger.info("Get all employees in a Flight: "+ flightId + "," + dateOfFlying.toString());
+		if(getEmployeesForFlightQuery == null)
+		{
+			getEmployeesForFlightQuery = new GetEmployeesForFlightQuery();
+		}
+		return getEmployeesForFlightQuery.searchEmployeesForFlight(dateOfFlying, flightId,connection);
+	}
+	
 }
