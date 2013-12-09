@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,7 +21,7 @@ public class GetCustomersForFlightQuery {
 	 * This method will get the flight based on search parameters passed to it
 	 * @return Flight[] 
 	 */
-	public Customer[] searchCustomersForFlight(Date dateOfFlying, int flightId,
+	public Customer[] searchCustomersForFlight(int flightId,
 			Connection connection)
 	{
 		// Create the query that will search the customers in a flight.
@@ -43,10 +42,10 @@ public class GetCustomersForFlightQuery {
 						+ "dob "
 						+ "from reservation r, customer c "
 						+ "where r.customerId =  c.customerId and r.flightId = "
-						+ flightId + " and r.dateOfFlying='" + dateFormat.format(dateOfFlying) + "'";
+						+ flightId;
 
 				logger.info("Get all the passengers(customers) for flight with id : " 
-						+ flightId + " and dateOfFlying= "+ dateOfFlying + ", query : "+query);
+						+ flightId+", query : "+query);
 
 				statement = connection.createStatement();  
 				resultSet = statement.executeQuery(query);

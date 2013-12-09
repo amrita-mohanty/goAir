@@ -57,7 +57,7 @@ CREATE TABLE  `flight` (
   `departureTime` DATETIME NOT NULL,
   `arrivalTime` DATETIME NOT NULL,
   `totalSeats` INT(20) NOT NULL,
-  `seatsReserved` INT(10) NOT NULL,
+  `seatsReserved` INT(10),
   `daysOfWeek` VARCHAR(50) NOT NULL, -- Comma separated days for this flight eg. for Monday and Thursday it will be M,Th
   `flyingStartDate` DATE NOT NULL,
   `flyingEndDate` DATE NOT NULL,

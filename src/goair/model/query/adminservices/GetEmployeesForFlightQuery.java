@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -21,7 +20,7 @@ public class GetEmployeesForFlightQuery {
 	 * This method will get the flight based on search parameters passed to it
 	 * @return Flight[] 
 	 */
-	public Employee[] searchEmployeesForFlight(Date dateOfFlying, int flightId,
+	public Employee[] searchEmployeesForFlight(int flightId,
 			Connection connection)
 	{
 		// Create the query that will search the customers in a flight.
@@ -42,10 +41,10 @@ public class GetEmployeesForFlightQuery {
 					+ "dob "
 					+ "from flightflyinginformation f, employee e "
 					+ "where f.employeeId =  e.employeeId and f.flightId = "
-						+ flightId + " and f.dateOfFlying='" + dateFormat.format(dateOfFlying) + "'";
+						+ flightId;
 
 				logger.info("Get all the employees for flight with id : " 
-						+ flightId + " and dateOfFlying= "+ dateOfFlying + ", query : "+query);
+						+ flightId +", query : "+query);
 
 				statement = connection.createStatement();  
 				resultSet = statement.executeQuery(query);
