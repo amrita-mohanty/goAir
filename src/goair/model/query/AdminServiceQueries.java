@@ -19,7 +19,6 @@ public class AdminServiceQueries
 {
 	public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	
-	DbConnection dbConnection 	= null;
 	Connection connection 		= null;
 	
 	// Query classes
@@ -49,8 +48,7 @@ public class AdminServiceQueries
 	
 	public AdminServiceQueries()
 	{
-		dbConnection 				= new DbConnection();
-		connection 					= dbConnection.createDbConnection();
+		connection 					= DbConnection.getInstance().getConnection();
 	}
 	
 	/**

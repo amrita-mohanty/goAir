@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 public class CustomerServiceQueries {
 public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	
-	DbConnection dbConnection 	= null;
 	Connection connection 		= null;
 	
 	// Query classes
@@ -22,8 +21,7 @@ public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
 	CustomerLoginQuery customerLogin = null;
 	
 	public CustomerServiceQueries(){
-		dbConnection 				= new DbConnection();
-		connection 					= dbConnection.createDbConnection();
+		connection 					= DbConnection.getInstance().getConnection();
 	}
 	
 	/*
