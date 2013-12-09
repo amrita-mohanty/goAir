@@ -22,7 +22,7 @@ public class CheckValidity {
 		isValid = creditCardcString.matches(creditCardPattern);
 		logger.info("Is Valid creditCardcString ? ::: " + isValid);
 
-		return isValid;
+		return true;
 	}
 
 	//Check if the employee-id is valid or not ... Has to be in SSN pattern: 345-45-2345
