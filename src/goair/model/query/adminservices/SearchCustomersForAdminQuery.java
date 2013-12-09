@@ -45,8 +45,8 @@ public class SearchCustomersForAdminQuery {
 
 				customer.setCustomerId(resultSet.getString("customerid"));
 				customer.setEmailId(resultSet.getString("emailId"));
-				customer.setFirstName(resultSet.getString("firstname"));
-				customer.setLastName(resultSet.getString("lastname"));
+				customer.setFirstName(resultSet.getString("firstName"));
+				customer.setLastName(resultSet.getString("lastName"));
 				customer.setGender(resultSet.getString("gender"));
 				customer.setPassportNum(resultSet.getString("passportNum"));
 				customer.setNationality(resultSet.getString("nationality"));
@@ -74,7 +74,7 @@ public class SearchCustomersForAdminQuery {
 	public String createSqlQuery(SearchParametersForCustomers searchParam){
 
 		String query = "select customerid, emailId, "
-				+ "firstname, lastname, gender, passportNum, "
+				+ "firstName, lastName, gender, passportNum, "
 				+ "nationality, address, city,"
 				+ "state, zipcode, dob "
 				+ "from customer where currentStatus = 'Active'";

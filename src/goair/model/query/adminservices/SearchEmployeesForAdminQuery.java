@@ -75,7 +75,7 @@ public class SearchEmployeesForAdminQuery {
 
 	public String createSqlQuery(SearchParametersForEmployees searchParam){
 		 String query = "select employeeid, emailId, "
-					+ "firstname, lastname, gender, airlineName, "
+					+ "firstName, lastName, gender, airlineName, "
 					+ "jobDesc, position, hireDate, address, city,"
 					+ "state, zipcode, dob "
 					+ "from employee where currentStatus = 'Active'";

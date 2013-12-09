@@ -38,6 +38,10 @@
       </operation>
       <operation name="getAllReservationsForAdmin" qname="operNS:getAllReservationsForAdmin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getAllReservationsForAdminReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Reservation" xmlns:rtns="http://reservation.model.goair" soapAction="" >
       </operation>
+      <operation name="updateFlightStatusQuery" qname="operNS:updateFlightStatusQuery" xmlns:operNS="http://wsdl.goair" soapAction="" >
+        <parameter qname="pns:flightId" xmlns:pns="http://wsdl.goair" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:status" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="editEmployee" qname="operNS:editEmployee" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editEmployeeReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:employee" xmlns:pns="http://wsdl.goair" type="tns:Employee" xmlns:tns="http://employee.model.goair"/>
       </operation>
@@ -85,7 +89,7 @@
       <operation name="getCustomersForFlight" qname="operNS:getCustomersForFlight" xmlns:operNS="http://wsdl.goair" returnQName="retNS:getCustomersForFlightReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
         <parameter qname="pns:flightId" xmlns:pns="http://wsdl.goair" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="searchReservationsForAdmin searchEmployeesForAdmin getAllEmployeesForAdmin addEmployee searchFlightsForAdmin cancelReservation editCustomer deleteEmployee main editEmployee addReservation editFlight searchCustomersForAdmin getEmpployeesForFlight getAllReservationsForAdmin editReservation getAllFlightsForAdmin addFlight addCustomer deleteCustomer getAllCustomersForAdmin getCustomersForFlight deleteFlight"/>
+      <parameter name="allowedMethods" value="searchReservationsForAdmin searchEmployeesForAdmin getAllEmployeesForAdmin updateFlightStatusQuery addEmployee searchFlightsForAdmin cancelReservation editCustomer deleteEmployee main editEmployee addReservation editFlight searchCustomersForAdmin getEmpployeesForFlight getAllReservationsForAdmin editReservation getAllFlightsForAdmin addFlight addCustomer deleteCustomer getAllCustomersForAdmin getCustomersForFlight deleteFlight"/>
 
       <typeMapping
         xmlns:ns="http://util.goair"

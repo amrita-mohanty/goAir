@@ -92,6 +92,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="updateFlightStatusQuery">
+    <complexType>
+     <sequence>
+      <element name="flightId" type="xsd:int"/>
+      <element name="status" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateFlightStatusQueryResponse">
+    <complexType/>
+   </element>
    <element name="editEmployee">
     <complexType>
      <sequence>
@@ -532,6 +543,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="updateFlightStatusQueryResponse">
+
+      <wsdl:part element="impl:updateFlightStatusQueryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getAllReservationsForAdminResponse">
 
       <wsdl:part element="impl:getAllReservationsForAdminResponse" name="parameters">
@@ -655,6 +674,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="searchCustomersForAdminResponse">
 
       <wsdl:part element="impl:searchCustomersForAdminResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateFlightStatusQueryRequest">
+
+      <wsdl:part element="impl:updateFlightStatusQuery" name="parameters">
 
       </wsdl:part>
 
@@ -965,6 +992,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getAllReservationsForAdminResponse" name="getAllReservationsForAdminResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateFlightStatusQuery">
+
+         <wsdl:input message="impl:updateFlightStatusQueryRequest" name="updateFlightStatusQueryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateFlightStatusQueryResponse" name="updateFlightStatusQueryResponse">
 
        </wsdl:output>
 
@@ -1294,6 +1333,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="updateFlightStatusQuery">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateFlightStatusQueryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateFlightStatusQueryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="editEmployee">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1588,7 +1645,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:AdminServicesSoapBinding" name="AdminServices">
 
-         <wsdlsoap:address location="http://localhost:8080/goAir1/services/AdminServices"/>
+         <wsdlsoap:address location="http://tempuri.org/goAir1/services/AdminServices"/>
 
       </wsdl:port>
 
