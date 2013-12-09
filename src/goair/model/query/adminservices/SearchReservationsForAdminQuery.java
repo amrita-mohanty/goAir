@@ -49,6 +49,7 @@ public class SearchReservationsForAdminQuery {
 
 			while (resultSet.next()) 
 			{
+				
 				reservation = new Reservation();
 				
 				reservation.setCustomerId(resultSet.getString("customerid"));
