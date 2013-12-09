@@ -1,8 +1,11 @@
 package goair.model.query;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import javax.jms.JMSException;
 
 import org.apache.log4j.Logger;
 
@@ -408,7 +411,17 @@ public class AdminServiceQueries
 	public void updateFlightStatusQuery(int flightId, String status) {
 		logger.info("Updating flightstatus for Flight: " + 
 				flightId + ", status : "+status);
-		String flightFlyingInfoTableQuery = "update  flightflyinginformation set flightStatus='"+ status +"' where"
+		String flightFlyingInfoTableQuery = "update  flightflyinginformation set flightStatus='"
+				+ status +"' where"
 				+ "flightId=" + flightId;
+		try {
+			Statement statement = connection.createStatement();
+			statement.execute(flightFlyingInfoTableQuery);
+			updateFlightStatusJms.updateFlightStatus();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
 	}
 }
