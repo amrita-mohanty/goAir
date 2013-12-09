@@ -119,7 +119,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
      <element name="departureTime" nillable="true" type="xsd:dateTime"/>
      <element name="destination" nillable="true" type="xsd:string"/>
-     <element name="employeeId" nillable="true" type="xsd:int"/>
+     <element name="employeeId" nillable="true" type="xsd:string"/>
      <element name="flightId" nillable="true" type="xsd:int"/>
      <element name="flightName" nillable="true" type="xsd:string"/>
      <element name="numberOfSeatsAvialable" nillable="true" type="xsd:int"/>
@@ -137,7 +137,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexContent>
      <extension base="tns2:Person">
       <sequence>
-       <element name="customerId" type="xsd:int"/>
+       <element name="customerId" nillable="true" type="xsd:string"/>
        <element name="nationality" nillable="true" type="xsd:string"/>
        <element name="passportNum" nillable="true" type="xsd:string"/>
       </sequence>

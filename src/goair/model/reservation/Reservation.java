@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Reservation {
 	long pnr;
-	int customerId;
+	String customerId;
 	int flightId;
 	int numberOfSeatsBooked;
 	String creditCardNumber;
@@ -78,11 +78,11 @@ public class Reservation {
 		this.currentStatus = currentStatus;
 	}
 
-	public int getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 

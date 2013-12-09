@@ -51,7 +51,7 @@ public class SearchReservationsForAdminQuery {
 			{
 				reservation = new Reservation();
 				
-				reservation.setCustomerId(resultSet.getInt("customerid"));
+				reservation.setCustomerId(resultSet.getString("customerid"));
 				reservation.setCustomerFirstName(resultSet.getString("firstName"));
 				reservation.setCustomerLastName(resultSet.getString("lastName"));
 				

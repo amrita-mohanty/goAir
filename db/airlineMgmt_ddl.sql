@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `employee`;
 DROP TABLE IF EXISTS `flight`;
 
 CREATE TABLE `customer` (
-  `customerId` VARCHAR(20) NOT NULL,
+  `customerId` VARCHAR(40) NOT NULL,
   `emailId` VARCHAR(40) NOT NULL UNIQUE, -- This is the username when user logs in
   `password` VARCHAR(100) NOT NULL, -- This is the password to check when user logs in
   `firstName` VARCHAR(20) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE  `flightflyinginformation` (
 -- This table will hold the reservation information
 CREATE TABLE `reservation`(
 	`pnr` INT(5) NOT NULL AUTO_INCREMENT,
-	`customerId` VARCHAR(20) NOT NULL,
+	`customerId` VARCHAR(40) NOT NULL,
 	`flightId` INT(5) NOT NULL,
 	`numberOfSeatsBooked` INT(5) NOT NULL,
 	`creditCardNumber` VARCHAR(20) NOT NULL,

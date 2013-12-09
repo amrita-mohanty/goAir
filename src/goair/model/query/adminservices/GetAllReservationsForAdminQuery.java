@@ -51,7 +51,7 @@ public class GetAllReservationsForAdminQuery {
 //				reservation.setFlightDetails(new Flight());
 
 				reservation.setPnr(resultSet.getInt("pnr"));
-				reservation.setCustomerId(resultSet.getInt("customerid"));
+				reservation.setCustomerId(resultSet.getString("customerid"));
 				reservation.setCustomerFirstName(resultSet.getString("firstName"));
 				reservation.setCustomerLastName(resultSet.getString("lastName"));
 				reservation.setFlightId(resultSet.getInt("flightId"));
