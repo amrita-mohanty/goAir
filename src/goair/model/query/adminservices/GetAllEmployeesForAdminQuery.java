@@ -1,5 +1,6 @@
 package goair.model.query.adminservices;
 
+import goair.cache.ObjectCache;
 import goair.model.employee.Employee;
 
 import java.sql.Connection;
@@ -42,6 +43,9 @@ public class GetAllEmployeesForAdminQuery {
 
 			while (resultSet.next()) 
 			{
+				String employeeid = resultSet.getString("employeeid");
+				if(ObjectCache.cacheObj.get("employee:" + employeeid) == null) {
+					
 				employee = new Employee();
 
 				employee.setEmployeeId(resultSet.getString("employeeid"));
@@ -58,6 +62,12 @@ public class GetAllEmployeesForAdminQuery {
 				employee.setState(resultSet.getString("state"));
 				employee.setZipcode(resultSet.getString("zipcode"));
 				employee.setDob(resultSet.getDate("dob"));
+				
+				ObjectCache.cacheObj.put("employee:" + employeeid, employee);
+				}
+				else {
+					employee = (Employee) ObjectCache.cacheObj.get("employee:" + employeeid);
+				}
 
 				employees.add(employee);
 			}

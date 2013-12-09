@@ -1,5 +1,6 @@
 package goair.model.query.adminservices;
 
+import goair.cache.ObjectCache;
 import goair.model.customer.Customer;
 import goair.util.SearchParametersForCustomers;
 
@@ -41,6 +42,10 @@ public class SearchCustomersForAdminQuery {
 
 			while (resultSet.next()) 
 			{
+				String customerid = resultSet.getString("customerid");
+
+				if(ObjectCache.cacheObj.get("customer:" + customerid) == null) {
+					
 				customer = new Customer();
 
 				customer.setCustomerId(resultSet.getString("customerid"));
@@ -55,6 +60,12 @@ public class SearchCustomersForAdminQuery {
 				customer.setState(resultSet.getString("state"));
 				customer.setZipcode(resultSet.getString("zipcode"));
 				customer.setDob(resultSet.getDate("dob"));
+				
+				ObjectCache.cacheObj.put("customer:" + customerid, customer);
+			}
+			else {
+				customer = (Customer) ObjectCache.cacheObj.get("customer:" + customerid);
+			}
 
 				customers.add(customer);
 			}
