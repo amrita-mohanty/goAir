@@ -1,3 +1,5 @@
+use  airline;
+
 
 select * from flight;
 select * from employee;

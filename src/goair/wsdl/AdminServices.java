@@ -307,8 +307,27 @@ public class AdminServices {
 	public int addReservation(Reservation reservation)
 	{
 		logger.info("Add a Reservation : "+reservation.toString());
-		return adminServiceQueries.addReservation(reservation);
+		int returncode = -1;
+		try{
+			if(reservation !=null){
+				String creditCardcString = reservation.getCreditCardNumber();
+				boolean isvaidCreditCard = CheckValidity.isCreditCardValid(creditCardcString);
+				if(isvaidCreditCard){
+					Long.parseLong(creditCardcString);				
+					returncode = adminServiceQueries.addReservation(reservation);
+				}
+				else{
+					returncode = -3; // Error code for invalid credit-card number
+				}
+			}
+			return returncode;		
+		}		
+		catch(Exception ex){
+			ex.printStackTrace();
+			return -2;
+		}
 	}
+	
 	
 	/**
 	 * Edit Reservation to the system
