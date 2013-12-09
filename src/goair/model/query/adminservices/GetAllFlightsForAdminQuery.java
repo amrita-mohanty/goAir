@@ -1,5 +1,6 @@
 package goair.model.query.adminservices;
 
+import goair.cache.ObjectCache;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
@@ -18,9 +19,9 @@ import java.util.Map.Entry;
 import org.apache.log4j.Logger;
 
 public class GetAllFlightsForAdminQuery {
-	
+
 	public static Logger logger = Logger.getLogger(GetAllFlightsForAdminQuery.class);
-	
+
 	/**
 	 * This method will get all the flights in system for a Admin
 	 * @return Flight[] 
@@ -29,9 +30,9 @@ public class GetAllFlightsForAdminQuery {
 	{
 		Map<Integer, Map<Date, EmployeePassengerSet>> flightMap = 
 				new HashMap<Integer, Map<Date,EmployeePassengerSet>>();
-		
+
 		Map<Integer, Flight> flightIdToFlightMap = new HashMap<Integer, Flight>();
-		
+
 		List<Flight> flights = new ArrayList<Flight>();
 
 		// Using SearchParametersForFlights create the query 
@@ -56,26 +57,34 @@ public class GetAllFlightsForAdminQuery {
 
 			while (resultSet.next()) 
 			{
-				flight = new Flight();
+				int flightId = resultSet.getInt("flightId");
 
-				flight.setFlightId(resultSet.getInt("flightId"));
-				flight.setFlightName(resultSet.getString("flightName"));
-				flight.setAirlineName(resultSet.getString("airlineName"));
-				flight.setSource(resultSet.getString("source"));
-				flight.setDestination(resultSet.getString("destination"));
-				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
-				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setCurrentStatus(resultSet.getString("currentstatus"));
-				flight.setTotalSeats(resultSet.getInt("totalSeats"));
-				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
-				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
-				flight.setFlyingStartDate(resultSet.getDate("flyingStartDate"));
-				flight.setFlyingEndDate(resultSet.getDate("flyingEndDate"));
-				
+				if(ObjectCache.cacheObj.get(flightId) == null) {
+					flight = new Flight();
+
+					flight.setFlightId(resultSet.getInt("flightId"));
+					flight.setFlightName(resultSet.getString("flightName"));
+					flight.setAirlineName(resultSet.getString("airlineName"));
+					flight.setSource(resultSet.getString("source"));
+					flight.setDestination(resultSet.getString("destination"));
+					flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
+					flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
+					flight.setCurrentStatus(resultSet.getString("currentstatus"));
+					flight.setTotalSeats(resultSet.getInt("totalSeats"));
+					flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
+					flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
+					flight.setFlyingStartDate(resultSet.getDate("flyingStartDate"));
+					flight.setFlyingEndDate(resultSet.getDate("flyingEndDate"));
+
+					ObjectCache.cacheObj.put("flight:" + flightId, flight);				
+				}
+				else
+					flight = (Flight) ObjectCache.cacheObj.get("flight:" + flightId);
+
 				// Add this flight to map so that we can use it later to create
 				// 	the complete flight object
 				flightIdToFlightMap.put(flight.getFlightId(), flight);
-				
+
 				// Add employees
 				query = "select e.employeeId, emailId, firstName, lastName,"
 						+ "gender, airlineName, jobDesc, position,"
@@ -90,55 +99,64 @@ public class GetAllFlightsForAdminQuery {
 
 				statement = connection.createStatement();  
 				ResultSet resultSet2 = statement.executeQuery(query);
-				
+
 				Map<Date, EmployeePassengerSet> dateOfFlyingEmployeePassengerSet = 
 						flightMap.get(flight.getFlightId());
 				EmployeePassengerSet employeePassengerSet = null;
-				
+
 				Employee employee = null;
 				while (resultSet2.next()) 
 				{
-					employee = new Employee();
+					String empId = resultSet2.getString("employeeId");
 
-					employee.setEmployeeId(resultSet2.getString("employeeId"));
-					employee.setEmailId(resultSet2.getString("emailId"));
-					employee.setFirstName(resultSet2.getString("firstName"));
-					employee.setLastName(resultSet2.getString("lastName"));
-					employee.setGender(resultSet2.getString("gender"));
-					employee.setAirlineName(resultSet2.getString("airlineName"));
-					employee.setJobDesc(resultSet2.getString("jobDesc"));
-					employee.setPosition(resultSet2.getString("position"));
-					employee.setHireDate(resultSet2.getTimestamp("hireDate"));
-					employee.setAddress(resultSet2.getString("address"));
-					employee.setCity(resultSet2.getString("city"));
-					employee.setState(resultSet2.getString("state"));
-					employee.setZipcode(resultSet2.getString("zipcode"));
-					employee.setDob(resultSet2.getTimestamp("dob"));
-					
+					if(ObjectCache.get("emp:"+empId) == null) {
+						employee = new Employee();
+
+						employee.setEmployeeId(resultSet2.getString("employeeId"));
+						employee.setEmailId(resultSet2.getString("emailId"));
+						employee.setFirstName(resultSet2.getString("firstName"));
+						employee.setLastName(resultSet2.getString("lastName"));
+						employee.setGender(resultSet2.getString("gender"));
+						employee.setAirlineName(resultSet2.getString("airlineName"));
+						employee.setJobDesc(resultSet2.getString("jobDesc"));
+						employee.setPosition(resultSet2.getString("position"));
+						employee.setHireDate(resultSet2.getTimestamp("hireDate"));
+						employee.setAddress(resultSet2.getString("address"));
+						employee.setCity(resultSet2.getString("city"));
+						employee.setState(resultSet2.getString("state"));
+						employee.setZipcode(resultSet2.getString("zipcode"));
+						employee.setDob(resultSet2.getTimestamp("dob"));
+
+						ObjectCache.cacheObj.put("emp:" + empId, employee);
+
+					} else {
+						employee = (Employee) ObjectCache.cacheObj.get("emp:" + empId);
+					}
+
 					Date dateOfFlying = resultSet2.getTimestamp("dateOfFlying");
 					double ticketPrice = resultSet2.getLong("ticketPrice");
-					
+
 					if(dateOfFlyingEmployeePassengerSet == null)
 					{
 						dateOfFlyingEmployeePassengerSet = new HashMap<Date, EmployeePassengerSet>();
 						employeePassengerSet = new EmployeePassengerSet();
 						employeePassengerSet.setTicketPrice(ticketPrice);
 						employeePassengerSet.addEmployee(employee);
-						
+
 						dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
 						flightMap.put(flight.getFlightId(), dateOfFlyingEmployeePassengerSet);
 					}
 					else
 					{
-						 employeePassengerSet = 
+						employeePassengerSet = 
 								dateOfFlyingEmployeePassengerSet.get(dateOfFlying);
-						
+
 						if(employeePassengerSet == null)
 						{
 							employeePassengerSet = new EmployeePassengerSet();
 							employeePassengerSet.setTicketPrice(ticketPrice);
 							employeePassengerSet.addEmployee(employee);
-							
+
 							dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
 						}
 						else
@@ -150,7 +168,7 @@ public class GetAllFlightsForAdminQuery {
 
 				resultSet2.close();
 				statement.close();
-				
+
 				// Add passengers
 				query = "select c.customerId, emailId, firstName, lastName,"
 						+ "gender, passportNum, nationality, "
@@ -169,6 +187,9 @@ public class GetAllFlightsForAdminQuery {
 				Customer passenger = null;
 				while (resultSet2.next()) 
 				{
+					String custId = resultSet2.getString("customerId");
+					
+					if(ObjectCache.cacheObj.get("cust:" + custId) == null) {
 					passenger = new Customer();
 
 					passenger.setCustomerId(resultSet2.getString("customerId"));
@@ -184,29 +205,35 @@ public class GetAllFlightsForAdminQuery {
 					passenger.setZipcode(resultSet2.getString("zipcode"));
 					passenger.setDob(resultSet2.getTimestamp("dob"));
 					
+					ObjectCache.cacheObj.put("cust:" + custId, passenger);
+					
+					} else {
+						passenger = (Customer) ObjectCache.cacheObj.get("cust:" + custId);
+					}
+
 					Date dateOfFlying = resultSet2.getTimestamp("dateOfFlying");
-					
+
 					dateOfFlyingEmployeePassengerSet = flightMap.get(flight.getFlightId());
-					
+
 					if(dateOfFlyingEmployeePassengerSet == null)
 					{
 						dateOfFlyingEmployeePassengerSet = new HashMap<Date, EmployeePassengerSet>();
 						employeePassengerSet = new EmployeePassengerSet();
 						employeePassengerSet.addPassenger(passenger);
-						
+
 						dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
 						flightMap.put(flight.getFlightId(), dateOfFlyingEmployeePassengerSet);
 					}
 					else
 					{
-						 employeePassengerSet = 
+						employeePassengerSet = 
 								dateOfFlyingEmployeePassengerSet.get(dateOfFlying);
-						
+
 						if(employeePassengerSet == null)
 						{
 							employeePassengerSet = new EmployeePassengerSet();
 							employeePassengerSet.addPassenger(passenger);
-							
+
 							dateOfFlyingEmployeePassengerSet.put(dateOfFlying, employeePassengerSet);
 						}
 						else
@@ -222,24 +249,24 @@ public class GetAllFlightsForAdminQuery {
 
 			resultSet.close();
 			statement.close();
-			
+
 			// Create the flights 
 			for(Entry<Integer, Flight> entry : flightIdToFlightMap.entrySet())
 			{
 				Integer flightId = entry.getKey();
-				
+
 				for (Date dateOfFlying : flightMap.get(flightId).keySet())
 				{
 					EmployeePassengerSet employeePassengerSet = flightMap.get(flightId).get(dateOfFlying);
-					
+
 					Flight newFlight = new Flight(entry.getValue());
 					newFlight.setTicketPrice(employeePassengerSet.getTicketPrice());
-					
+
 					newFlight.setFlyingDate(dateOfFlying);
-					
+
 					newFlight.setCrewDetails(employeePassengerSet.getEmployees());
 					newFlight.setPassengers(employeePassengerSet.getPassenger());
-					
+
 					flights.add(newFlight);
 				}
 			}
