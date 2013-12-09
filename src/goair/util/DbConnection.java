@@ -8,7 +8,7 @@ public class DbConnection
 	public String connectionDriver = "com.mysql.jdbc.Driver";
 	public String connectionParam = "jdbc:mysql://localhost/airline";
 	private String defaultUsername = "root";
-	private String defaultPassword = "";
+	private String defaultPassword = "root";
 
 	public Connection createDbConnection()
 	{
