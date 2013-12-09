@@ -1,9 +1,6 @@
 package goair.model.query.adminservices;
 
 import goair.model.customer.Customer;
-import goair.model.employee.Employee;
-import goair.model.flight.Flight;
-import goair.util.SearchParametersForFlights;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +14,7 @@ import org.apache.log4j.Logger;
 
 public class GetCustomersForFlightQuery {
 	
-	public static Logger logger = Logger.getLogger(SearchFlightsForAdminQuery.class);
+	public static Logger logger = Logger.getLogger(GetCustomersForFlightQuery.class);
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
@@ -38,8 +35,7 @@ public class GetCustomersForFlightQuery {
 		try{
 
 			statement = connection.createStatement();  
-			resultSet = statement.executeQuery(query);  
-
+			
 			// Get All Customers or Passengers for a flight
 				query = "select c.customerId, emailId, firstName, lastName,"
 						+ "gender, passportNum, nationality, "
@@ -50,7 +46,7 @@ public class GetCustomersForFlightQuery {
 						+ flightId + " and r.dateOfFlying='" + dateFormat.format(dateOfFlying) + "'";
 
 				logger.info("Get all the passengers(customers) for flight with id : " 
-						+ flightId + "and dateOfFlying= "+ dateOfFlying + ", query : "+query);
+						+ flightId + " and dateOfFlying= "+ dateOfFlying + ", query : "+query);
 
 				statement = connection.createStatement();  
 				resultSet = statement.executeQuery(query);
