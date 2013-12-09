@@ -134,8 +134,35 @@ public class AdminServices {
 	 */
 	public int addCustomer(Customer customer)
 	{
-		logger.info("Add a Customer : "+customer.toString());
-		return adminServiceQueries.addCustomer(customer);
+		logger.info("Add a Customer : "+ customer.toString());
+		boolean isValidZipcode = true;
+		int returncode = -1;
+		try{
+			if(customer !=null){
+				String employeeId = customer.getCustomerId();
+				boolean isValidEmployeeId = CheckValidity.isEmployeeIdValid(employeeId);
+				if(isValidEmployeeId){
+					if(customer.getZipcode() != null && !customer.getZipcode().trim().equals("")){
+						isValidZipcode = CheckValidity.isZipValid(customer.getZipcode());
+					}
+					
+					if(isValidZipcode){
+						returncode =  adminServiceQueries.addCustomer(customer);
+					}
+					else{
+						returncode = -3; //Invalid zipcode
+					}		
+				}
+				else{
+					returncode = -4; // Error code for invalid customer-id
+				}
+			}
+			return returncode;		
+		}		
+		catch(Exception ex){
+			ex.printStackTrace();
+			return -2;
+		}
 	}
 	
 	/**
@@ -210,8 +237,7 @@ public class AdminServices {
 					}
 					else{
 						returncode = -3; //Invalid zipcode
-					}
-					
+					}		
 				}
 				else{
 					returncode = -4; // Error code for invalid employee-id

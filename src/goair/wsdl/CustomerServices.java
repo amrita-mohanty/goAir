@@ -32,21 +32,35 @@ public class CustomerServices extends AirlineServices{
 	 */
 	public int addCustomer(Customer customer)
 	{
-		logger.info("Add a Customer : "+customer.toString());
-		boolean validateZipcode = true;
+		logger.info("Add a Customer : "+ customer.toString());
+		boolean isValidZipcode = true;
 		int returncode = -1;
-		if(customer != null){
-			if(customer.getZipcode() != null && !customer.getZipcode().trim().equals("")){
-				validateZipcode = CheckValidity.isZipValid(customer.getZipcode());
+		try{
+			if(customer !=null){
+				String employeeId = customer.getCustomerId();
+				boolean isValidEmployeeId = CheckValidity.isEmployeeIdValid(employeeId);
+				if(isValidEmployeeId){
+					if(customer.getZipcode() != null && !customer.getZipcode().trim().equals("")){
+						isValidZipcode = CheckValidity.isZipValid(customer.getZipcode());
+					}
+					
+					if(isValidZipcode){
+						returncode =  adminServiceQueries.addCustomer(customer);
+					}
+					else{
+						returncode = -3; //Invalid zipcode
+					}		
+				}
+				else{
+					returncode = -4; // Error code for invalid customer-id
+				}
 			}
-			if(validateZipcode){
-				returncode = adminServiceQueries.addCustomer(customer);
-			}
-			else{
-				returncode = -3; //Invalid zipcode
-			}
+			return returncode;		
+		}		
+		catch(Exception ex){
+			ex.printStackTrace();
+			return -2;
 		}
-		return returncode;
 	}
 	
 	/*
