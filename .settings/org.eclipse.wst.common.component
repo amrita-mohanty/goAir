@@ -2,7 +2,7 @@
     <wb-module deploy-name="goAir">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/goAir1/build/classes"/>
+        <property name="java-output-path" value="/goAir/build/classes"/>
         <property name="context-root" value="goAir"/>
     </wb-module>
 </project-modules>
