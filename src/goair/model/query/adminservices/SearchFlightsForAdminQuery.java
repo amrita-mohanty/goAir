@@ -1,5 +1,6 @@
 package goair.model.query.adminservices;
 
+import goair.cache.ObjectCache;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
@@ -15,11 +16,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class SearchFlightsForAdminQuery {
-	
+
 	public static Logger logger = Logger.getLogger(SearchFlightsForAdminQuery.class);
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
+
 	/**
 	 * This method will get the flight based on search parameters passed to it
 	 * @return Flight[] 
@@ -47,20 +48,29 @@ public class SearchFlightsForAdminQuery {
 
 			while (resultSet.next()) 
 			{
-				flight = new Flight();
+				int flightId = resultSet.getInt("flightId");
 
-				flight.setFlightId(resultSet.getInt("flightId"));
-				flight.setFlightName(resultSet.getString("flightName"));
-				flight.setAirlineName(resultSet.getString("airlineName"));
-				flight.setSource(resultSet.getString("source"));
-				flight.setDestination(resultSet.getString("destination"));
-				flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
-				flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
-				flight.setTotalSeats(resultSet.getInt("totalSeats"));
-				flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
-				flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
-				flight.setFlyingStartDate(resultSet.getDate("flyingStartDate"));
-				flight.setFlyingEndDate(resultSet.getDate("flyingEndDate"));
+				if(ObjectCache.cacheObj.get("flight:" + flightId) == null) {
+					flight = new Flight();
+
+					flight.setFlightId(resultSet.getInt("flightId"));
+					flight.setFlightName(resultSet.getString("flightName"));
+					flight.setAirlineName(resultSet.getString("airlineName"));
+					flight.setSource(resultSet.getString("source"));
+					flight.setDestination(resultSet.getString("destination"));
+					flight.setDepartureTime(resultSet.getTimestamp("departureTime"));
+					flight.setArrivalTime(resultSet.getTimestamp("arrivalTime"));
+					flight.setTotalSeats(resultSet.getInt("totalSeats"));
+					flight.setSeatsReserved(resultSet.getInt("seatsReserved"));
+					flight.setDaysOfWeek(resultSet.getString("daysOfWeek"));
+					flight.setFlyingStartDate(resultSet.getDate("flyingStartDate"));
+					flight.setFlyingEndDate(resultSet.getDate("flyingEndDate"));
+
+					ObjectCache.cacheObj.put("flight:" + flightId, flight);
+				}
+				else {
+					flight = (Flight) ObjectCache.cacheObj.get("flight:" + flightId);
+				}
 
 				flights.add(flight);
 			}
@@ -84,37 +94,46 @@ public class SearchFlightsForAdminQuery {
 
 				statement = connection.createStatement();  
 				resultSet = statement.executeQuery(query);
-				
+
 				List<Employee> empList = new ArrayList<Employee>();
 				Employee employee = null;
 				while (resultSet.next()) 
 				{
-					employee = new Employee();
+					String employeeId = resultSet.getString("employeeId");
 
-					employee.setEmployeeId(resultSet.getString("employeeId"));
-					employee.setEmailId(resultSet.getString("emailId"));
-					employee.setFirstName(resultSet.getString("firstName"));
-					employee.setLastName(resultSet.getString("lastName"));
-					employee.setGender(resultSet.getString("gender"));
-					employee.setAirlineName(resultSet.getString("airlineName"));
-					employee.setJobDesc(resultSet.getString("jobDesc"));
-					employee.setPosition(resultSet.getString("position"));
-					employee.setHireDate(resultSet.getTimestamp("hireDate"));
-					employee.setAddress(resultSet.getString("address"));
-					employee.setCity(resultSet.getString("city"));
-					employee.setState(resultSet.getString("state"));
-					employee.setZipcode(resultSet.getString("zipcode"));
-					employee.setDob(resultSet.getTimestamp("dob"));
+					if(ObjectCache.cacheObj.get("employee:" + employeeId) == null) {
+						employee = new Employee();
+
+						employee.setEmployeeId(resultSet.getString("employeeId"));
+						employee.setEmailId(resultSet.getString("emailId"));
+						employee.setFirstName(resultSet.getString("firstName"));
+						employee.setLastName(resultSet.getString("lastName"));
+						employee.setGender(resultSet.getString("gender"));
+						employee.setAirlineName(resultSet.getString("airlineName"));
+						employee.setJobDesc(resultSet.getString("jobDesc"));
+						employee.setPosition(resultSet.getString("position"));
+						employee.setHireDate(resultSet.getTimestamp("hireDate"));
+						employee.setAddress(resultSet.getString("address"));
+						employee.setCity(resultSet.getString("city"));
+						employee.setState(resultSet.getString("state"));
+						employee.setZipcode(resultSet.getString("zipcode"));
+						employee.setDob(resultSet.getTimestamp("dob"));
+
+						ObjectCache.cacheObj.put("employee:" + employeeId, employee);
+					}
+					else {
+						employee = (Employee) ObjectCache.cacheObj.get("employee:" + employeeId);
+					}
 
 					empList.add(employee);
 				}
 
 				resultSet.close();
 				statement.close();
-				
+
 				addedFlight.setCrewDetails(empList.toArray(new Employee[empList.size()]));
 			}
-			
+
 			// Add Customers or Passengers
 			for(Flight addedFlight : flights)
 			{
@@ -136,20 +155,30 @@ public class SearchFlightsForAdminQuery {
 				Customer passenger = null;
 				while (resultSet.next()) 
 				{
-					passenger = new Customer();
+					String customerId = resultSet.getString("customerId");
 
-					passenger.setCustomerId(resultSet.getString("customerId"));
-					passenger.setEmailId(resultSet.getString("emailId"));
-					passenger.setFirstName(resultSet.getString("firstName"));
-					passenger.setLastName(resultSet.getString("lastName"));
-					passenger.setGender(resultSet.getString("gender"));
-					passenger.setPassportNum(resultSet.getString("passportNum"));
-					passenger.setNationality(resultSet.getString("nationality"));
-					passenger.setAddress(resultSet.getString("address"));
-					passenger.setCity(resultSet.getString("city"));
-					passenger.setState(resultSet.getString("state"));
-					passenger.setZipcode(resultSet.getString("zipcode"));
-					passenger.setDob(resultSet.getTimestamp("dob"));
+					if(ObjectCache.cacheObj.get("customer:" + customerId) == null) {
+
+						passenger = new Customer();
+
+						passenger.setCustomerId(resultSet.getString("customerId"));
+						passenger.setEmailId(resultSet.getString("emailId"));
+						passenger.setFirstName(resultSet.getString("firstName"));
+						passenger.setLastName(resultSet.getString("lastName"));
+						passenger.setGender(resultSet.getString("gender"));
+						passenger.setPassportNum(resultSet.getString("passportNum"));
+						passenger.setNationality(resultSet.getString("nationality"));
+						passenger.setAddress(resultSet.getString("address"));
+						passenger.setCity(resultSet.getString("city"));
+						passenger.setState(resultSet.getString("state"));
+						passenger.setZipcode(resultSet.getString("zipcode"));
+						passenger.setDob(resultSet.getTimestamp("dob"));
+
+						ObjectCache.cacheObj.put("customer:" + customerId, passenger);
+					}
+					else {
+						passenger = (Customer) ObjectCache.cacheObj.get("customer:" + customerId);
+					}
 
 					passengerList.add(passenger);
 				}
@@ -201,7 +230,7 @@ public class SearchFlightsForAdminQuery {
 			if(searchParam.getNumberOfSeatsAvialable() != null) {
 				query = query + " and (totalSeats - seatsReserved)=" + searchParam.getNumberOfSeatsAvialable();
 			}
-			
+
 			if (searchParam.getEmployeeId() != null && !searchParam.getEmployeeId().equals("")) {
 				String flightFlyingQuery = "(select flightId from flightflyinginformation "
 						+ "where employeeId='"+searchParam.getEmployeeId()+"') ";
@@ -211,7 +240,7 @@ public class SearchFlightsForAdminQuery {
 				String reservationQuery = "(select flightId from reservation "
 						+ "where customerId="+searchParam.getCustomerId()+") ";
 				query = query + " and flightId in " + reservationQuery;
-				
+
 			}
 			if (searchParam.getDateOfFlying() != null) {
 				String flightFlyingQuery = "(select flightId from flightflyinginformation "
@@ -223,3 +252,4 @@ public class SearchFlightsForAdminQuery {
 		return query;
 	}
 }
+
