@@ -1468,7 +1468,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:AdminServicesSoapBinding" name="AdminServices">
 
-         <wsdlsoap:address location="http://localhost:8080/goAir1/services/AdminServices"/>
+         <wsdlsoap:address location="http://localhost:8080/goAir/services/AdminServices"/>
 
       </wsdl:port>
 

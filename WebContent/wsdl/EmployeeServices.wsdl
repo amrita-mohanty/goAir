@@ -329,7 +329,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:EmployeeServicesSoapBinding" name="EmployeeServices">
 
-         <wsdlsoap:address location="http://localhost:8080/goAir1/services/EmployeeServices"/>
+         <wsdlsoap:address location="http://localhost:8080/goAir/services/EmployeeServices"/>
 
       </wsdl:port>
 

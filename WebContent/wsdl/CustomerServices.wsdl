@@ -158,7 +158,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="creditCardNumber" nillable="true" type="xsd:string"/>
      <element name="currentStatus" nillable="true" type="xsd:string"/>
      <element name="customerFirstName" nillable="true" type="xsd:string"/>
-     <element name="customerId" type="xsd:int"/>
+     <element name="customerId" nillable="true" type="xsd:string"/>
      <element name="customerLastName" nillable="true" type="xsd:string"/>
      <element name="dateOfBooking" nillable="true" type="xsd:dateTime"/>
      <element name="dateOfFlying" nillable="true" type="xsd:dateTime"/>
@@ -728,7 +728,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:CustomerServicesSoapBinding" name="CustomerServices">
 
-         <wsdlsoap:address location="http://localhost:8080/goAir1/services/CustomerServices"/>
+         <wsdlsoap:address location="http://localhost:8080/goAir/services/CustomerServices"/>
 
       </wsdl:port>
 
