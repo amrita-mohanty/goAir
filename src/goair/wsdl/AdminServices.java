@@ -1,7 +1,5 @@
 package goair.wsdl;
 
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 
 import goair.model.customer.Customer;
@@ -343,18 +341,18 @@ public class AdminServices {
 	 * Get all the customers in a flight
 	 * Input : dateOfFlying , flightId
 	 */
-	public Customer[] getCustomersForFlight(Date dateOfFlying,int flightId){
-		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
-		return adminServiceQueries.getCustomersForFlight(dateOfFlying, flightId);
+	public Customer[] getCustomersForFlight(int flightId){
+		logger.info("Get all customers in a Flight: "+ flightId);
+		return adminServiceQueries.getCustomersForFlight(flightId);
 	}
 	
 	/*
 	 * Get all the employee in a flight
 	 * Input : dateOfFlying , flightId
 	 */
-	public Employee[] getEmpployeesForFlight(Date dateOfFlying,int flightId){
-		logger.info("Get all employees in a Flight: "+ flightId + "," + dateOfFlying.toString());
-		return adminServiceQueries.getEmployeesForFlight(dateOfFlying, flightId);
+	public Employee[] getEmpployeesForFlight(int flightId){
+		logger.info("Get all employees in a Flight: "+ flightId);
+		return adminServiceQueries.getEmployeesForFlight(flightId);
 	}
 	
 	public static void main(String[] args){

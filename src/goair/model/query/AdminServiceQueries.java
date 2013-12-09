@@ -1,10 +1,15 @@
 package goair.model.query;
 
 import java.sql.Connection;
-import java.util.Date;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
+import javax.jms.JMSException;
 
 import org.apache.log4j.Logger;
 
+import goair.jms.UpdateFlightStatusJms;
 import goair.model.customer.Customer;
 import goair.model.employee.Employee;
 import goair.model.flight.Flight;
@@ -19,6 +24,8 @@ import goair.util.SearchParametersForReservation;
 public class AdminServiceQueries 
 {
 	public static Logger logger = Logger.getLogger(AdminServiceQueries.class);
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	DbConnection dbConnection 	= null;
 	Connection connection 		= null;
@@ -49,6 +56,9 @@ public class AdminServiceQueries
 	CancelReservationQuery			cancelReservationQuery			= null;
 	GetCustomersForFlightQuery      getCustomersForFlightQuery		= null;
 	GetEmployeesForFlightQuery      getEmployeesForFlightQuery		= null;
+	
+	// Jms call
+	UpdateFlightStatusJms updateFlightStatusJms = new UpdateFlightStatusJms();
 	
 	public AdminServiceQueries()
 	{
@@ -376,26 +386,42 @@ public class AdminServiceQueries
 	 * Get all the customers in a flight
 	 * Input : dateOfFlying , flightId
 	 */
-	public Customer[] getCustomersForFlight(Date dateOfFlying, int flightId) {
-		logger.info("Get all customers in a Flight: "+ flightId + "," + dateOfFlying.toString());
+	public Customer[] getCustomersForFlight(int flightId) {
+		logger.info("Get all customers in a Flight: "+ flightId);
 		if(getCustomersForFlightQuery == null)
 		{
 			getCustomersForFlightQuery = new GetCustomersForFlightQuery();
 		}
-		return getCustomersForFlightQuery.searchCustomersForFlight(dateOfFlying, flightId,connection);
+		return getCustomersForFlightQuery.searchCustomersForFlight(flightId,connection);
 	}
 
 	/*
 	 * Get all the employee in a flight
 	 * Input : dateOfFlying , flightId
 	 */
-	public Employee[] getEmployeesForFlight(Date dateOfFlying, int flightId) {
-		logger.info("Get all employees in a Flight: "+ flightId + "," + dateOfFlying.toString());
+	public Employee[] getEmployeesForFlight(int flightId) {
+		logger.info("Get all employees in a Flight: "+ flightId);
 		if(getEmployeesForFlightQuery == null)
 		{
 			getEmployeesForFlightQuery = new GetEmployeesForFlightQuery();
 		}
-		return getEmployeesForFlightQuery.searchEmployeesForFlight(dateOfFlying, flightId,connection);
+		return getEmployeesForFlightQuery.searchEmployeesForFlight(flightId,connection);
 	}
 	
+	public void updateFlightStatusQuery(int flightId, String status) {
+		logger.info("Updating flightstatus for Flight: " + 
+				flightId + ", status : "+status);
+		String flightFlyingInfoTableQuery = "update  flightflyinginformation set flightStatus='"
+				+ status +"' where"
+				+ "flightId=" + flightId;
+		try {
+			Statement statement = connection.createStatement();
+			statement.execute(flightFlyingInfoTableQuery);
+			updateFlightStatusJms.updateFlightStatus();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
 }
