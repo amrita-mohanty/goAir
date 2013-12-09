@@ -20,20 +20,23 @@
       <parameter name="className" value="goair.wsdl.CustomerServicesSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="CustomerServices"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="customerLogin" qname="operNS:customerLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:customerLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
-        <parameter qname="pns:emailId" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      <operation name="main" qname="operNS:main" xmlns:operNS="http://wsdl.goair" soapAction="" >
+        <parameter qname="pns:args" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="searchFlights" qname="operNS:searchFlights" xmlns:operNS="http://wsdl.goair" returnQName="retNS:searchFlightsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Flight" xmlns:rtns="http://flight.model.goair" soapAction="" >
         <parameter qname="pns:searchFlightParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForFlights" xmlns:tns="http://util.goair"/>
       </operation>
+      <operation name="customerLogin" qname="operNS:customerLogin" xmlns:operNS="http://wsdl.goair" returnQName="retNS:customerLoginReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Customer" xmlns:rtns="http://customer.model.goair" soapAction="" >
+        <parameter qname="pns:emailId" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://wsdl.goair" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="viewAllReservations" qname="operNS:viewAllReservations" xmlns:operNS="http://wsdl.goair" returnQName="retNS:viewAllReservationsReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:Reservation" xmlns:rtns="http://reservation.model.goair" soapAction="" >
         <parameter qname="pns:searchParam" xmlns:pns="http://wsdl.goair" type="tns:SearchParametersForReservation" xmlns:tns="http://util.goair"/>
       </operation>
-      <operation name="cancelReservation" qname="operNS:cancelReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:cancelReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="addReservation" qname="operNS:addReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:reservation" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
       </operation>
-      <operation name="addReservation" qname="operNS:addReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:addReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="cancelReservation" qname="operNS:cancelReservation" xmlns:operNS="http://wsdl.goair" returnQName="retNS:cancelReservationReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:reservation" xmlns:pns="http://wsdl.goair" type="tns:Reservation" xmlns:tns="http://reservation.model.goair"/>
       </operation>
       <operation name="editCustomer" qname="operNS:editCustomer" xmlns:operNS="http://wsdl.goair" returnQName="retNS:editCustomerReturn" xmlns:retNS="http://wsdl.goair" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
@@ -46,7 +49,7 @@
         <parameter qname="pns:customer" xmlns:pns="http://wsdl.goair" type="tns:Customer" xmlns:tns="http://customer.model.goair"/>
         <parameter qname="pns:flight" xmlns:pns="http://wsdl.goair" type="tns:Flight" xmlns:tns="http://flight.model.goair"/>
       </operation>
-      <parameter name="allowedMethods" value="addReservation viewAllReservations addCustomer createReservation cancelReservation searchFlights customerLogin editCustomer"/>
+      <parameter name="allowedMethods" value="addReservation viewAllReservations addCustomer createReservation cancelReservation searchFlights customerLogin editCustomer main"/>
 
       <typeMapping
         xmlns:ns="http://util.goair"
@@ -64,19 +67,19 @@
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""
       />
-      <arrayMapping
-        xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns5_Employee"
-        type="java:goair.model.employee.Employee[]"
-        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
-        encodingStyle=""
-      />
       <typeMapping
         xmlns:ns="http://reservation.model.goair"
         qname="ns:Reservation"
         type="java:goair.model.reservation.Reservation"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://wsdl.goair"
+        qname="ns:ArrayOf_tns3_Employee"
+        type="java:goair.model.employee.Employee[]"
+        innerType="cmp-ns:Employee" xmlns:cmp-ns="http://employee.model.goair"
         encodingStyle=""
       />
       <typeMapping
@@ -89,7 +92,7 @@
       />
       <arrayMapping
         xmlns:ns="http://wsdl.goair"
-        qname="ns:ArrayOf_tns1_Customer"
+        qname="ns:ArrayOf_tns5_Customer"
         type="java:goair.model.customer.Customer[]"
         innerType="cmp-ns:Customer" xmlns:cmp-ns="http://customer.model.goair"
         encodingStyle=""
