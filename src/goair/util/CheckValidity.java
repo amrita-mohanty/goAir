@@ -1,7 +1,5 @@
 package goair.util;
 
-import goair.wsdl.CustomerServices;
-
 import org.apache.log4j.Logger;
 
 public class CheckValidity {

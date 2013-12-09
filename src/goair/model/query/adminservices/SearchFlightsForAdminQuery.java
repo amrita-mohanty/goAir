@@ -138,7 +138,7 @@ public class SearchFlightsForAdminQuery {
 				{
 					passenger = new Customer();
 
-					passenger.setCustomerId(resultSet.getInt("customerId"));
+					passenger.setCustomerId(resultSet.getString("customerId"));
 					passenger.setEmailId(resultSet.getString("emailId"));
 					passenger.setFirstName(resultSet.getString("firstName"));
 					passenger.setLastName(resultSet.getString("lastName"));

@@ -43,7 +43,7 @@ public class SearchCustomersForAdminQuery {
 			{
 				customer = new Customer();
 
-				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setCustomerId(resultSet.getString("customerid"));
 				customer.setEmailId(resultSet.getString("emailId"));
 				customer.setFirstName(resultSet.getString("firstname"));
 				customer.setLastName(resultSet.getString("lastname"));

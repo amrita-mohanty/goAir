@@ -21,8 +21,8 @@ public class DeleteCustomerQuery {
 	 */
 	public int deleteCustomer(Customer customer, Connection connection)
 	{
-		String deleteCustomerTableQuery = "update customer set currentStatus = 'Deleted' where customerId="
-				+customer.getCustomerId();
+		String deleteCustomerTableQuery = "update customer set currentStatus = 'Deleted' "
+				+ "where customerId='"+customer.getCustomerId()+"'";
 
 		Statement statement = null;
 		try

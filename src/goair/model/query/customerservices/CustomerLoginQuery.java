@@ -46,7 +46,7 @@ public class CustomerLoginQuery {
 			{
 				customer = new Customer();
 
-				customer.setCustomerId(resultSet.getInt("customerId"));
+				customer.setCustomerId(resultSet.getString("customerId"));
 				customer.setEmailId(resultSet.getString("emailId"));
 				customer.setPassword(resultSet.getString("password"));
 				customer.setFirstName(resultSet.getString("firstName"));

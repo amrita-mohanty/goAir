@@ -70,7 +70,7 @@ public class EditCustomerQuery {
 			customerTableQuery += ", password="+customer.getPassword()+" ";
 		}
 		
-		customerTableQuery += " where customerId="+customer.getCustomerId();
+		customerTableQuery += " where customerId='"+customer.getCustomerId()+"'";
 		customerTableQuery = customerTableQuery.replace("set ,", "set ");
 		
 		Statement statement = null;

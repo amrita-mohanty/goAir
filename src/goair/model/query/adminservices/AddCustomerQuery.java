@@ -21,11 +21,11 @@ public class AddCustomerQuery {
 	 */
 	public int addNewCustomer(Customer customer, Connection connection)
 	{
-		String customerTableQuery = "insert into customer("
+		String customerTableQuery = "insert into customer(customerid," 
 				+ "emailId, password,"
 				+ "firstname, lastname, gender, passportNum, "
 				+ "nationality, address, city,"
-				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+				+ "state, zipcode, dob) values (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		PreparedStatement preparedStatement = null;
 		try
@@ -33,18 +33,19 @@ public class AddCustomerQuery {
 			logger.info("Insert query for customer table : "+customerTableQuery);
 			
 			preparedStatement = connection.prepareStatement(customerTableQuery);
-			preparedStatement.setString(1, customer.getEmailId());
-			preparedStatement.setString(2, customer.getPassword());
-			preparedStatement.setString(3, customer.getFirstName());
-			preparedStatement.setString(4, customer.getLastName());
-			preparedStatement.setString(5, customer.getGender());
-			preparedStatement.setString(6, customer.getPassportNum());
-			preparedStatement.setString(7, customer.getNationality());
-			preparedStatement.setString(8, customer.getAddress());
-			preparedStatement.setString(9, customer.getCity());
-			preparedStatement.setString(10, customer.getState());
-			preparedStatement.setString(11, customer.getZipcode());
-			preparedStatement.setDate(12, new Date(customer.getDob().getTime()));
+			preparedStatement.setString(1, customer.getCustomerId());
+			preparedStatement.setString(2, customer.getEmailId());
+			preparedStatement.setString(3, customer.getPassword());
+			preparedStatement.setString(4, customer.getFirstName());
+			preparedStatement.setString(5, customer.getLastName());
+			preparedStatement.setString(6, customer.getGender());
+			preparedStatement.setString(7, customer.getPassportNum());
+			preparedStatement.setString(8, customer.getNationality());
+			preparedStatement.setString(9, customer.getAddress());
+			preparedStatement.setString(10, customer.getCity());
+			preparedStatement.setString(11, customer.getState());
+			preparedStatement.setString(12, customer.getZipcode());
+			preparedStatement.setDate(13, new Date(customer.getDob().getTime()));
 			
 			preparedStatement.execute();
 			

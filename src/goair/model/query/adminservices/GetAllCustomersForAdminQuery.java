@@ -44,7 +44,7 @@ public class GetAllCustomersForAdminQuery {
 			{
 				customer = new Customer();
 
-				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setCustomerId(resultSet.getString("customerid"));
 				customer.setPassword(resultSet.getString("password"));
 				customer.setEmailId(resultSet.getString("emailId"));
 				customer.setFirstName(resultSet.getString("firstname"));

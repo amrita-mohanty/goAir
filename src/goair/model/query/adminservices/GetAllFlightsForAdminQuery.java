@@ -171,7 +171,7 @@ public class GetAllFlightsForAdminQuery {
 				{
 					passenger = new Customer();
 
-					passenger.setCustomerId(resultSet2.getInt("customerId"));
+					passenger.setCustomerId(resultSet2.getString("customerId"));
 					passenger.setEmailId(resultSet2.getString("emailId"));
 					passenger.setFirstName(resultSet2.getString("firstName"));
 					passenger.setLastName(resultSet2.getString("lastName"));

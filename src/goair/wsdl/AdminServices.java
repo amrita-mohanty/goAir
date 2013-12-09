@@ -195,6 +195,7 @@ public class AdminServices {
 	{
 		logger.info("Add a Employee : "+employee.toString());
 		boolean isValidZipcode = true;
+		int returncode = -1;
 		try{
 			if(employee !=null){
 				String employeeId = employee.getEmployeeId();
@@ -205,18 +206,18 @@ public class AdminServices {
 					}
 					
 					if(isValidZipcode){
-						return adminServiceQueries.addEmployee(employee);
+						returncode =  adminServiceQueries.addEmployee(employee);
 					}
 					else{
-						return -3; //Invalid zipcode
+						returncode = -3; //Invalid zipcode
 					}
 					
 				}
 				else{
-					return -4; // Error code for invalid employee-id
+					returncode = -4; // Error code for invalid employee-id
 				}
 			}
-			return -1;		
+			return returncode;		
 		}		
 		catch(Exception ex){
 			ex.printStackTrace();

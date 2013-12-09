@@ -34,18 +34,19 @@ public class CustomerServices extends AirlineServices{
 	{
 		logger.info("Add a Customer : "+customer.toString());
 		boolean validateZipcode = true;
+		int returncode = -1;
 		if(customer != null){
 			if(customer.getZipcode() != null && !customer.getZipcode().trim().equals("")){
 				validateZipcode = CheckValidity.isZipValid(customer.getZipcode());
 			}
 			if(validateZipcode){
-				return adminServiceQueries.addCustomer(customer);
+				returncode = adminServiceQueries.addCustomer(customer);
 			}
 			else{
-				return -3; //Invalid zipcode
+				returncode = -3; //Invalid zipcode
 			}
 		}
-		return -1;
+		return returncode;
 	}
 	
 	/*
@@ -98,19 +99,20 @@ public class CustomerServices extends AirlineServices{
 	public int addReservation(Reservation reservation)
 	{
 		logger.info("Add a Reservation : "+reservation.toString());
+		int returncode = -1;
 		try{
 			if(reservation !=null){
 				String creditCardcString = reservation.getCreditCardNumber();
 				boolean isvaidCreditCard = CheckValidity.isCreditCardValid(creditCardcString);
 				if(isvaidCreditCard){
 					Long.parseLong(creditCardcString);				
-					return adminServiceQueries.addReservation(reservation);
+					returncode = adminServiceQueries.addReservation(reservation);
 				}
 				else{
-					return -3; // Error code for invalid credit-card number
+					returncode = -3; // Error code for invalid credit-card number
 				}
 			}
-			return -1;		
+			return returncode;		
 		}		
 		catch(Exception ex){
 			ex.printStackTrace();

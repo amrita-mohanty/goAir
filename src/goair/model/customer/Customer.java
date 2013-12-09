@@ -3,17 +3,17 @@ package goair.model.customer;
 import goair.model.general.Person;
 
 public class Customer extends Person{
-	int customerId;
+	String customerId;
     String passportNum;
     String nationality;
 
     public Customer() {}
 
-	public int getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 
